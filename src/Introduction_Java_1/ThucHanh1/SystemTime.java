@@ -1,3 +1,5 @@
+package Introduction_Java_1.ThucHanh1;
+
 import java.util.Date;
 
 public class SystemTime {
