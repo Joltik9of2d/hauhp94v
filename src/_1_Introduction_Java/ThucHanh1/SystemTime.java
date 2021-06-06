@@ -1,4 +1,4 @@
-package Introduction_Java_1.ThucHanh1;
+package _1_Introduction_Java.ThucHanh1;
 
 import java.util.Date;
 
