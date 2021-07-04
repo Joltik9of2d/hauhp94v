@@ -1,5 +1,7 @@
 package bai2_loop.bai_tap_2;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.util.Scanner;
 
 public class hien_thi_cac_loai_hinh {
@@ -11,6 +13,7 @@ public class hien_thi_cac_loai_hinh {
             System.out.println("1. Ve tam giac canh tren");
             System.out.println("2. Ve tam giac canh duoi");
             System.out.println("3. Ve hinh chu nhat");
+            System.out.println("4. Ve tam giac can");
             System.out.println("0. Thoat");
             System.out.println("Enter your choice: ");
             choice = input.nextInt();
@@ -54,6 +57,23 @@ public class hien_thi_cac_loai_hinh {
                         System.out.println();
                     }
                     break;
+                case 4:
+                    System.out.println("Ve tam giac can");
+                    System.out.println("Nhap chieu cao: ");
+                    Scanner inputcaocan = new Scanner(System.in);
+                    int cao2 = inputcaocan.nextInt();
+                    int rong2 = 2 * cao2 - 1;
+                    for (int k = 1; k <= cao2; k++) {
+                        for (int n = 0 ; n < rong2/2-k+1; n++) {
+                            System.out.print(" ");
+                        }
+                        for (int l = 0; l < k*2-1; l++) {
+                            System.out.print("*");
+                        }
+                        System.out.println();
+                    }
+                    break;
+
                 case 0:
                     System.exit(0);
                 default:
