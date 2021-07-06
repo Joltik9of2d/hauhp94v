@@ -63,11 +63,11 @@ public class hien_thi_cac_loai_hinh {
                     Scanner inputcaocan = new Scanner(System.in);
                     int cao2 = inputcaocan.nextInt();
                     int rong2 = 2 * cao2 - 1;
-                    for (int k = 1; k <= cao2; k++) {
-                        for (int n = 0 ; n < rong2/2-k+1; n++) {
+                    for (int i = 1; i <= cao2; i++) {
+                        for (int j = 0 ; j < rong2/2-i+1; j++) {
                             System.out.print(" ");
                         }
-                        for (int l = 0; l < k*2-1; l++) {
+                        for (int k = 0; k < i*2-1; k++) {
                             System.out.print("*");
                         }
                         System.out.println();
