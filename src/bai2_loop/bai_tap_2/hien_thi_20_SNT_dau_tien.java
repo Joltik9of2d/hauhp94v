@@ -24,7 +24,7 @@ public class hien_thi_20_SNT_dau_tien {
             return false;
         }
         int count = 0;
-        for (int i = 2; i < number; i++) {
+        for (int i = 2; i <=Math.sqrt(number); i++) {
             if (number % i == 0) {
                 count++;
             }
