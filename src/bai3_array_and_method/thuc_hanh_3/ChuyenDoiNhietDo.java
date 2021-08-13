@@ -2,7 +2,7 @@ package bai3_array_and_method.thuc_hanh_3;
 
 import java.util.Scanner;
 
-public class chuyen_doi_nhiet_do {
+public class ChuyenDoiNhietDo {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         double fahrenheit;

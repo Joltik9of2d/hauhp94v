@@ -2,7 +2,7 @@ package bai3_array_and_method.bai_tap_3;
 
 import java.util.Scanner;
 
-public class tim_phan_tu_lon_nhat_trong_mang {
+public class TimPhanTuLonNhatTrongMang {
     public static void main(String[] args) {
         Scanner inputDong = new Scanner(System.in);
         System.out.println("Nhập số dòng");

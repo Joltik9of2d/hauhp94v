@@ -2,7 +2,7 @@ package bai3_array_and_method.thuc_hanh_3;
 
 import java.util.Scanner;
 
-public class dao_nguoc_mang {
+public class DaoNguocMang {
     public static void main(String[] args) {
         int size;
         int[] array;

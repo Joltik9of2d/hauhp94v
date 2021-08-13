@@ -2,7 +2,7 @@ package bai1_introduction_to_java.bai_tap_1;
 
 import java.util.Scanner;
 
-public class doc_so_thanh_chu {
+public class DocSoThanhChu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a number");

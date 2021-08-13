@@ -1,7 +1,7 @@
 package bai3_array_and_method.bai_tap_3;
 import java.util.Scanner;
 
-public class dem_so_lan_xuat_hien_trong_chuoi {
+public class DemSoLanXuatHienTrongChuoi {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Nhập chuỗi");

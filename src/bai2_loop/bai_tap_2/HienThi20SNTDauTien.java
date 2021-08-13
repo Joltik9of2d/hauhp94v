@@ -2,7 +2,7 @@ package bai2_loop.bai_tap_2;
 
 import java.util.Scanner;
 
-public class hien_thi_20_SNT_dau_tien {
+public class HienThi20SNTDauTien {
     public static void main(String[] args) {
         int number;
         Scanner input = new Scanner(System.in);

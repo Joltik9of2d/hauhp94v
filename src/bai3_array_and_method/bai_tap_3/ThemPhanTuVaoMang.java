@@ -2,7 +2,7 @@ package bai3_array_and_method.bai_tap_3;
 
 import java.util.Scanner;
 
-public class them_phan_tu_vao_mang {
+public class ThemPhanTuVaoMang {
     public static void main(String[] args) {
         int[] array = {10, 4, 6, 7, 8, 0, 0, 0, 0, 0};
         Scanner input = new Scanner(System.in);

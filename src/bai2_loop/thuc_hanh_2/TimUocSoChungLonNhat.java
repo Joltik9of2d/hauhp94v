@@ -2,7 +2,7 @@ package bai2_loop.thuc_hanh_2;
 
 import java.util.Scanner;
 
-public class tim_uoc_so_chung_lon_nhat {
+public class TimUocSoChungLonNhat {
     public static void main(String[] args) {
         int a;
         int b;

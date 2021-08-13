@@ -2,7 +2,7 @@ package bai2_loop.thuc_hanh_2;
 
 import java.util.Scanner;
 
-public class tien_lai_cho_vay {
+public class TienLaiChoVay {
     public static void main(String[] args) {
         double money = 1.0;
         int month = 1;

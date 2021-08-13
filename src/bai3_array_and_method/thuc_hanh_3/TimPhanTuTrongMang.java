@@ -2,7 +2,7 @@ package bai3_array_and_method.thuc_hanh_3;
 
 import java.util.Scanner;
 
-public class tim_phan_tu_trong_mang {
+public class TimPhanTuTrongMang {
     public static void main(String[] args) {
         String[] students = {"Christian", "Michael", "Camila", "Sienna", "Tanya", "Connor", "Zachariah", "Mallory", "Zoe", "Emily"};
         Scanner scanner = new Scanner(System.in);

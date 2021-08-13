@@ -2,7 +2,7 @@ package bai1_introduction_to_java.bai_tap_1;
 
 import java.util.Scanner;
 
-public class chuyen_doi_tien_te {
+public class ChuyenDoiTienTe {
     public static void main(String[] args) {
         double usd;
         Scanner sc = new Scanner(System.in);

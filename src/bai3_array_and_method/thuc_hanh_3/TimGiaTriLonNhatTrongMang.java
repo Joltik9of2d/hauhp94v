@@ -2,7 +2,7 @@ package bai3_array_and_method.thuc_hanh_3;
 
 import java.util.Scanner;
 
-public class tim_gia_tri_lon_nhat_trong_mang {
+public class TimGiaTriLonNhatTrongMang {
     public static void main(String[] args) {
         int size;
         int[] array;

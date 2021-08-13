@@ -2,7 +2,7 @@ package bai2_loop.thuc_hanh_2;
 
 import java.util.Scanner;
 
-public class thiet_ke_menu {
+public class ThietKeMenu {
     public static void main(String[] args) {
         int choice = -1;
         Scanner input = new Scanner(System.in);

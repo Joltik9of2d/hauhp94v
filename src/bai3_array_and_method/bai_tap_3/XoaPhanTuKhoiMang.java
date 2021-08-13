@@ -2,7 +2,7 @@ package bai3_array_and_method.bai_tap_3;
 
 import java.util.Scanner;
 
-public class xoa_phan_tu_khoi_mang {
+public class XoaPhanTuKhoiMang {
     public static void main(String[] args) {
         int[] array = {10,4,6,7,8,6,0,0,0,0};
         System.out.println("Mảng trước khi xóa: "+ "10,4,6,7,8,6,0,0,0,0");

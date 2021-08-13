@@ -2,7 +2,7 @@ package bai2_loop.thuc_hanh_2;
 
 import java.util.Scanner;
 
-public class kiem_tra_so_nguyen_to {
+public class KiemTraSoNguyenTo {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a number: ");

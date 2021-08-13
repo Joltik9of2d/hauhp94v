@@ -2,7 +2,7 @@ package bai3_array_and_method.bai_tap_3;
 
 import java.util.Scanner;
 
-public class tim_gia_tri_nho_nhat_trong_mang {
+public class TimGiaTriNhoNhatTrongMang {
     public static void main(String[] args) {
         Scanner inputSize = new Scanner(System.in);
         System.out.println("Nhập số phần tử của mảng");

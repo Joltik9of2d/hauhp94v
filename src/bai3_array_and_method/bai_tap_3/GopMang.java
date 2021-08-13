@@ -2,7 +2,7 @@ package bai3_array_and_method.bai_tap_3;
 
 import java.util.Scanner;
 
-public class gop_mang {
+public class GopMang {
     public static void main(String[] args) {
         System.out.println("Nhập số lượng phần tử mảng 1");
         Scanner input1 = new Scanner(System.in);

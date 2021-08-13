@@ -1,6 +1,6 @@
 package bai2_loop.bai_tap_2;
 
-public class hien_thi_cac_SNT_nho_hon_100 {
+public class HienThiCacSNTNhoHon100 {
     static boolean CheckPrime(int number) {
         if (number < 2) {
             return false;
