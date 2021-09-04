@@ -32,7 +32,7 @@ public class StopWatch {
     }
 
     public int getElapsedTime() {
-        int miliSecond = ((endTime.getHour() - startTime.getHour()) * 3600 + (endTime.getMinute() - startTime.getMinute()) * 60 + (endTime.getSecond() - startTime.getSecond()) * 1000);
+        int miliSecond = ((endTime.getHour() - startTime.getHour()) * 3600 + (endTime.getMinute() - startTime.getMinute()) * 60 + (endTime.getSecond() - startTime.getSecond())) * 1000;
         return miliSecond;
     }
 
@@ -58,7 +58,8 @@ public class StopWatch {
         a = selectionSort(a);
         LocalTime end = LocalTime.now();
         StopWatch sw = new StopWatch(start, end);
-        System.out.println("Time: " + sw.getElapsedTime());
+        System.out.println("StarTime: "+start+" EndTime: "+ end);
+        System.out.println("Time: " + sw.getElapsedTime() + " milisecond");
         for (int x : a) {
             System.out.println(x);
         }
