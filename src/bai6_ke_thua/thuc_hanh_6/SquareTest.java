@@ -12,3 +12,4 @@ public class SquareTest {
         System.out.println(square);
     }
 }
+
