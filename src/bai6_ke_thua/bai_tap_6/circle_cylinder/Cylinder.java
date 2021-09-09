@@ -3,10 +3,6 @@ package bai6_ke_thua.bai_tap_6.circle_cylinder;
 public class Cylinder extends Circle {
     private double height = 2;
 
-    private double getVolume() {
-        return height * Math.PI * Math.pow(getRadius(), 2);
-    }
-
     public Cylinder() {
     }
 
@@ -25,6 +21,9 @@ public class Cylinder extends Circle {
 
     public void setHeight(double height) {
         this.height = height;
+    }
+    public double getVolume() {
+        return height * Math.PI * Math.pow(getRadius(), 2);
     }
 
     @Override
