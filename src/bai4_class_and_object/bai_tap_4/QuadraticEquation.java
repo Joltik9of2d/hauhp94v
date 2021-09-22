@@ -43,7 +43,19 @@ public class QuadraticEquation {
             return 0;
         }
     }
-
+    private void giaipt(){
+        QuadraticEquation quadraticEquation1 = new QuadraticEquation(a,b,c);
+        if(quadraticEquation1.getDiscriminant()>0){
+            System.out.println("Phương trình có 2 nghiệm:");
+            System.out.println("x1 = "+ quadraticEquation1.getRoot1());
+            System.out.println("x2 = "+ quadraticEquation1.getRoot2());
+        }else if(quadraticEquation1.getDiscriminant()==0){
+            System.out.println("Phương trình có 1 nghiệm kép:");
+            System.out.println("x1 = x2 = "+ quadraticEquation1.getRoot1());
+        }else {
+            System.out.println("Phương trình vô nghiệm");
+        }
+    }
     public static void main(String[] args) {
         System.out.println("Chương trình giải phương trình bậc 2 ax^2+bx+c=0");
         Scanner scanner = new Scanner(System.in);
@@ -55,18 +67,8 @@ public class QuadraticEquation {
         double c = scanner.nextDouble();
         System.out.println("a,b,c vừa nhập là: "+a+" "+b+" "+c);
         System.out.println("phương trình: "+a+"x^2 + "+b+"x + "+c+" = 0");
-        QuadraticEquation QuadraticEquation1 = new QuadraticEquation(a,b,c);
-        if(QuadraticEquation1.getDiscriminant()>0){
-            System.out.println("Phương trình có 2 nghiệm:");
-            System.out.println("x1 = "+ QuadraticEquation1.getRoot1());
-            System.out.println("x2 = "+ QuadraticEquation1.getRoot2());
-        }else if(QuadraticEquation1.getDiscriminant()==0){
-            System.out.println("Phương trình có 1 nghiệm kép:");
-            System.out.println("x1 = x2 = "+ QuadraticEquation1.getRoot1());
-        }else {
-            System.out.println("Phương trình vô nghiệm");
-        }
-
+        QuadraticEquation pt = new QuadraticEquation(a,b,c);
+        pt.giaipt();
     }
 
 }
