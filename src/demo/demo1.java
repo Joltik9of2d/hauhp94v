@@ -10,8 +10,8 @@ public class demo1 {
 //        demo1 o2 = new demo1();
 //        o2.X = 5;
 //        System.out.printf("x=%d, y=%d, z=%d", o1.X, o2.X, demo1.X);
-        LocalTime now = LocalTime.now();
-        System.out.println(now);
-
+//        LocalTime now = LocalTime.now();
+//        System.out.println(now);
+    int[] arr = new int[5];
     }
 }
