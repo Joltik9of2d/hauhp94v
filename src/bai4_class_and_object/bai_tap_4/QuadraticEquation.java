@@ -3,7 +3,10 @@ package bai4_class_and_object.bai_tap_4;
 import java.util.Scanner;
 
 public class QuadraticEquation {
-    private double a, b, c;
+    private double a;
+    private double b;
+    private double c;
+
 
     private QuadraticEquation(double a, double b, double c) {
         this.a = a;

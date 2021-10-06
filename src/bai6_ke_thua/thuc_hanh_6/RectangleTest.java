@@ -10,5 +10,9 @@ public class RectangleTest {
 
         rectangle = new Rectangle(2.5, 3.8, "orange", true);
         System.out.println(rectangle);
+        System.out.println("Diện tích sau khi tăng 100%: ");
+        rectangle.resize(100);
+        System.out.println(rectangle.getArea());
+
     }
 }

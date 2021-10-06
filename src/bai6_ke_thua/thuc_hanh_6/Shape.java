@@ -1,6 +1,8 @@
 package bai6_ke_thua.thuc_hanh_6;
 
-public class Shape {
+import bai7_abstract_class_interface.bai_tap_7.interface_resizeable.IResizeable;
+
+public class Shape implements IResizeable {
     private String color = "green";
     private boolean filled = true;
     public Shape(){
@@ -10,6 +12,7 @@ public class Shape {
         this.color=color;
         this.filled = filled;
     }
+
     public String getColor(){
         return color;
     }
@@ -28,6 +31,12 @@ public class Shape {
                 + getColor()
                 + " and "
                 + (isFilled() ? "filled" : "not filled");
+    }
+
+
+    @Override
+    public void resize(double percent) {
+
     }
 }
 
