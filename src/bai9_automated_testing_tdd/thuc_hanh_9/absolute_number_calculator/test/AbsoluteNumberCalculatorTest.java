@@ -1,3 +1,6 @@
+package bai9_automated_testing_tdd.thuc_hanh_9.absolute_number_calculator.test;
+
+import bai9_automated_testing_tdd.thuc_hanh_9.absolute_number_calculator.src.AbsoluteNumberCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
