@@ -1,3 +1,6 @@
+package bai9_automated_testing_tdd.bai_tap_9.tinh_ngay_tiep_theo.test;
+
+import bai9_automated_testing_tdd.bai_tap_9.tinh_ngay_tiep_theo.src.NextDayCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
