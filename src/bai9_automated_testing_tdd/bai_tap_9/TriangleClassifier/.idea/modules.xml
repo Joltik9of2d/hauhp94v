@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TriangleClassifier.iml" filepath="$PROJECT_DIR$/TriangleClassifier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/triangle_classifier.iml" filepath="$PROJECT_DIR$/triangle_classifier.iml" />
     </modules>
   </component>
 </project>
