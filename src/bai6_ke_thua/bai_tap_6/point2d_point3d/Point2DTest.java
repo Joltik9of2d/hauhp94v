@@ -7,7 +7,6 @@ public class Point2DTest {
         Point2D point2D = new Point2D();
         System.out.println(point2D);
         Point2D point2D1 = new Point2D(2,3);
-        point2D1.getXy();
         System.out.println(point2D1);
 
     }

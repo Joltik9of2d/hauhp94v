@@ -1,3 +1,6 @@
+package bai9_automated_testing_tdd.bai_tap_9.triangle_classifier.test;
+
+import bai9_automated_testing_tdd.bai_tap_9.triangle_classifier.src.TriangleClassifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
