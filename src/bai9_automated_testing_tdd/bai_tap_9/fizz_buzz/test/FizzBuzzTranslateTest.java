@@ -1,3 +1,6 @@
+package bai9_automated_testing_tdd.bai_tap_9.fizz_buzz.test;
+
+import bai9_automated_testing_tdd.bai_tap_9.fizz_buzz.src.FizzBuzzTranslate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +31,7 @@ class FizzBuzzTranslateTest {
     @Test
     void test16() {
         int number = 16;
-        String expected = "16";
+        String expected = "mot sau ";
         String result = FizzBuzzTranslate.translate(number);
         assertEquals(expected,result);
     }
@@ -43,6 +46,13 @@ class FizzBuzzTranslateTest {
     void test454() {
         int number = 454;
         String expected = "Buzz";
+        String result = FizzBuzzTranslate.translate(number);
+        assertEquals(expected,result);
+    }
+    @Test
+    void test26() {
+        int number = 26;
+        String expected = "hai sau ";
         String result = FizzBuzzTranslate.translate(number);
         assertEquals(expected,result);
     }
