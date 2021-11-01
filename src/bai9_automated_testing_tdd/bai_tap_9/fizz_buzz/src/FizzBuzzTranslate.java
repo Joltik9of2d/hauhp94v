@@ -1,7 +1,5 @@
 package bai9_automated_testing_tdd.bai_tap_9.fizz_buzz.src;
 
-import java.util.Arrays;
-
 public class FizzBuzzTranslate {
     public static String translate(int number) {
         if (number % 3 == 0 && number % 5 == 0) {
@@ -23,11 +21,11 @@ public class FizzBuzzTranslate {
         String[] arrayNumber = strNumber.split("");
         String resultString = "";
         if (number >= 0 && number < 100) {
-            resultString = converNumberToString(arrayNumber, resultString);
+            resultString = convertNumberToString(arrayNumber, resultString);
             return resultString;
         }else return "limit number less than 100";
     }
-    private static String converNumberToString(String[] arrayNumber, String resultString) {
+    private static String convertNumberToString(String[] arrayNumber, String resultString) {
         for (int i = 0; i < arrayNumber.length; i++) {
             switch (arrayNumber[i]) {
                 case "0":
