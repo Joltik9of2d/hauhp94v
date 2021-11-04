@@ -10,7 +10,8 @@ public class TennisGame {
     public static String getScore(String player1Name, String player2Name, int scorePlayer1, int scorePlayer2) {
         String score = "";
         int tempScore = 0;
-        if (scorePlayer1 == scorePlayer2) {
+        boolean isEqualScore = scorePlayer1 == scorePlayer2;
+        if (isEqualScore) {
             score = getScorePlayer1(scorePlayer1);
         } else if (scorePlayer1 >= 4 || scorePlayer2 >= 4) {
             score = getMinusResult(scorePlayer1, scorePlayer2);
