@@ -37,10 +37,10 @@ public class MyMap {
         putNewKey(str, myMap);
         System.out.println(myMap);
 
-        Iterator<String> itr = myMap.keySet().iterator();
-        while (itr.hasNext()) {
-            System.out.println(myMap.get(itr.next()));
-        }
+//        Iterator<String> itr = myMap.keySet().iterator();
+//        while (itr.hasNext()) {
+//            System.out.println(myMap.get(itr.next()));
+//        }
 
     }
 }
