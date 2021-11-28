@@ -1,6 +1,7 @@
 package bai11_dsa_stack_queue.bai_tap_11.demerging_queue;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 
 public class NhanVien implements Comparable<NhanVien> {
@@ -12,6 +13,10 @@ public class NhanVien implements Comparable<NhanVien> {
         this.name = name;
         this.gender = gender;
         this.birthday = birthday;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean isGender() {
@@ -33,8 +38,12 @@ public class NhanVien implements Comparable<NhanVien> {
                 '}';
     }
 
+
+
+
     @Override
     public int compareTo(NhanVien o) {
-        return this.birthday.compareTo(o.birthday);
+        return this.name.compareTo(o.name);
+
     }
 }
