@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class MyStack {
     public static void main(String[] args) {
-        boolean result = checkBracket("(– b (+ (b^2 – 4*a*c)^(0.5/ 2*a))  ");
+        boolean result = checkBracket(")()()( ");
         System.out.println(result?"Well":"???");
     }
     public static boolean checkBracket(String sym) {
