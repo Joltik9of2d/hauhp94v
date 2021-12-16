@@ -15,6 +15,14 @@ public class NhanVien implements Comparable<NhanVien> {
         this.birthday = birthday;
     }
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,13 +45,9 @@ public class NhanVien implements Comparable<NhanVien> {
                 ", birthday=" + birthday +
                 '}';
     }
-
-
-
-
     @Override
     public int compareTo(NhanVien o) {
-        return this.name.compareTo(o.name);
+        return this.birthday.compareTo(o.birthday);
 
     }
 }
