@@ -48,6 +48,5 @@ public class NhanVien implements Comparable<NhanVien> {
     @Override
     public int compareTo(NhanVien o) {
         return this.birthday.compareTo(o.birthday);
-
     }
 }

@@ -30,10 +30,5 @@ public class MyQueue {
         while (outPut.size()!=0){
             System.out.println(outPut.poll());
         }
-
-
-
     }
-
-
 }
