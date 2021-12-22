@@ -10,11 +10,13 @@ public class MyQueue {
         Queue<NhanVien> NAM = new PriorityQueue<>();
         Queue<NhanVien> nhanVien = new PriorityQueue<>();
         nhanVien.add(new NhanVien("Hau", true, LocalDate.of(1994, 1, 1)));
-        nhanVien.add(new NhanVien("Nam", true, LocalDate.of(1995, 2, 3)));
+        nhanVien.add(new NhanVien("Binh", true, LocalDate.of(1995, 2, 3)));
         nhanVien.add(new NhanVien("Hong", false, LocalDate.of(1990, 12, 1)));
         nhanVien.add(new NhanVien("Lan", false, LocalDate.of(1997, 5, 20)));
         nhanVien.add(new NhanVien("Han", true, LocalDate.of(1989, 8, 20)));
         nhanVien.add(new NhanVien("Hoa", false, LocalDate.of(1988, 3, 20)));
+        nhanVien.add(new NhanVien("Anh", false, LocalDate.of(2000, 9, 25)));
+
         while (nhanVien.size() != 0) {
             if (nhanVien.peek().isGender()) {
                 NAM.add(nhanVien.poll());
