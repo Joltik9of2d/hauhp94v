@@ -16,15 +16,23 @@ public class ProductManager<T> {
         productList.add(e);
         return "thêm thành công product: " + e;
     }
-    public String edit(int id, String newName, int newPrice) {
+    public String editName(int id, String newName) {
         for (int i = 0; i < productList.size(); i++) {
             if (productList.get(i).getId() == id) {
                 productList.get(i).setName(newName);
-                productList.get(i).setPrice(newPrice);
-                return "Sửa thành công product có id = " + id + " ==> " + productList.get(i).toString();
+                return "Sửa tên thành công product có id = " + id + " ==> " + productList.get(i).toString();
             }
         }
         return "Không tìm thấy id=" + id;
+    }
+    public String editPrice(int id, int newPrice) {
+        for (Product product : productList) {
+            if (product.getId() == id) {
+                product.setPrice(newPrice);
+                return "Sửa giá thành công product có id = " + id + " ==> " + product.toString();
+            }
+        }
+        return "khong tim thay";
     }
 
     public String remove(int id) {
@@ -42,11 +50,18 @@ public class ProductManager<T> {
             System.out.println(a);
         }
     }
-
-    public String search(String name) {
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getName() == name) {
-                return "Đã tìm được:"+ productList.get(i).toString();
+    public String searchId(int id) {
+        for (Product product : productList) {
+            if (product.getId()== id) {
+                return productList.toString();
+            }
+        }
+        return "Không tìm thấy id "+id;
+    }
+    public String searchName(String name) {
+        for (Product product : productList) {
+            if (product.getName().equals(name)) {
+                return "Đã tìm được:" + product.toString();
             }
         }
         return "Không tìm thấy tên "+ name;

@@ -5,9 +5,9 @@ import java.util.*;
 
 public class MyQueue {
     public static void main(String[] args) {
-        Queue<NhanVien> outPut = new LinkedList<>();
-        Queue<NhanVien> NU = new PriorityQueue<>();
-        Queue<NhanVien> NAM = new PriorityQueue<>();
+        Queue<NhanVien> outPut = new ArrayDeque<>();
+        Queue<NhanVien> nu = new ArrayDeque<>();
+        Queue<NhanVien> nam = new ArrayDeque<>();
         Queue<NhanVien> nhanVien = new PriorityQueue<>();
         nhanVien.add(new NhanVien("Hau", true, LocalDate.of(1994, 1, 1)));
         nhanVien.add(new NhanVien("Binh", true, LocalDate.of(1995, 2, 3)));
@@ -15,18 +15,18 @@ public class MyQueue {
         nhanVien.add(new NhanVien("Lan", false, LocalDate.of(1997, 5, 20)));
         nhanVien.add(new NhanVien("Han", true, LocalDate.of(1989, 8, 20)));
         nhanVien.add(new NhanVien("Hoa", false, LocalDate.of(1988, 3, 20)));
-        nhanVien.add(new NhanVien("Anh", false, LocalDate.of(2000, 9, 25)));
-
-        while (nhanVien.size() != 0) {
+        nhanVien.add(new NhanVien("Anh", false, LocalDate.of(1988, 3, 21)));
+//        Collections.sort(nhanVien,new ComparatorByName());
+        while (!nhanVien.isEmpty()) {
             if (nhanVien.peek().isGender()) {
-                NAM.add(nhanVien.poll());
-            } else NU.add(nhanVien.poll());
+                nam.add(nhanVien.poll());
+            } else nu.add(nhanVien.poll());
         }
-        while (NU.size()!=0){
-            outPut.add(NU.poll());
+        while (nu.size()!=0){
+            outPut.add(nu.poll());
         }
-        while (NAM.size()!=0){
-            outPut.add(NAM.poll());
+        while (nam.size()!=0){
+            outPut.add(nam.poll());
         }
         System.out.println("Danh sách nhân viên nữ trước nam sau và theo ngày sinh: ");
         while (outPut.size()!=0){
