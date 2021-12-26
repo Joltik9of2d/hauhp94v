@@ -2,13 +2,13 @@ package bai12_java_collection_framework.bai_tap_12.luyen_tap_arraylist_linkedlis
 
 public class Main {
     public static void main(String[] args) {
-        Product product = new Product(1, "iPhone 12", 20000);
+        Product product1 = new Product(1, "iPhone 12", 20000);
         Product product2 = new Product(2, "iPhone 11", 15000);
         Product product3 = new Product(3, "iPhone 12 pro max", 35000);
         Product product4 = new Product(4, "iPhone 8 plus", 9000);
         Product product5 = new Product(5, "iPhone 7 plus", 5000);
         ProductManager productManager = new ProductManager();
-        System.out.println(productManager.add(product));
+        System.out.println(productManager.add(product1));
         productManager.add(product2);
         productManager.add(product3);
         productManager.add(product4);
@@ -29,5 +29,8 @@ public class Main {
         productManager.display();
         System.out.println("Tìm tên iPhone 7 plus: ");
         System.out.println(productManager.search("iPhone 7 plus"));
+        System.out.println(productManager.add(new Product(5, "iPad mini", 12000)));
+        productManager.display();
+
     }
 }

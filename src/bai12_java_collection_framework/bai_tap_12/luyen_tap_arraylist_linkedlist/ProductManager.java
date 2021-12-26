@@ -8,6 +8,11 @@ import java.util.List;
 public class ProductManager<T> {
     private List<Product> productList = new LinkedList<>();
     public String add(Product e) {
+        for(int i =0;i<productList.size();i++){
+            if(productList.get(i).getId()==e.getId()){
+                return "id "+e.getId()+" đã tồn tại";
+            }
+        }
         productList.add(e);
         return "thêm thành công product: " + e;
     }
