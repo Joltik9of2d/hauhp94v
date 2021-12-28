@@ -25,11 +25,11 @@ public class Main {
                 "7/ Sắp xếp sản phẩm theo giá tăng dần \n" +
                 "8/ Sắp xếp sản phẩm theo giá giảm dần \n" +
                 "9/ Thoát chương trình.");
-        boolean check = true;
-        while (check) {
+        boolean checkLoop = true;
+        while (checkLoop) {
             Scanner scanner = new Scanner(System.in);
-            int n = scanner.nextInt();
-            switch (n) {
+            int luaChon = scanner.nextInt();
+            switch (luaChon) {
                 case 1:
                     Scanner scanner1 = new Scanner(System.in);
                     System.out.println("Nhập id:");
@@ -110,10 +110,10 @@ public class Main {
                     productManager.display();
                     break;
                 case 9:
-                    check = false;
+                    checkLoop = false;
                     break;
                 default:
-                    System.out.println("Nhập lại");
+                    System.out.println("Nhập lại 1-9");
             }
         }
     }

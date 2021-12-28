@@ -1,6 +1,5 @@
 package bai12_java_collection_framework.bai_tap_12.luyen_tap_arraylist_linkedlist;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,23 +15,23 @@ public class ProductManager<T> {
         productList.add(e);
         return "thêm thành công product: " + e;
     }
-    public String editName(int id, String newName) {
+    public void editName(int id, String newName) {
         for (int i = 0; i < productList.size(); i++) {
             if (productList.get(i).getId() == id) {
                 productList.get(i).setName(newName);
-                return "Sửa tên thành công product có id = " + id + " ==> " + productList.get(i).toString();
+//                productList.get(i).toString();
+                return;
             }
         }
-        return "Không tìm thấy id=" + id;
     }
-    public String editPrice(int id, int newPrice) {
+    public void editPrice(int id, int newPrice) {
         for (Product product : productList) {
             if (product.getId() == id) {
                 product.setPrice(newPrice);
-                return "Sửa giá thành công product có id = " + id + " ==> " + product.toString();
+//                product.toString();
+                return;
             }
         }
-        return "khong tim thay";
     }
 
     public String remove(int id) {
@@ -61,7 +60,7 @@ public class ProductManager<T> {
     public String searchName(String name) {
         for (Product product : productList) {
             if (product.getName().equals(name)) {
-                return "Đã tìm được:" + product.toString();
+                return "Đã tìm thấy: " + product.toString();
             }
         }
         return "Không tìm thấy tên "+ name;
