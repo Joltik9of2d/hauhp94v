@@ -52,7 +52,7 @@ public class ProductManager<T> {
     public String searchId(int id) {
         for (Product product : productList) {
             if (product.getId()== id) {
-                return productList.toString();
+                return product.toString();
             }
         }
         return "Không tìm thấy id "+id;

@@ -27,60 +27,61 @@ public class Main {
                 "9/ Thoát chương trình.");
         boolean checkLoop = true;
         while (checkLoop) {
-            Scanner scanner = new Scanner(System.in);
-            int luaChon = scanner.nextInt();
+            Scanner inputLuaChon = new Scanner(System.in);
+            int luaChon = inputLuaChon.nextInt();
             switch (luaChon) {
                 case 1:
-                    Scanner scanner1 = new Scanner(System.in);
+                    Scanner inputId = new Scanner(System.in);
                     System.out.println("Nhập id:");
-                    int id = scanner1.nextInt();
-                    if(productManager.searchId(id).equals("Không tìm thấy id "+id)){
+                    int id = inputId.nextInt();
+                    if (productManager.searchId(id).equals("Không tìm thấy id " + id)) {
                         System.out.println("Nhập tên sản phẩm:");
-                        String name = scanner1.next();
+                        String name = inputId.next();
                         System.out.println("Nhập giá sản phẩm:");
-                        int price = scanner1.nextInt();
+                        int price = inputId.nextInt();
                         Product product = new Product(id, name, price);
                         productManager.add(product);
                         productManager.display();
                         break;
-                    }else{
-                        System.out.println("id "+id+" đã tồn tại");
+                    } else {
+                        System.out.println("id " + id + " đã tồn tại");
                         break;
                     }
-
                 case 2:
                     System.out.println("Nhập id cần chỉnh sửa tên");
-                    Scanner scanner2 = new Scanner(System.in);
-                    int idEditName = scanner2.nextInt();
+                    Scanner inputIdName = new Scanner(System.in);
+                    int idEditName = inputIdName.nextInt();
                     if (productManager.searchId(idEditName).equals("Không tìm thấy id " + idEditName)) {
                         System.out.println("Không tìm thấy id " + idEditName);
                         break;
                     } else {
-                        System.out.println("Nhập tên mới");
-                        Scanner scanner3 = new Scanner(System.in);
-                        String nameNew = scanner3.nextLine();
+                        System.out.println("Chỉnh sửa: "+productManager.searchId(idEditName));
+                        System.out.println("Nhập tên mới: ");
+                        Scanner inputNewName = new Scanner(System.in);
+                        String nameNew = inputNewName.nextLine();
                         productManager.editName(idEditName, nameNew);
                         productManager.display();
                         break;
                     }
                 case 3:
                     System.out.println("Nhập id cần chỉnh sửa giá");
-                    Scanner scanner4 = new Scanner(System.in);
-                    int idEditPrice = scanner4.nextInt();
+                    Scanner inputIdPrice = new Scanner(System.in);
+                    int idEditPrice = inputIdPrice.nextInt();
                     if (productManager.searchId(idEditPrice).equals("Không tìm thấy id " + idEditPrice)) {
                         System.out.println("Không tìm thấy id " + idEditPrice);
                         break;
                     } else {
-                        System.out.println("Nhập giá mới");
-                        int newPrice = scanner4.nextInt();
+                        System.out.println("Chỉnh sửa: "+productManager.searchId(idEditPrice));
+                        System.out.println("Nhập giá mới: ");
+                        int newPrice = inputIdPrice.nextInt();
                         productManager.editPrice(idEditPrice, newPrice);
                         productManager.display();
                         break;
                     }
                 case 4:
                     System.out.println("Nhập id cần xóa:");
-                    Scanner scanner5 = new Scanner(System.in);
-                    int idRemove = scanner5.nextInt();
+                    Scanner inputIdRemove = new Scanner(System.in);
+                    int idRemove = inputIdRemove.nextInt();
                     if (productManager.searchId(idRemove).equals("Không tìm thấy id " + idRemove)) {
                         System.out.println("Không tìm thấy id " + idRemove);
                         break;
@@ -95,8 +96,8 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Nhập tên sản phẩm cần tìm kiếm");
-                    Scanner scanner6 = new Scanner(System.in);
-                    String nameSearch = scanner6.nextLine();
+                    Scanner inputIdSearch = new Scanner(System.in);
+                    String nameSearch = inputIdSearch.nextLine();
                     System.out.println(productManager.searchName(nameSearch));
                     break;
                 case 7:
