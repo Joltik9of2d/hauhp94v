@@ -12,17 +12,17 @@ public class MyMap {
         }
         return count;
     }
-    public static void putNewKey(String str, Map<String,Integer> myMap){
-        if(myMap.containsKey(str)){
-            int a = myMap.get(str)+1;
-            myMap.put(str,a);
-        }else myMap.put(str,1);
-    }
+//    public static void putNewKey(String str, Map<String,Integer> myMap){
+//        if(myMap.containsKey(str)){
+//            int a = myMap.get(str)+1;
+//            myMap.put(str,a);
+//        }else myMap.put(str,1);
+//    }
 
     public static void main(String[] args) {
-        String string = "cong hoa xa hoi chu nghia viet nam viet nam viet nam";
+        String string = "cong hoa xa hoi chu     nghia viet nam viet nam viet nam";
         System.out.println(string);
-        String[] array = string.split(" ");
+        String[] array = string.split("\\s+");
         for (int i = 0; i < array.length; i++) {
             array[i] = array[i].toUpperCase();
         }
@@ -32,10 +32,10 @@ public class MyMap {
         }
         myMap.forEach((key, value) -> System.out.println(
                 key + ": xuat hien " + value + " lan"));
-        System.out.println(myMap);
-        String str = "VIET";
-        putNewKey(str, myMap);
-        System.out.println(myMap);
+//        System.out.println(myMap);
+//        String str = "VIET";
+//        putNewKey(str, myMap);
+//        System.out.println(myMap);
 
 //        Iterator<String> itr = myMap.keySet().iterator();
 //        while (itr.hasNext()) {

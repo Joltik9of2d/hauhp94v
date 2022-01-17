@@ -3,7 +3,7 @@ package bai11_dsa_stack_queue.bai_tap_11.demerging_queue;
 import java.time.LocalDate;
 import java.util.*;
 
-public class MyQueue {
+public class QuanLyNhanVien {
     public static void main(String[] args) {
         Queue<NhanVien> outPut = new ArrayDeque<>();
         Queue<NhanVien> nu = new ArrayDeque<>();
@@ -16,7 +16,6 @@ public class MyQueue {
         nhanVien.add(new NhanVien("Han", true, LocalDate.of(1989, 8, 20)));
         nhanVien.add(new NhanVien("Hoa", false, LocalDate.of(1988, 3, 20)));
         nhanVien.add(new NhanVien("Anh", false, LocalDate.of(1988, 3, 21)));
-//        Collections.sort(nhanVien,new ComparatorByName());
         while (!nhanVien.isEmpty()) {
             if (nhanVien.peek().isGender()) {
                 nam.add(nhanVien.poll());
