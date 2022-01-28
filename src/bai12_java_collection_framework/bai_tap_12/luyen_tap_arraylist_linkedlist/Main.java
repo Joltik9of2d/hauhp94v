@@ -31,14 +31,14 @@ public class Main {
             int luaChon = inputLuaChon.nextInt();
             switch (luaChon) {
                 case 1:
-                    Scanner inputId = new Scanner(System.in);
-                    System.out.println("Nhập id:");
-                    int id = inputId.nextInt();
+                    Scanner inputAdd = new Scanner(System.in);
+                    System.out.print("Nhập id: ");
+                    int id = Integer.parseInt(inputAdd.nextLine());
                     if (productManager.searchId(id).equals("Không tìm thấy id " + id)) {
-                        System.out.println("Nhập tên sản phẩm:");
-                        String name = inputId.next();
-                        System.out.println("Nhập giá sản phẩm:");
-                        int price = inputId.nextInt();
+                        System.out.print("Nhập tên sản phẩm: ");
+                        String name = inputAdd.nextLine();
+                        System.out.print("Nhập giá sản phẩm: ");
+                        int price = Integer.parseInt(inputAdd.nextLine());
                         Product product = new Product(id, name, price);
                         productManager.add(product);
                         productManager.display();
@@ -48,7 +48,7 @@ public class Main {
                         break;
                     }
                 case 2:
-                    System.out.println("Nhập id cần chỉnh sửa tên");
+                    System.out.print("Nhập id cần chỉnh sửa tên: ");
                     Scanner inputIdName = new Scanner(System.in);
                     int idEditName = inputIdName.nextInt();
                     if (productManager.searchId(idEditName).equals("Không tìm thấy id " + idEditName)) {
@@ -56,7 +56,7 @@ public class Main {
                         break;
                     } else {
                         System.out.println("Chỉnh sửa: "+productManager.searchId(idEditName));
-                        System.out.println("Nhập tên mới: ");
+                        System.out.print("Nhập tên mới: ");
                         Scanner inputNewName = new Scanner(System.in);
                         String nameNew = inputNewName.nextLine();
                         productManager.editName(idEditName, nameNew);
@@ -72,14 +72,14 @@ public class Main {
                         break;
                     } else {
                         System.out.println("Chỉnh sửa: "+productManager.searchId(idEditPrice));
-                        System.out.println("Nhập giá mới: ");
+                        System.out.print("Nhập giá mới: ");
                         int newPrice = inputIdPrice.nextInt();
                         productManager.editPrice(idEditPrice, newPrice);
                         productManager.display();
                         break;
                     }
                 case 4:
-                    System.out.println("Nhập id cần xóa:");
+                    System.out.print("Nhập id cần xóa: ");
                     Scanner inputIdRemove = new Scanner(System.in);
                     int idRemove = inputIdRemove.nextInt();
                     if (productManager.searchId(idRemove).equals("Không tìm thấy id " + idRemove)) {
@@ -95,13 +95,13 @@ public class Main {
                     productManager.display();
                     break;
                 case 6:
-                    System.out.println("Nhập tên sản phẩm cần tìm kiếm");
-                    Scanner inputIdSearch = new Scanner(System.in);
-                    String nameSearch = inputIdSearch.nextLine();
+                    System.out.print("Nhập tên sản phẩm cần tìm kiếm: ");
+                    Scanner inputNameSearch = new Scanner(System.in);
+                    String nameSearch = inputNameSearch.nextLine();
                     System.out.println(productManager.searchName(nameSearch));
                     break;
                 case 7:
-                    System.out.println("Sắp xếp theo giá sản phẩm tăng dần:");
+                    System.out.println("Sắp xếp theo giá sản phẩm tăng dần: ");
                     productManager.sortByPriceIncrease();
                     productManager.display();
                     break;
@@ -111,6 +111,7 @@ public class Main {
                     productManager.display();
                     break;
                 case 9:
+                    System.out.println("Thoát chương trình.");
                     checkLoop = false;
                     break;
                 default:
