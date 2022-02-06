@@ -1,4 +1,4 @@
-package bai15_xu_ly_ngoai_le_va_debug.bai_tap_15.number_format_exception;
+package bai15_xu_ly_ngoai_le_va_debug.thuc_hanh_15.number_format_exception;
 
 import java.util.Scanner;
 

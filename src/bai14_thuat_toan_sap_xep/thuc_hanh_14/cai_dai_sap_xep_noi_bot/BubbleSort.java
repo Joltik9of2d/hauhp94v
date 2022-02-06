@@ -1,7 +1,7 @@
 package bai14_thuat_toan_sap_xep.thuc_hanh_14.cai_dai_sap_xep_noi_bot;
 
 public class BubbleSort {
-    static int[] list = {2, 3, 2, 5, 6, 1, -2, 3, 14, 12};
+    static int[] list = {6, 3, 2, 5, 6, 1, -2, 3, 14, 12};
     // codes below here
     public static void bubbleSort(int[] list) {
         boolean needNextPass = true;

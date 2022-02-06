@@ -1,4 +1,4 @@
-package bai15_xu_ly_ngoai_le_va_debug.bai_tap_15.array_index_out_of_bounds_exception;
+package bai15_xu_ly_ngoai_le_va_debug.thuc_hanh_15.array_index_out_of_bounds_exception;
 
 import java.util.Random;
 import java.util.Scanner;
