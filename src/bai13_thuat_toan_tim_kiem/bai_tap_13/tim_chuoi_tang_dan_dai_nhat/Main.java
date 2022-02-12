@@ -12,8 +12,6 @@ public class Main {
         String string = input.nextLine();
 
         LinkedList<Character> max = new LinkedList<>();
-
-        // Tìm chuỗi tăng dần có độ dài lớn nhất
         for (int i = 0; i < string.length(); i++) { //Vòng lặp bên ngoài
             //Khai báo một linked list trung gian các kí tự của chuỗi tăng dần
             LinkedList<Character> list = new LinkedList<>();
