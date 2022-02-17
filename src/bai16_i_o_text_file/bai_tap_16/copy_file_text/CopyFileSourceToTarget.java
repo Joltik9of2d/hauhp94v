@@ -13,7 +13,7 @@ public class CopyFileSourceToTarget {
             fileOutputStream= new FileOutputStream("target.txt");
             int ch;
             while ((ch = fileInputStream.read()) != -1) {
-                System.out.print((char)ch);
+                System.out.print((char) ch);
                 fileOutputStream.write(ch);
 
             }
