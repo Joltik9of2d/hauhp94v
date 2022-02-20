@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TriangleClassifierTest {
+class MainClassifierTest {
     @Test
     void testTamGiacDeu222() {
         float canh1 = 2;
