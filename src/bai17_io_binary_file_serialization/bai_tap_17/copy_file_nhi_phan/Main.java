@@ -16,6 +16,10 @@ public class Main {
                 outputStream.write(bytes,0,length);
             }
             System.out.println("copy xong");
+            System.out.println("Số byte trong tệp: ");
+            for (int a: bytes){
+                System.out.println(a);
+            }
 
         }
         catch (IOException e){
