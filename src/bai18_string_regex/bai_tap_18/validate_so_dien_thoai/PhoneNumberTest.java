@@ -7,8 +7,8 @@ public class PhoneNumberTest {
 
     public static void main(String[] args) {
         phoneNumber = new PhoneNumber();
-        System.out.println(phoneNumber.validate("84935256851"));
-        System.out.println(phoneNumber.validate("0935256851"));
-        System.out.println(phoneNumber.validate("85935256851"));
+        System.out.println(phoneNumber.validate("(45)-(0935256851)"));
+        System.out.println(phoneNumber.validate("(84)935256851"));
+        System.out.println(phoneNumber.validate("(84)-5935256851"));
     }
 }

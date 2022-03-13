@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PhoneNumber {
-    public static final String PHONE_NUMBER_REGEX = "^84\\d{9}$";
+    public static final String PHONE_NUMBER_REGEX = "^\\(\\d{2}\\)-\\(0\\d{9}\\)$";
 
     public PhoneNumber() {
     }
