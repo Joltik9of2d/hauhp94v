@@ -1,5 +1,6 @@
-package bai16_i_o_text_file.bai_tap_16.copy_file_text;
+package bai16_i_o_text_file.demo;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,13 +12,16 @@ public class CopyFileSourceToTarget {
         try {
             fileInputStream = new FileInputStream("source.txt");
             fileOutputStream= new FileOutputStream("target.txt");
-            int ch;
-            while ((ch = fileInputStream.read()) != -1) {
-                System.out.print((char) ch);
-                fileOutputStream.write(ch);
-
-            }
-        } catch (Exception e) {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            byte[] data = new byte[1024];
+            int length = bufferedInputStream.read(data);
+            System.out.println("Số lượng kí tự đọc được = "+ length);
+            String result = new String(data,0,length);
+            System.out.println(result);
+            bufferedInputStream.close();
+            System.out.println("đã copy xong");
+        }
+        catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (fileInputStream != null) {
