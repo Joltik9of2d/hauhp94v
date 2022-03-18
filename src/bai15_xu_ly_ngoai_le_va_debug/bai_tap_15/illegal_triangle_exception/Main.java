@@ -18,17 +18,13 @@ public class Main {
                 System.out.println(triangle.toString());
                 break;
             } catch (IllegalTriangleException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("Nhập lại kí tự số");
             } catch (Exception e) {
                 System.out.println("Lỗi rồi, nhập lại");
             }
         }
-
-
     }
-
-
 }
 

@@ -1,0 +1,6 @@
+Country{id=12, code='vn', name='vietnam'}
+Triangle{side1=3.0, side2=4.0, side3=5.0}
+Country{id=12, code='vn', name='vietnam'}
+Triangle{side1=3.0, side2=4.0, side3=5.0}
+Country{id=12, code='vn', name='vietnam'}
+Triangle{side1=3.0, side2=4.0, side3=5.0}

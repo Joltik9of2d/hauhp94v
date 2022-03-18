@@ -15,11 +15,11 @@ public class Triangle {
         }else if(side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1 ){
             throw new IllegalTriangleException("tổng 2 cạnh phải lớn hơn cạnh còn lại");
         }else {
+            System.out.println("Tam giác hợp lệ");
             this.side1 = side1;
             this.side2 = side2;
             this.side3 = side3;
         }
-
     }
 
     public double getSide1() {

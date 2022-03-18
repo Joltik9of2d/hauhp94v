@@ -14,7 +14,8 @@ public class CopyFileSourceToTargetClass {
             while ((line=bufferedReader.readLine())!=null){
                 System.out.println(line);
             }
-
+            bufferedReader.close();
+            fileReader.close();
         }catch (IOException e){
             e.printStackTrace();
         }

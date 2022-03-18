@@ -12,12 +12,12 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(int idProduct, String nameProduct, String nameOfManufacturer, double price, double weight) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.nameOfManufacturer = nameOfManufacturer;
-        this.price = price;
-        this.weight = weight;
+    public Product(int idProduct, String nameProduct, String nameOfManufacturer, double price, double weight) throws IdExistException {
+            this.idProduct = idProduct;
+            this.nameProduct = nameProduct;
+            this.nameOfManufacturer = nameOfManufacturer;
+            this.price = price;
+            this.weight = weight;
     }
 
     public int getIdProduct() {
