@@ -1,17 +1,42 @@
 package modle;
 
-public abstract class Service {
+import common.FuncWriteRead;
+import manager.IdExistException;
+import manager.ManagerService;
+
+import java.io.Serializable;
+import java.util.Comparator;
+
+public abstract class Service implements Serializable,Comparable<Service> {
+    public int id;
     public String serviceName;
     public double usableArea;
     public double rentalCost;
     public int maxNumberOfPeople;
     public String rentalType;
-    public Service(String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople, String rentalType) {
-        this.serviceName = serviceName;
-        this.usableArea = usableArea;
-        this.rentalCost = rentalCost;
-        this.maxNumberOfPeople = maxNumberOfPeople;
-        this.rentalType = rentalType;
+
+    public Service() {
+    }
+
+    public Service(int id, String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople, String rentalType) throws IdExistException {
+        if(FuncWriteRead.searchId(id)){
+            throw new IdExistException("id đã tồn tại, vui lòng nhập lại");
+        }else {
+            this.id = id;
+            this.serviceName = serviceName;
+            this.usableArea = usableArea;
+            this.rentalCost = rentalCost;
+            this.maxNumberOfPeople = maxNumberOfPeople;
+            this.rentalType = rentalType;
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getServiceName() {
@@ -57,7 +82,8 @@ public abstract class Service {
     @Override
     public String toString() {
         return "Service{" +
-                "serviceName='" + serviceName + '\'' +
+                "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
                 ", usableArea=" + usableArea +
                 ", rentalCost=" + rentalCost +
                 ", maxNumberOfPeople=" + maxNumberOfPeople +

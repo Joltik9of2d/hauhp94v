@@ -2,25 +2,35 @@ package modle;
 
 import java.time.LocalDate;
 
-public class Customer {
+public class Customer implements Comparable<Customer>{
+    private int idCustomer;
     private String customerName;
     private LocalDate birthday;
-    private String genfder;
+    private String gender;
     private int identityCardNumber;
     private int phoneNumber;
     private String email;
     private String CustomerType;
     private String address;
 
-    public Customer(String customerName, LocalDate birthday, String genfder, int identityCardNumber, int phoneNumber, String email, String customerType, String address) {
+    public Customer(int idCustomer, String customerName, LocalDate birthday, String gender, int identityCardNumber, int phoneNumber, String email, String customerType, String address) {
+        this.idCustomer = idCustomer;
         this.customerName = customerName;
         this.birthday = birthday;
-        this.genfder = genfder;
+        this.gender = gender;
         this.identityCardNumber = identityCardNumber;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        CustomerType = customerType;
+        this.CustomerType = customerType;
         this.address = address;
+    }
+
+    public int getIdCustomer() {
+        return idCustomer;
+    }
+
+    public void setIdCustomer(int idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     public String getCustomerName() {
@@ -39,12 +49,12 @@ public class Customer {
         this.birthday = birthday;
     }
 
-    public String getGenfder() {
-        return genfder;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenfder(String genfder) {
-        this.genfder = genfder;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getIdentityCardNumber() {
@@ -90,14 +100,20 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "customerName='" + customerName + '\'' +
+                "idCustomer=" + idCustomer +
+                ", customerName='" + customerName + '\'' +
                 ", birthday=" + birthday +
-                ", genfder='" + genfder + '\'' +
+                ", genfder='" + gender + '\'' +
                 ", identityCardNumber=" + identityCardNumber +
                 ", phoneNumber=" + phoneNumber +
                 ", email='" + email + '\'' +
                 ", CustomerType='" + CustomerType + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Customer o) {
+        return this.idCustomer - o.idCustomer;
     }
 }

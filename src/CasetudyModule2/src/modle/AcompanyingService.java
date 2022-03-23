@@ -1,14 +1,21 @@
 package modle;
 
-public class AcompanyingService {
+import java.io.Serializable;
+
+public class AcompanyingService implements Serializable {
     private int unitMassage =0;
+    private final double priceMassage = 200000;
     private int unitDrinking = 0;
+    private final double priceDrinking = 100000;
     private int unitFood = 0;
+    private final double priceFood = 300000;
     private int unitKaraoke = 0;
+    private final double priceKaraoke = 400000;
     private int unitRentalCar = 0;
+    private final double priceRentalCar = 600000;
+
     public AcompanyingService() {
     }
-
     public AcompanyingService(int unitMassage, int unitDrinking, int unitFood, int unitKaraoke, int unitRentalCar) {
         this.unitMassage = unitMassage;
         this.unitDrinking = unitDrinking;
@@ -58,23 +65,19 @@ public class AcompanyingService {
     }
 
     public double getMassageCost(int unit){
-        double priceMassage = 200000;
         return unit*priceMassage;
     }
     public double getDrinkingCost(int unit){
-        double priceDrinking = 100000;
+
         return unit*priceDrinking;
     }
     public double getFoodCost(int unit){
-        double priceFood = 300000;
         return unit*priceFood;
     }
     public double getKaraokeCost(int unit){
-        double priceKaraoke = 400000;
         return unit*priceKaraoke;
     }
     public double getRentalCarCost(int unit) {
-        double priceRentalCar = 600000;
         return unit*priceRentalCar;
     }
     public double getTotalAcompanyingServiceCost(){
@@ -82,4 +85,19 @@ public class AcompanyingService {
                 +getFoodCost(getUnitFood())+getKaraokeCost(getUnitKaraoke())+getRentalCarCost(getUnitRentalCar());
     }
 
+    @Override
+    public String toString() {
+        return "AcompanyingService{" +
+                "unitMassage=" + unitMassage +
+                ", priceMassage=" + priceMassage +
+                ", unitDrinking=" + unitDrinking +
+                ", priceDrinking=" + priceDrinking +
+                ", unitFood=" + unitFood +
+                ", priceFood=" + priceFood +
+                ", unitKaraoke=" + unitKaraoke +
+                ", priceKaraoke=" + priceKaraoke +
+                ", unitRentalCar=" + unitRentalCar +
+                ", priceRentalCar=" + priceRentalCar +
+                '}';
+    }
 }

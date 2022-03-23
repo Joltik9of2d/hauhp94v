@@ -1,16 +1,38 @@
 package modle;
 
+import manager.IdExistException;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Villa extends Service implements RentalContract{
+public class Villa extends Service implements Serializable,RentalContract{
     private int roomStandard = 5;
     private String amenitie = "Beach view";
-    private double poolArea = 300;
-    private byte numberOfFloors = 2;
+    private double poolArea = 50;
+    private int numberOfFloors = 2;
     private AcompanyingService acompanyingService;
 
-    public Villa(String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople, String rentalType, AcompanyingService acompanyingService) {
-        super(serviceName, usableArea, rentalCost, maxNumberOfPeople, rentalType);
+    public Villa() {
+    }
+
+    public Villa(AcompanyingService acompanyingService) {
+        this.acompanyingService = acompanyingService;
+    }
+
+//    public Villa(int roomStandard, String amenitie, double poolArea, byte numberOfFloors, AcompanyingService acompanyingService) {
+//        this.roomStandard = roomStandard;
+//        this.amenitie = amenitie;
+//        this.poolArea = poolArea;
+//        this.numberOfFloors = numberOfFloors;
+//        this.acompanyingService = acompanyingService;
+//    }
+
+    public Villa(int id, String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople, String rentalType, int roomStandard, String amenitie, double poolArea, int numberOfFloors, AcompanyingService acompanyingService) throws IdExistException {
+        super(id, serviceName, usableArea, rentalCost, maxNumberOfPeople, rentalType);
+        this.roomStandard = roomStandard;
+        this.amenitie = amenitie;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
         this.acompanyingService = acompanyingService;
     }
 
@@ -38,11 +60,11 @@ public class Villa extends Service implements RentalContract{
         this.poolArea = poolArea;
     }
 
-    public byte getNumberOfFloors() {
+    public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(byte numberOfFloors) {
+    public void setNumberOfFloors(int numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
 
@@ -57,22 +79,28 @@ public class Villa extends Service implements RentalContract{
     @Override
     public String toString() {
         return "Villa{" +
-                "roomStandard='" + roomStandard + "*"+'\'' +
+                " id=" + id +
+                ", roomStandard=" + roomStandard +"*"+
                 ", amenitie='" + amenitie + '\'' +
-                ", poolArea=" + poolArea +"met vuông"+
-                ", numberOfFloors=" + numberOfFloors +" Tầng"+
+                ", poolArea=" + poolArea +
+                ", numberOfFloors=" + numberOfFloors +
                 ", serviceName='" + serviceName + '\'' +
-                ", usableArea=" + usableArea +" met vuông"+
-                ", rentalCost=" + rentalCost + " triệu VND"+
-                ", maxNumberOfPeople=" + maxNumberOfPeople +" Người"+
+                ", usableArea=" + usableArea +
+                ", rentalCost=" + rentalCost +
+                ", maxNumberOfPeople=" + maxNumberOfPeople +
                 ", rentalType='" + rentalType + '\'' +
+                ", acompanyingService=" + acompanyingService +
                 '}';
     }
 
     @Override
     public void rentalContract(int numberContract, LocalDate startDay, LocalDate endDay, double deposit, double totalPay) {
        int totalDay = (endDay.getDayOfYear()-startDay.getDayOfYear());
-       
+    }
 
+
+    @Override
+    public int compareTo(Service o) {
+        return this.getId() - o.getId();
     }
 }
