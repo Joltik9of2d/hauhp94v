@@ -20,7 +20,7 @@ public class CrawlNews {
             // remove all new line
             content = content.replaceAll("\\n+", "");
             // regex
-            Pattern p = Pattern.compile("name_song\">(.*?)</a>");
+            Pattern p = Pattern.compile("<img alt=\"(.*?)\" class=\"");
             Matcher m = p.matcher(content);
             while (m.find()) {
                 System.out.println(m.group(1));
