@@ -13,13 +13,10 @@ public class CrawlNews {
     public static void main(String[] args) {
         try {
             URL url = new URL("https://dantri.com.vn/the-gioi.htm");
-            // open the stream and put it into BufferedReader
             Scanner scanner = new Scanner(new InputStreamReader(url.openStream()));
             scanner.useDelimiter("\\Z");
             String content = scanner.next();
-            // remove all new line
             content = content.replaceAll("\\n+", "");
-            // regex
             Pattern p = Pattern.compile("<img alt=\"(.*?)\" class=\"");
             Matcher m = p.matcher(content);
             while (m.find()) {
