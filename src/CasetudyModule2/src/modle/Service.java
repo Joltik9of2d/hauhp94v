@@ -2,10 +2,8 @@ package modle;
 
 import common.FuncWriteRead;
 import manager.IdExistException;
-import manager.ManagerService;
 
 import java.io.Serializable;
-import java.util.Comparator;
 
 public abstract class Service implements Serializable,Comparable<Service> {
     public int id;

@@ -3,8 +3,8 @@ package manager;
 import common.FuncWriteRead;
 import modle.*;
 
-import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,10 +14,11 @@ public class ManagerService {
     List<Service> houseList = new ArrayList<>();
     List<Service> roomList = new ArrayList<>();
     public void addService() throws IdExistException {
+        FuncWriteRead<Service> funcWriteRead = new FuncWriteRead<>();
         while (true) {
             try {
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("Chọn dịch vụ: \n1.Villa \n2.House \n3.Room \n4.Hiển thị danh sách service\n5.Thoát");
+                System.out.println("Chọn dịch vụ: \n1.Villa \n2.House \n3.Room \n4.Hiển thị danh sách service từ file\n5.Thoát");
                 int chooseService = scanner.nextInt();
                 switch (chooseService) {
                     case 1:
@@ -30,10 +31,10 @@ public class ManagerService {
                         AcompanyingService acompanyingService = orderAcompanyingService();
                         Villa villa = new Villa(idVilla,"Villa",300,2500000,maxPeople,rentalType,5,"Beach view",50, 2,acompanyingService);
                         System.out.println(villa.toString());
-                        serviceList.add(villa);
+                        this.serviceList.add(villa);
                         villaList.add(villa);
-                        FuncWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\villa.csv",villaList);
-                        FuncWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv",serviceList);
+                        funcWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\villa.csv",villaList);
+                        funcWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv", this.serviceList);
                         break;
                     case 2:
                         Scanner scanner2 = new Scanner(System.in);
@@ -45,10 +46,10 @@ public class ManagerService {
                         AcompanyingService acompanyingServiceHouse = orderAcompanyingService();
                         House house = new House(idHouse,"House",1,1500000,maxPeopleHouse,rentalTypeHouse,3,"Forest view", 1,acompanyingServiceHouse);
                         System.out.println(house.toString());
-                        serviceList.add(house);
+                        this.serviceList.add(house);
                         houseList.add(house);
-                        FuncWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\house.csv",houseList);
-                        FuncWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv",serviceList);
+                        funcWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\house.csv",houseList);
+                        funcWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv", this.serviceList);
                         break;
                     case 3:
                         Scanner scanner3 = new Scanner(System.in);
@@ -61,14 +62,15 @@ public class ManagerService {
                         AcompanyingService acompanyingServiceRoom = orderAcompanyingService();
                         Room room = new Room(idRoom, "Room", 100, 500000, maxPeopleRoom, rentalTypeRoom, freeService, acompanyingServiceRoom);
                         System.out.println(room.toString());
-                        serviceList.add(room);
+                        this.serviceList.add(room);
                         roomList.add(room);
-                        FuncWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\room.csv",roomList);
-                        FuncWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv",serviceList);
+                        funcWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\room.csv",roomList);
+                        funcWriteRead.writeToFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv", this.serviceList);
                         break;
                     case 4:
                         System.out.println("Hiển thị danh sách service từ file: ");
-                        List<Service> serviceList = FuncWriteRead.readDataFromFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv");
+                        List<Service> serviceList = funcWriteRead.readDataFromFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv");
+                        Collections.sort(serviceList,new ComparatorByIdService());
                         for (Service service : serviceList){
                             System.out.println(service);
                         }
@@ -164,6 +166,4 @@ public class ManagerService {
             }
         }
     }
-
-
 }

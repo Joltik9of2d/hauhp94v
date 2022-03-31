@@ -98,6 +98,7 @@ public class AcompanyingService implements Serializable {
                 ", priceKaraoke=" + priceKaraoke +
                 ", unitRentalCar=" + unitRentalCar +
                 ", priceRentalCar=" + priceRentalCar +
+                ", TotalAcompanyingServiceCost="+ getTotalAcompanyingServiceCost()+
                 '}';
     }
 }

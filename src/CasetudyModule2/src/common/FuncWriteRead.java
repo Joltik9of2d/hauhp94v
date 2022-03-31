@@ -1,28 +1,28 @@
 package common;
 
-import manager.ManagerService;
-import modle.Customer;
 import modle.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FuncWriteRead {
-    public static void writeToFile(String path, List<Service> services) {
+public class FuncWriteRead<T> {
+    private T t;
+    public void writeToFile(String path, List<T> t) {
         try {
             FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(services);
+            oos.writeObject(t);
             oos.writeBytes("\n");
             oos.close();
             fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
     public static boolean searchId(int id){
-        List<Service> serviceList = FuncWriteRead.readDataFromFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv");
+        FuncWriteRead funcWriteRead = new FuncWriteRead();
+        List<Service> serviceList = funcWriteRead.readDataFromFile("D:\\C0321G1_HuynhPhuocHau_Module2\\src\\CasetudyModule2\\src\\data\\service.csv");
         for(Service a: serviceList){
             if(a.getId()==id){
                 return true;
@@ -39,17 +39,17 @@ public class FuncWriteRead {
 //        }
 //        return false;
 //    }
-    public static List<Service> readDataFromFile(String path){
-        List<Service> serviceList = new ArrayList<>();
+    public List<T> readDataFromFile(String path){
+        List<T> tList = new ArrayList<>();
         try{
             FileInputStream fileInputStream = new FileInputStream(path);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            serviceList = (List<Service>) objectInputStream.readObject();
+            tList = (List<T>) objectInputStream.readObject();
             objectInputStream.close();
             fileInputStream.close();
         }catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
         }
-        return serviceList;
+        return tList;
     }
 }

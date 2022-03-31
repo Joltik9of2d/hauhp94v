@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManagerEmployee {
-    List<Employee> employeeList = new ArrayList<>();
     public void addEmployee(){
+        List<Employee> employeeList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập id nhân viên: ");
         int idEmployee = Integer.parseInt(scanner.nextLine());
@@ -40,6 +40,7 @@ public class ManagerEmployee {
         Employee employee = new Employee(idEmployee, nameEmployee, birthday, sCMND, phoneNumber, email, qualifications, position, salary, workingDepartment);
         System.out.println(employee.toString());
         employeeList.add(employee);
-
+    }
+    public void searchEmployeeById(){
     }
 }

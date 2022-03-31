@@ -1,19 +1,21 @@
 package modle;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Customer implements Comparable<Customer>{
+public class Customer implements Comparable<Customer>, Serializable {
     private int idCustomer;
     private String customerName;
     private LocalDate birthday;
     private String gender;
-    private int identityCardNumber;
-    private int phoneNumber;
+    private long identityCardNumber;
+    private long phoneNumber;
     private String email;
     private String CustomerType;
     private String address;
 
-    public Customer(int idCustomer, String customerName, LocalDate birthday, String gender, int identityCardNumber, int phoneNumber, String email, String customerType, String address) {
+    public Customer(int idCustomer, String customerName, LocalDate birthday, String gender, long identityCardNumber,
+                    long phoneNumber, String email, String customerType, String address) {
         this.idCustomer = idCustomer;
         this.customerName = customerName;
         this.birthday = birthday;
@@ -57,19 +59,19 @@ public class Customer implements Comparable<Customer>{
         this.gender = gender;
     }
 
-    public int getIdentityCardNumber() {
+    public long getIdentityCardNumber() {
         return identityCardNumber;
     }
 
-    public void setIdentityCardNumber(int identityCardNumber) {
+    public void setIdentityCardNumber(long identityCardNumber) {
         this.identityCardNumber = identityCardNumber;
     }
 
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
