@@ -1,4 +1,6 @@
-package modle;
+package comparator;
+
+import modle.Customer;
 
 import java.util.Comparator;
 

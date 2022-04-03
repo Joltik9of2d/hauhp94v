@@ -1,4 +1,6 @@
-package modle;
+package comparator;
+
+import modle.Service;
 
 import java.util.Comparator;
 

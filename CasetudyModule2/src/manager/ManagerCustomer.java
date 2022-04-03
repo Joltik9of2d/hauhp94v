@@ -1,6 +1,8 @@
 package manager;
 
 import common.FuncWriteRead;
+import comparator.ComparatorByIdCustomer;
+import comparator.ComparatorByNameCustomer;
 import modle.*;
 
 import java.time.LocalDate;
