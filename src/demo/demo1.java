@@ -12,6 +12,8 @@ public class demo1 {
 //        System.out.printf("x=%d, y=%d, z=%d", o1.X, o2.X, demo1.X);
 //        LocalTime now = LocalTime.now();
 //        System.out.println(now);
-    int[] arr = new int[5];
+        String a = "abc";
+        String b = new String("abc");
+        System.out.println(a.concat(b));
     }
 }
