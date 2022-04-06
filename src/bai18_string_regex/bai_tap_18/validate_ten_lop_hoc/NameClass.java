@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NameClass {
-    private static final String NAME_CLASS_REGEX = "^[A,C,P]\\d{4}[G,H,I,K,L,M]$";
+    private static final String NAME_CLASS_REGEX = "^[ACP]\\d{4}[GHIKLM]$";
 
     public NameClass() {
     }

@@ -7,6 +7,7 @@ import comparator.ComparatorByNameCustomer;
 import comparator.ComparatorByNameEmployee;
 import modle.Customer;
 import modle.Employee;
+import modle.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class ManagerEmployee {
     List<Employee> employeeList = new ArrayList<>();
 
     public void addEmployee(){
+        FuncWriteRead<Employee> funcWriteRead = new FuncWriteRead<>();
         List<Employee> employeeList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập id nhân viên: ");
@@ -50,6 +52,8 @@ public class ManagerEmployee {
         Employee employee = new Employee(idEmployee, nameEmployee, birthday, sCMND, phoneNumber, email, qualifications, position, salary, workingDepartment);
         System.out.println(employee.toString());
         employeeList.add(employee);
+        funcWriteRead.writeToFile(PATH_EMPLOYEE_CSV, employeeList);
+
     }
     public void editEmployeeName(){
         FuncWriteRead<Employee> funcWriteRead = new FuncWriteRead<>();

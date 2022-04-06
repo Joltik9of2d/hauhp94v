@@ -17,8 +17,8 @@ public class ManagerCustomer {
     public void addCustomer() throws IdExistException {
         FuncWriteRead<Customer> funcWriteRead = new FuncWriteRead<>();
         Scanner scanner = new Scanner(System.in);
-            System.out.print("Nhập id: ");
-            int id = Integer.parseInt(scanner.nextLine());
+        System.out.print("Nhập id: ");
+        int id = Integer.parseInt(scanner.nextLine());
         System.out.print("Nhập tên khách hàng:");
         String customerName = scanner.nextLine();
         System.out.println("Nhập ngày sinh khách hàng: ");
@@ -41,7 +41,8 @@ public class ManagerCustomer {
         String customerType = scanner.nextLine();
         System.out.print("Nhập địa chỉ: ");
         String address = scanner.nextLine();
-        Customer customer = new Customer(id, customerName,birthday, gender,identityCardNumber,phoneNumber,email,customerType,address);
+        Customer customer = new Customer(id, customerName,birthday, gender,identityCardNumber,
+                phoneNumber,email,customerType,address);
         System.out.println(customer.toString());
         customerList.add(customer);
         funcWriteRead.writeToFile(PATH_CUSTOMER_CSV, customerList);
