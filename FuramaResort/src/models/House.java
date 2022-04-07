@@ -1,31 +1,32 @@
 package models;
 
 public class House extends Services{
-    private int roomStandard = 3;
-    private String amenitie = "forest view";
-    private int numberOfFloors = 1;
+    private String roomStandard;
+    private String amenitie;
+    private int numberOfFloors;
 
     public House() {
     }
 
-    public House(int roomStandard, String amenitie, int numberOfFloors) {
+    public House(String roomStandard, String amenitie, int numberOfFloors) {
         this.roomStandard = roomStandard;
         this.amenitie = amenitie;
         this.numberOfFloors = numberOfFloors;
     }
 
-    public House(String id, String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople, String rentalType, int roomStandard, String amenitie, int numberOfFloors) {
+    public House(String id, String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople,
+                 String rentalType, String roomStandard, String amenitie, int numberOfFloors) {
         super(id, serviceName, usableArea, rentalCost, maxNumberOfPeople, rentalType);
         this.roomStandard = roomStandard;
         this.amenitie = amenitie;
         this.numberOfFloors = numberOfFloors;
     }
 
-    public int getRoomStandard() {
+    public String getRoomStandard() {
         return roomStandard;
     }
 
-    public void setRoomStandard(int roomStandard) {
+    public void setRoomStandard(String roomStandard) {
         this.roomStandard = roomStandard;
     }
 
