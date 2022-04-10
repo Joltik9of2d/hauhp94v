@@ -1,13 +1,11 @@
 package manager;
 
+import models.Customer;
 import models.Employee;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ManagerEmployee {
 
@@ -75,30 +73,35 @@ public class ManagerEmployee {
             for (Object i : ((TreeMap) treeMap).keySet()) {
                 System.out.println("key: " + i + " value: " + ((TreeMap) treeMap).get(i));
             }
-            } catch (FileNotFoundException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        } catch (ClassNotFoundException classNotFoundException) {
-            classNotFoundException.printStackTrace();
-        }
-
-    }
-
-    public static void writeToFile(){
-        FileReader fileReader = null;
-        try{
-            fileReader = new FileReader("D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Employee.csv");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = null;
-            while ((line=bufferedReader.readLine())!=null){
-                System.out.println(line);
-            }
-            bufferedReader.close();
-            fileReader.close();
-        }catch (IOException e){
+            } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+    }        public static ArrayDeque<Customer> veXemPhim;
+
+        public static void muaVeXemPhim(){
+            Customer customer1 = new Customer();
+            Customer customer2 = new Customer();
+            Customer customer3 = new Customer();
+            Customer customer4 = new Customer();
+            Customer customer5 = new Customer();
+            veXemPhim.add(customer1);
+            veXemPhim.add(customer2);
+            veXemPhim.add(customer3);
+            veXemPhim.add(customer4);
+            veXemPhim.add(customer5);
+            if(veXemPhim.size()==5){
+                System.out.println("Danh sách khách hàng: ");
+                for (int i=0;i<5;i++){
+                    System.out.println(veXemPhim.poll());
+                }
+            }
+        }
+    public static void inDanhSachVeXemPhim(){
+
     }
 
-}
+
+
+
+    }
