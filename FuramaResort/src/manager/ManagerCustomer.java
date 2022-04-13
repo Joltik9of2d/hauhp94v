@@ -2,6 +2,7 @@ package manager;
 
 import commons.FuncWriteAndRead;
 import comparator.ComparatorByNameCustomer;
+import exception.*;
 import libs.RegularExpression;
 import models.Customer;
 import models.Services;
@@ -15,7 +16,7 @@ public class ManagerCustomer {
     public static void addNewCustomer() {
         List<Customer> customerList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        String idCustomer;
+        String idCustomer= "";
         while (true) {
             System.out.print("Nhập idCustomer (CU-1234) : ");
             idCustomer = scanner.nextLine();
@@ -25,46 +26,96 @@ public class ManagerCustomer {
                 System.out.println("idCustomer không hợp lệ, nhập lại");
             }
         }
-        System.out.print("Nhập tên khách hàng:");
-        String customerName = scanner.nextLine();
-        String birthday;
+        String customerName = "";
+        while (true) {
+           try {
+               System.out.print("Nhập tên khách hàng (chữ đầu viết hoa):");
+               customerName = scanner.nextLine();
+               if (RegularExpression.validateNameCustomer(customerName)) {
+                   break;
+               } else throw new NameException("Tên không hợp lệ");
+           }catch (NameException e){
+               System.out.println(e.getMessage());
+           }
+           }
+        String birthday="";
         LocalDate birthdayLocalDate;
         while (true) {
-            System.out.println("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
-            birthday = scanner.nextLine();
-            if (RegularExpression.validateBirthday(birthday)) {
-                String[] arrayBirthday = birthday.split("/");
-                int day = Integer.parseInt(arrayBirthday[0]);
-                int month = Integer.parseInt(arrayBirthday[1]);
-                int year = Integer.parseInt(arrayBirthday[2]);
-                birthdayLocalDate = LocalDate.of(year, month, day);
-                break;
-            } else {
-                System.out.println("Birthday không hợp lệ hoặc chưa đủ 18 tuổi, nhập lại");
-            }
+          try {
+              System.out.println("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
+              birthday = scanner.nextLine();
+              if (RegularExpression.validateBirthday(birthday)) {
+                  String[] arrayBirthday = birthday.split("/");
+                  int day = Integer.parseInt(arrayBirthday[0]);
+                  int month = Integer.parseInt(arrayBirthday[1]);
+                  int year = Integer.parseInt(arrayBirthday[2]);
+                  birthdayLocalDate = LocalDate.of(year, month, day);
+                  break;
+              } else {
+                  throw new BirthdayException("Ngày sinh không hợp lệ hoặc chưa đủ 18 tuổi");
+              }
+          }catch (BirthdayException e){
+              System.out.println(e.getMessage());
+          }
         }
-        String gender;
+        String gender="";
         while (true) {
-            System.out.print("Nhập giới tính (Male, Female, Unknow): ");
-            gender = scanner.nextLine();
-            if (RegularExpression.validateGender(gender)) {
-                gender = gender.toLowerCase();
-                String[] string = gender.split("");
-                string[0] = string[0].toUpperCase();
-                gender = Arrays.toString(string);
-                break;
-            } else {
-                System.out.println("Giới tính không đúng định dạng, nhập lại.");
-            }
+           try {
+               System.out.print("Nhập giới tính (Male, Female, Unknow): ");
+               gender = scanner.nextLine();
+               if (RegularExpression.validateGender(gender)) {
+                   gender = gender.toLowerCase();
+                   String[] string = gender.split("");
+                   string[0] = string[0].toUpperCase();
+                   gender = Arrays.toString(string);
+                   break;
+               } else {
+                   throw new GenderException("Gender không hợp lệ, nhập lại");
+               }
+           }catch (GenderException e){
+               System.out.println(e.getMessage());
+           }
         }
-        System.out.print("Nhập số CMND: ");
-        String identityCardNumber = scanner.nextLine();
+        String identityCardNumber = "";
+        while (true){
+           try {
+               System.out.print("Nhập số CMND (xxx xxx xxx): ");
+               identityCardNumber = scanner.nextLine();
+               if(RegularExpression.validateIdCard(identityCardNumber)){
+                   break;
+               }else {
+                   throw new IdCardException("Số CMND không hợp lệ, nhập lại");
+               }
+           }catch (IdCardException e){
+               System.out.println(e.getMessage());
+           }
+       }
         System.out.print("Nhập số điện thoại: ");
         String phoneNumber = scanner.nextLine();
-        System.out.print("Nhập email: ");
-        String email = scanner.nextLine();
-        System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
-        String customerType = scanner.nextLine();
+        String email = "";
+        while (true){
+       try {
+           System.out.print("Nhập email : ");
+           email = scanner.nextLine();
+           if(RegularExpression.validateEmail(email)){
+               break;
+           }else {
+               throw new EmailException("Email không hợp lệ, nhập lại");
+           }
+       }catch (EmailException e){
+           System.out.println(e.getMessage());
+       }
+       }
+        String customerType = "";
+        while (true){
+           System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
+            customerType = scanner.nextLine();
+            if(RegularExpression.validateTypeCustomer(customerType)){
+                break;
+            }else {
+                System.out.println("Không hợp lệ, nhập lại");
+            }
+       }
         System.out.print("Nhập địa chỉ: ");
         String address = scanner.nextLine();
         System.out.println("Mời bạn đặt dịch vụ: ");
@@ -87,7 +138,7 @@ public class ManagerCustomer {
     public static Services addNewBooking() {
         List<Customer> customerList = new ArrayList<>();
         FuncWriteAndRead funcWriteAndRead = new FuncWriteAndRead();
-        while (true){
+        while (true) {
             System.out.println("Chọn chức năng:\n" +
                     "1.\tBooking Villa\n" +
                     "2.\tBooking House\n" +

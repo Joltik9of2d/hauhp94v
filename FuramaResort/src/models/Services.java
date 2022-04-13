@@ -5,7 +5,7 @@ import java.io.Serializable;
 public abstract class Services implements Serializable {
     public String id;
     public String serviceName;
-    public double usableArea;
+    public String usableArea;
     public double rentalCost;
     public int maxNumberOfPeople;
     public String rentalType;
@@ -13,7 +13,7 @@ public abstract class Services implements Serializable {
     public Services() {
     }
 
-    public Services(String id, String serviceName, double usableArea, double rentalCost, int maxNumberOfPeople, String rentalType) {
+    public Services(String id, String serviceName, String usableArea, double rentalCost, int maxNumberOfPeople, String rentalType) {
         this.id = id;
         this.serviceName = serviceName;
         this.usableArea = usableArea;
@@ -39,11 +39,11 @@ public abstract class Services implements Serializable {
         this.serviceName = serviceName;
     }
 
-    public double getUsableArea() {
+    public String getUsableArea() {
         return usableArea;
     }
 
-    public void setUsableArea(double usableArea) {
+    public void setUsableArea(String usableArea) {
         this.usableArea = usableArea;
     }
 

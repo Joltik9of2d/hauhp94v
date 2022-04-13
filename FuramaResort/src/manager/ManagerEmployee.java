@@ -79,27 +79,7 @@ public class ManagerEmployee {
 
     }        public static ArrayDeque<Customer> veXemPhim;
 
-        public static void muaVeXemPhim(){
-            Customer customer1 = new Customer();
-            Customer customer2 = new Customer();
-            Customer customer3 = new Customer();
-            Customer customer4 = new Customer();
-            Customer customer5 = new Customer();
-            veXemPhim.add(customer1);
-            veXemPhim.add(customer2);
-            veXemPhim.add(customer3);
-            veXemPhim.add(customer4);
-            veXemPhim.add(customer5);
-            if(veXemPhim.size()==5){
-                System.out.println("Danh sách khách hàng: ");
-                for (int i=0;i<5;i++){
-                    System.out.println(veXemPhim.poll());
-                }
-            }
-        }
-    public static void inDanhSachVeXemPhim(){
 
-    }
 
 
 

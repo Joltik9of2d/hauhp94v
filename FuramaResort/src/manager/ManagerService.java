@@ -1,11 +1,10 @@
 package manager;
 
 import commons.FuncWriteAndRead;
-import models.House;
-import models.Room;
-import models.Services;
-import models.Villa;
+import libs.RegularExpression;
+import models.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ManagerService {
@@ -30,26 +29,69 @@ public class ManagerService {
             int choose = Integer.parseInt(scanner.nextLine());
             switch (choose) {
                 case 1:
-                    System.out.print("Nhập id villa (SVVL-1234) : ");
-                    String idVilla = scanner.nextLine();
-                    System.out.print("Nhập tên villa (Villa): ");
-                    String nameVilla = scanner.nextLine();
-                    System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
-                    double usableArea = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Nhập chi phí thuê: ");
-                    double rentalCost = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Nhập số người tối đa: ");
-                    int maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
-                    String rentalType = scanner.nextLine();
-                    System.out.print("Nhập tiêu chuẩn phòng (1*-5*): ");
-                    String roomStandard = scanner.nextLine();
+                    System.out.println("Add new villa");
+                    String idVilla = "";
+                    while (!(RegularExpression.validateIdService(idVilla))) {
+                        System.out.print("Nhập id villa (SVVL-1234) : ");
+                        idVilla = scanner.nextLine();
+                    }
+                    String nameVilla = "";
+                    while (!(RegularExpression.validateNameService(nameVilla))) {
+                        System.out.print("Nhập tên villa (Villa): ");
+                        nameVilla = scanner.nextLine();
+                    }
+                    String usableArea = "";
+                    while (!(RegularExpression.validateUsablePool(usableArea))) {
+                        System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
+                        usableArea = scanner.nextLine();
+                    }
+                    double rentalCost;
+                    while (true) {
+                        try {
+                            System.out.print("Nhập chi phí thuê: ");
+                            rentalCost = Double.parseDouble(scanner.nextLine());
+                            break;
+                        } catch (NumberFormatException e) {
+                            System.out.println("Sai định dạng");
+                        }
+                    }
+                    int maxNumberOfPeople = 0;
+                    while (true) {
+                        try {
+                            System.out.print("Nhập số người tối đa: ");
+                            maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
+                            break;
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    String rentalType = "";
+                    while(!(RegularExpression.validateRentalType(rentalType))) {
+                        System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
+                        rentalType = scanner.nextLine();
+                    }
+                    String roomStandard = "";
+                    while (!(RegularExpression.validateRoomStandard(roomStandard))) {
+                        System.out.print("Nhập tiêu chuẩn phòng (1*-5*): ");
+                        roomStandard = scanner.nextLine();
+                    }
                     System.out.println("Nhập tiện nghi khác: ");
                     String amenitie = scanner.nextLine();
-                    System.out.println("Nhập diện tích hồ bơi (>30): ");
-                    Double poolArea = Double.parseDouble(scanner.nextLine());
-                    System.out.println("Nhập số tầng: ");
-                    int numberOfFloors = Integer.parseInt(scanner.nextLine());
+                    String poolArea="";
+                   while (!(RegularExpression.validateUsablePool(poolArea))){
+                       System.out.println("Nhập diện tích hồ bơi (>30): ");
+                        poolArea = scanner.nextLine();
+                   }
+                    int numberOfFloors=0;
+                    while (true){
+                       try{
+                           System.out.println("Nhập số tầng: ");
+                           numberOfFloors = Integer.parseInt(scanner.nextLine());
+                           break;
+                       }catch (NumberFormatException e){
+                           e.printStackTrace();
+                       }
+                    }
                     Villa villa = new Villa(idVilla, nameVilla, usableArea, rentalCost, maxNumberOfPeople,
                             rentalType, roomStandard, amenitie, poolArea, numberOfFloors);
                     villa.showInfor();
@@ -60,46 +102,115 @@ public class ManagerService {
                     funcWriteAndReadVilla.writeToFile(PATH_SERVICES_CSV, villaList);
                     break;
                 case 2:
-                    System.out.print("Nhập id house (SVHO-1234) : ");
-                    String idHouse = scanner.nextLine();
-                    System.out.print("Nhập tên house (House): ");
-                    String nameHouse = scanner.nextLine();
-                    System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
-                    double usableAreaHouse = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Nhập chi phí thuê: ");
-                    double rentalCostHouse = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Nhập số người tối đa: ");
-                    int maxNumberOfPeopleHouse = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
-                    String rentalTypeHouse = scanner.nextLine();
-                    System.out.print("Nhập tiêu chuẩn phòng (1*-5*): ");
-                    String roomStandardHouse = scanner.nextLine();
+                    System.out.println("Add new house");
+                    String idHouse = "";
+                   while (!RegularExpression.validateIdService(idHouse)){
+                       System.out.print("Nhập id house (SVHO-1234) : ");
+                       idHouse = scanner.nextLine();
+                   }
+                    String nameHouse = "";
+                    while (!RegularExpression.validateNameService(nameHouse)){
+                        System.out.print("Nhập tên house (House): ");
+                        nameHouse = scanner.nextLine();
+                    }
+                    String usableAreaHouse = "";
+                   while (!RegularExpression.validateUsablePool(usableAreaHouse)){
+                       System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
+                        usableAreaHouse = scanner.nextLine();
+                   }
+                    double rentalCostHouse = 0;
+                  while (true){
+                      try {
+                          System.out.print("Nhập chi phí thuê: ");
+                          rentalCostHouse = Double.parseDouble(scanner.nextLine());
+                          break;
+                      }catch (NumberFormatException e){
+                          e.printStackTrace();
+                      }
+                  }
+                    int maxNumberOfPeopleHouse = 0;
+                    while (true){
+                        try {
+                            System.out.print("Nhập số người tối đa: ");
+                            maxNumberOfPeopleHouse = Integer.parseInt(scanner.nextLine());
+                            break;
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    String rentalTypeHouse = "";
+                    while (!RegularExpression.validateRentalType(rentalTypeHouse)){
+                        System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
+                        rentalTypeHouse = scanner.nextLine();
+                    }
+                    String roomStandardHouse = "";
+                    while (!RegularExpression.validateRoomStandard(roomStandardHouse)){
+                        System.out.print("Nhập tiêu chuẩn phòng (1*-5*): ");
+                         roomStandardHouse = scanner.nextLine();
+                    }
                     System.out.println("Nhập tiện nghi khác: ");
                     String amenitieHouse = scanner.nextLine();
-                    System.out.println("Nhập số tầng: ");
-                    int numberOfFloorsHouse = Integer.parseInt(scanner.nextLine());
+                    int numberOfFloorsHouse;
+                    while (true){
+                        try {
+                            System.out.println("Nhập số tầng: ");
+                             numberOfFloorsHouse = Integer.parseInt(scanner.nextLine());
+                             break;
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                        }
+                    }
                     House house = new House(idHouse, nameHouse, usableAreaHouse, rentalCostHouse, maxNumberOfPeopleHouse,
                             rentalTypeHouse, roomStandardHouse, amenitieHouse, numberOfFloorsHouse);
                     house.showInfor();
                     houseList.add(house);
                     servicesList.add(house);
                     FuncWriteAndRead<Services> funcWriteAndReadHouse = new FuncWriteAndRead<>();
-                    funcWriteAndReadHouse.writeToFile(PATH_HOUSE_CSV, villaList);
-                    funcWriteAndReadHouse.writeToFile(PATH_SERVICES_CSV, villaList);
+                    funcWriteAndReadHouse.writeToFile(PATH_HOUSE_CSV, houseList);
+                    funcWriteAndReadHouse.writeToFile(PATH_SERVICES_CSV, houseList);
                     break;
                 case 3:
-                    System.out.print("Nhập id room (SVRO-1234) : ");
-                    String idRoom = scanner.nextLine();
-                    System.out.print("Nhập tên room (Room): ");
-                    String nameRoom = scanner.nextLine();
-                    System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
-                    double usableAreaRoom = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Nhập chi phí thuê: ");
-                    double rentalCostRoom = Double.parseDouble(scanner.nextLine());
-                    System.out.print("Nhập số người tối đa: ");
-                    int maxNumberOfPeopleRoom = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
-                    String rentalTypeRoom = scanner.nextLine();
+                    System.out.println("Add new room");
+                    String idRoom = "";
+                    while (!RegularExpression.validateIdService(idRoom)){
+                        System.out.print("Nhập id room (SVRO-1234) : ");
+                        idRoom = scanner.nextLine();
+                    }
+                    String nameRoom = "";
+                    while (!RegularExpression.validateNameService(nameRoom)){
+                        System.out.print("Nhập tên room (Room): ");
+                        nameRoom = scanner.nextLine();
+                    }
+                    String usableAreaRoom= "";
+                    while (!RegularExpression.validateUsablePool(usableAreaRoom)){
+                        System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
+                       usableAreaRoom =scanner.nextLine();
+                    }
+                    double rentalCostRoom=0;
+                    while (true){
+                        try{
+                            System.out.print("Nhập chi phí thuê: ");
+                            rentalCostRoom = Double.parseDouble(scanner.nextLine());
+                            break;
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    int maxNumberOfPeopleRoom = 0;
+                    while (true){
+                        try{
+                            System.out.print("Nhập số người tối đa: ");
+                           maxNumberOfPeopleRoom = Integer.parseInt(scanner.nextLine());
+                           break;
+                        }catch (NumberFormatException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    String rentalTypeRoom = "";
+                    while (!RegularExpression.validateRentalType(rentalTypeRoom)){
+                        System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
+                        rentalTypeRoom = scanner.nextLine();
+                    }
                     System.out.println("Nhập dịch vụ miễn phí đi kèm: ");
                     String freeServiceRoom = scanner.nextLine();
                     Room room = new Room(idRoom, nameRoom, usableAreaRoom, rentalCostRoom, maxNumberOfPeopleRoom,
@@ -108,8 +219,8 @@ public class ManagerService {
                     roomList.add(room);
                     servicesList.add(room);
                     FuncWriteAndRead<Services> funcWriteAndReadRoom = new FuncWriteAndRead<>();
-                    funcWriteAndReadRoom.writeToFile(PATH_ROOM_CSV, villaList);
-                    funcWriteAndReadRoom.writeToFile(PATH_SERVICES_CSV, villaList);
+                    funcWriteAndReadRoom.writeToFile(PATH_ROOM_CSV, roomList);
+                    funcWriteAndReadRoom.writeToFile(PATH_SERVICES_CSV, roomList);
                     break;
                 case 4:
                     check = false;
@@ -137,57 +248,81 @@ public class ManagerService {
             switch (choose) {
                 case 1:
                     System.out.println("Hiển thị danh sách villa từ file: ");
-                    List<Services> servicesListVilla = funcWriteAndRead.readDataFromFile(PATH_VILLA_CSV);
-                    for (Services services : servicesListVilla) {
-                        System.out.println(services);
-                    }
+                   try {
+                       List<Services> servicesListVilla = funcWriteAndRead.readDataFromFile(PATH_VILLA_CSV);
+                       for (Services services : servicesListVilla) {
+                           System.out.println(services.showInfor());
+                       }
+                   }catch (Exception e){
+                       e.printStackTrace();
+                   }
                     break;
                 case 2:
                     System.out.println("Hiển thị danh sách house từ file: ");
-                    List<Services> servicesListHouse = funcWriteAndRead.readDataFromFile(PATH_HOUSE_CSV);
-                    for (Services services : servicesListHouse) {
-                        System.out.println(services);
-                    }
+                   try {
+                       List<Services> servicesListHouse = funcWriteAndRead.readDataFromFile(PATH_HOUSE_CSV);
+                       for (Services services : servicesListHouse) {
+                           System.out.println(services.showInfor());
+                       }
+                   }catch (Exception e){
+                       e.printStackTrace();
+                   }
                     break;
                 case 3:
                     System.out.println("Hiển thị danh sách room từ file: ");
-                    List<Services> servicesListRoom = funcWriteAndRead.readDataFromFile(PATH_ROOM_CSV);
-                    for (Services services : servicesListRoom) {
-                        System.out.println(services);
-                    }
+                   try{
+                       List<Services> servicesListRoom = funcWriteAndRead.readDataFromFile(PATH_ROOM_CSV);
+                       for (Services services : servicesListRoom) {
+                           System.out.println(services.showInfor());
+                       }
+                   }catch (Exception e){
+                       e.printStackTrace();
+                   }
                     break;
                 case 4:
                     System.out.println("Hiển thị danh sách tên villa từ file (tên không trùng nhau");
                     TreeSet<String> villaTreeSet = new TreeSet<>();
-                    List<Services> servicesListVillaToSet = funcWriteAndRead.readDataFromFile(PATH_VILLA_CSV);
-                    for (Services services : servicesListVillaToSet) {
-                        villaTreeSet.add(services.getServiceName());
-                    }
-                    for (String treeSet : villaTreeSet) {
-                        System.out.println(treeSet);
-                    }
+                 try {
+                     List<Services> servicesListVillaToSet = funcWriteAndRead.readDataFromFile(PATH_VILLA_CSV);
+                     for (Services services : servicesListVillaToSet) {
+                         villaTreeSet.add(services.getServiceName());
+                     }
+                     for (String treeSet : villaTreeSet) {
+                         System.out.println(treeSet);
+                     }
+                 }catch (Exception e){
+                     e.printStackTrace();
+                 }
                     break;
                 case 5:
                     System.out.println("Hiển thị danh sách tên house từ file (tên không trùng nhau");
                     TreeSet<String> houseTreeSet = new TreeSet<>();
-                    List<Services> servicesListHouseToSet = funcWriteAndRead.readDataFromFile(PATH_HOUSE_CSV);
-                    for (Services services : servicesListHouseToSet) {
-                        houseTreeSet.add(services.getServiceName());
-                    }
-                    for (String treeSet : houseTreeSet) {
-                        System.out.println(treeSet);
-                    }
+                  try{
+                      List<Services> servicesListHouseToSet = funcWriteAndRead.readDataFromFile(PATH_HOUSE_CSV);
+                      for (Services services : servicesListHouseToSet) {
+                          houseTreeSet.add(services.getServiceName());
+                      }
+                      for (String treeSet : houseTreeSet) {
+                          System.out.println(treeSet);
+                      }
+                  }catch (Exception e){
+                      e.printStackTrace();
+                  }
                     break;
                 case 6:
                     System.out.println("Hiển thị danh sách tên room từ file (tên không trùng nhau");
                     TreeSet<String> roomTreeSet = new TreeSet<>();
-                    List<Services> servicesListRoomToSet = funcWriteAndRead.readDataFromFile(PATH_ROOM_CSV);
-                    for (Services services : servicesListRoomToSet) {
-                        roomTreeSet.add(services.getServiceName());
-                    }
-                    for (String treeSet : roomTreeSet) {
-                        System.out.println(treeSet);
-                    }
+                  try {
+                      List<Services> servicesListRoomToSet = funcWriteAndRead.readDataFromFile(PATH_ROOM_CSV);
+                      for (Services services : servicesListRoomToSet) {
+                          roomTreeSet.add(services.getServiceName());
+                      }
+                      for (String treeSet : roomTreeSet) {
+                          System.out.println(treeSet);
+                      }
+                  }catch (Exception e){
+                      e.printStackTrace();
+                  }
                     break;
                 case 7:
                     System.out.println("Back to menu ");
@@ -196,5 +331,39 @@ public class ManagerService {
                     System.exit(0);
             }
         }
+    }
+
+    public static Queue<Customer> veXemPhimQueue = new ArrayDeque<>();
+
+    public static void muaVeXemPhim() {
+        Customer customer1 = new Customer("CU-0001", "Huỳnh văn A");
+        Customer customer2 = new Customer("CU-0004", "Nguyễn An");
+        Customer customer3 = new Customer("CU-0012", "Đinh Lễ");
+        Customer customer4 = new Customer("CU-1043", "Lê Văn Xuân");
+        Customer customer5 = new Customer("CU-0221", "Võ Lâm");
+        veXemPhimQueue.add(customer1);
+        veXemPhimQueue.add(customer2);
+        veXemPhimQueue.add(customer3);
+        veXemPhimQueue.add(customer4);
+        veXemPhimQueue.add(customer5);
+        if (veXemPhimQueue.size() == 5) {
+            System.out.println("Đã đủ 5 vé, Danh sách khách hàng: ");
+            for (Customer customer : veXemPhimQueue) {
+                System.out.println(customer.getIdCustomer() + " Tên: " + customer.getCustomerName());
+            }
+        }
+    }
+
+    public static void inDanhSachVeXemPhim() {
+        while (true) {
+            System.out.println("Danh sách khách hàng in theo thứ tự mua vé: ");
+            for (int i = 0; i < 5; i++) {
+                System.out.println(veXemPhimQueue.poll().getCustomerName());
+            }
+            if (veXemPhimQueue.isEmpty()) {
+                break;
+            }
+        }
+
     }
 }
