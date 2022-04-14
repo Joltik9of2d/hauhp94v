@@ -1,16 +1,18 @@
 package manager;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import commons.FuncWriteAndRead;
-import comparator.ComparatorByNameCustomer;
 import exception.*;
 import libs.RegularExpression;
 import models.Customer;
 import models.Services;
+import models.Villa;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class ManagerCustomer {
+    public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
     public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
 
     public static void addNewCustomer() {
@@ -127,73 +129,94 @@ public class ManagerCustomer {
         funcWriteAndReadCustomer.writeToFile(PATH_CUSTOMER_CSV, customerList);
     }
 
-    public static <Customer> void showInformationCustomer() {
-        FuncWriteAndRead<Services> funcWriteAndRead = new FuncWriteAndRead<>();
-        List<Customer> customerList = (List<Customer>) funcWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
-        for (Customer customer : customerList) {
-            System.out.println(customer);
+    public static void showInformationCustomer() {
+        FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
+        System.out.println("Danh sách khách hàng: ");
+        try {
+            List<Customer> customerList = funcWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
+            for (Customer customer : customerList) {
+                System.out.println(customer.showInfor());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
-    public static Services addNewBooking() {
-        List<Customer> customerList = new ArrayList<>();
-        FuncWriteAndRead funcWriteAndRead = new FuncWriteAndRead();
+    public static void addNewBooking() {
+        FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
+        FuncWriteAndRead<Services> funcWriteAndReadService = new FuncWriteAndRead<>();
+        Services servicesToBooking = null;
+        Customer customerToBooking = null;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Chọn khách hàng để booking: ");
+        showInformationCustomer();
+        System.out.print("Nhập id khách hàng cần booking: ");
+        String idCustomerToBooking = scanner.nextLine();
+        List<Customer> customerList = funcWriteAndReadCustomer.readDataFromFile(PATH_CUSTOMER_CSV);
+        for(Customer customer: customerList){
+            if(customer.getIdCustomer().equals(idCustomerToBooking)){
+                customerToBooking = customer;
+            }
+        }
+
         while (true) {
             System.out.println("Chọn chức năng:\n" +
                     "1.\tBooking Villa\n" +
                     "2.\tBooking House\n" +
                     "3.\tBooking Room\n");
-            Scanner scanner = new Scanner(System.in);
             int choose = Integer.parseInt(scanner.nextLine());
             switch (choose) {
                 case 1:
                     System.out.println("Danh sách villa: ");
-                    List<Services> servicesListVilla = funcWriteAndRead.readDataFromFile(ManagerService.PATH_VILLA_CSV);
+                    List<Services> servicesListVilla = funcWriteAndReadService.readDataFromFile(ManagerService.PATH_VILLA_CSV);
                     for (Services services : servicesListVilla) {
-                        System.out.println(services);
+                        System.out.println(services.showInfor());
                     }
                     System.out.println("Nhập id villa muốn đặt: ");
                     String idVillaBook = scanner.nextLine();
-                    int index = 0;
                     for (Services services : servicesListVilla) {
                         if (services.getId().equals(idVillaBook)) {
-                            index = servicesListVilla.indexOf(services);
+                            servicesToBooking = services;
                         }
                     }
-                    return servicesListVilla.get(index);
+                    break;
                 case 2:
                     System.out.println("Danh sách house: ");
-                    List<Services> servicesListHouse = funcWriteAndRead.readDataFromFile(ManagerService.PATH_HOUSE_CSV);
+                    List<Services> servicesListHouse = funcWriteAndReadService.readDataFromFile(ManagerService.PATH_HOUSE_CSV);
                     for (Services servicesHouse : servicesListHouse) {
-                        System.out.println(servicesHouse);
+                        System.out.println(servicesHouse.showInfor());
                     }
                     System.out.println("Nhập id house muốn đặt: ");
                     String idHouseBook = scanner.nextLine();
-                    int indexHouse = 0;
                     for (Services servicesHouse : servicesListHouse) {
                         if (servicesHouse.getId().equals(idHouseBook)) {
-                            indexHouse = servicesListHouse.indexOf(servicesHouse);
+                            servicesToBooking = servicesHouse;
                         }
                     }
-                    return servicesListHouse.get(indexHouse);
+                    break;
                 case 3:
                     System.out.println("Danh sách room: ");
-                    List<Services> servicesListRoom = funcWriteAndRead.readDataFromFile(ManagerService.PATH_ROOM_CSV);
+                    List<Services> servicesListRoom = funcWriteAndReadService.readDataFromFile(ManagerService.PATH_ROOM_CSV);
                     for (Services servicesRoom : servicesListRoom) {
-                        System.out.println(servicesRoom);
+                        System.out.println(servicesRoom.showInfor());
                     }
                     System.out.println("Nhập id room muốn đặt: ");
                     String idRoomBook = scanner.nextLine();
-                    int indexRoom = 0;
                     for (Services servicesRoom : servicesListRoom) {
                         if (servicesRoom.getId().equals(idRoomBook)) {
-                            indexRoom = servicesListRoom.indexOf(servicesRoom);
+                            servicesToBooking = servicesRoom;
                         }
                     }
-                    return servicesListRoom.get(indexRoom);
+                    break;
                 default:
                     System.out.println("Nhập lại");
             }
+            customerToBooking.setServiceOfCustomer(servicesToBooking);
+            List<Customer> customerListBooking = new ArrayList<>();
+            customerListBooking.add(customerToBooking);
+            funcWriteAndReadCustomer.writeToFile(PATH_BOOKING_CSV,customerListBooking);
+            System.out.println("Booking thành công");
+            return;
         }
     }
 }

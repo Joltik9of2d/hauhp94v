@@ -132,4 +132,20 @@ public class Customer  implements Serializable {
                 ", serviceOfCustomer=" + serviceOfCustomer +
                 '}';
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "idCustomer='" + idCustomer + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", birthday=" + birthday +
+                ", gender='" + gender + '\'' +
+                ", identityCardNumber='" + identityCardNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", CustomerType='" + CustomerType + '\'' +
+                ", address='" + address + '\'' +
+                ", serviceOfCustomer=" + serviceOfCustomer +
+                '}';
+    }
 }
