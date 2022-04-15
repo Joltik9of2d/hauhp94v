@@ -14,7 +14,7 @@ public class House extends Services{
         this.numberOfFloors = numberOfFloors;
     }
 
-    public House(String id, String serviceName, String usableArea, double rentalCost, int maxNumberOfPeople,
+    public House(String id, String serviceName, String usableArea, double rentalCost, String maxNumberOfPeople,
                  String rentalType, String roomStandard, String amenitie, int numberOfFloors) {
         super(id, serviceName, usableArea, rentalCost, maxNumberOfPeople, rentalType);
         this.roomStandard = roomStandard;
@@ -53,7 +53,7 @@ public class House extends Services{
                 ", roomStandard=" + roomStandard +
                 ", numberOfFloors=" + numberOfFloors +
                 ", usableArea=" + usableArea +
-                ", rentalCost=" + rentalCost +
+                ", rentalCost=" + rentalCost +" Triệu"+
                 ", maxNumberOfPeople=" + maxNumberOfPeople +
                 ", rentalType='" + rentalType + '\'' +
                 '}';

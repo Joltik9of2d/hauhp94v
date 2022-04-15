@@ -15,7 +15,7 @@ public class Villa extends Services implements RentalContract{
         this.numberOfFloors = numberOfFloors;
     }
 
-    public Villa(String id, String serviceName, String usableArea, double rentalCost, int maxNumberOfPeople,
+    public Villa(String id, String serviceName, String usableArea, double rentalCost, String maxNumberOfPeople,
                  String rentalType, String roomStandard, String amenitie, String poolArea, int numberOfFloors) {
         super(id, serviceName, usableArea, rentalCost, maxNumberOfPeople, rentalType);
         this.roomStandard = roomStandard;
@@ -66,7 +66,7 @@ public class Villa extends Services implements RentalContract{
                 ", numberOfFloors=" + numberOfFloors +
                 ", serviceName='" + serviceName + '\'' +
                 ", usableArea=" + usableArea +
-                ", rentalCost=" + rentalCost +
+                ", rentalCost=" + rentalCost +" Triệu"+
                 ", maxNumberOfPeople=" + maxNumberOfPeople +
                 ", rentalType='" + rentalType + '\'' +
                 '}';

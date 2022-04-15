@@ -150,9 +150,19 @@ public class ManagerCustomer {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Chọn khách hàng để booking: ");
         showInformationCustomer();
-        System.out.print("Nhập id khách hàng cần booking: ");
-        String idCustomerToBooking = scanner.nextLine();
         List<Customer> customerList = funcWriteAndReadCustomer.readDataFromFile(PATH_CUSTOMER_CSV);
+        String idCustomerToBooking = "";
+        boolean check = true;
+        while (check){
+            System.out.print("Nhập id khách hàng cần booking: ");
+             idCustomerToBooking = scanner.nextLine();
+             for(Customer customer: customerList){
+                 if(customer.getIdCustomer().equals(idCustomerToBooking)){
+                     check = false;
+                 }
+             }
+            System.out.println("Không tìm thấy id customer này, nhập lại");
+        }
         for(Customer customer: customerList){
             if(customer.getIdCustomer().equals(idCustomerToBooking)){
                 customerToBooking = customer;

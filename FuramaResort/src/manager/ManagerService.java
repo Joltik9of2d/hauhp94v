@@ -55,15 +55,10 @@ public class ManagerService {
                             System.out.println("Sai định dạng");
                         }
                     }
-                    int maxNumberOfPeople = 0;
-                    while (true) {
-                        try {
+                    String maxNumberOfPeople = "";
+                    while (!RegularExpression.validateMaxOfPeople(maxNumberOfPeople)) {
                             System.out.print("Nhập số người tối đa: ");
-                            maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
-                            break;
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
+                            maxNumberOfPeople = scanner.nextLine();
                     }
                     String rentalType = "";
                     while(!(RegularExpression.validateRentalType(rentalType))) {
@@ -128,15 +123,10 @@ public class ManagerService {
                           e.printStackTrace();
                       }
                   }
-                    int maxNumberOfPeopleHouse = 0;
-                    while (true){
-                        try {
+                    String maxNumberOfPeopleHouse = "";
+                    while (!RegularExpression.validateMaxOfPeople(maxNumberOfPeopleHouse)){
                             System.out.print("Nhập số người tối đa: ");
-                            maxNumberOfPeopleHouse = Integer.parseInt(scanner.nextLine());
-                            break;
-                        }catch (NumberFormatException e){
-                            e.printStackTrace();
-                        }
+                            maxNumberOfPeopleHouse = scanner.nextLine();
                     }
                     String rentalTypeHouse = "";
                     while (!RegularExpression.validateRentalType(rentalTypeHouse)){
@@ -196,15 +186,11 @@ public class ManagerService {
                             e.printStackTrace();
                         }
                     }
-                    int maxNumberOfPeopleRoom = 0;
-                    while (true){
-                        try{
+                    String maxNumberOfPeopleRoom = "";
+                    while (!RegularExpression.validateMaxOfPeople(maxNumberOfPeopleRoom)){
                             System.out.print("Nhập số người tối đa: ");
-                           maxNumberOfPeopleRoom = Integer.parseInt(scanner.nextLine());
-                           break;
-                        }catch (NumberFormatException e){
-                            e.printStackTrace();
-                        }
+                           maxNumberOfPeopleRoom = scanner.nextLine();
+
                     }
                     String rentalTypeRoom = "";
                     while (!RegularExpression.validateRentalType(rentalTypeRoom)){

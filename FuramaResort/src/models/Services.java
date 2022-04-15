@@ -7,13 +7,13 @@ public abstract class Services implements Serializable {
     public String serviceName;
     public String usableArea;
     public double rentalCost;
-    public int maxNumberOfPeople;
+    public String maxNumberOfPeople;
     public String rentalType;
 
     public Services() {
     }
 
-    public Services(String id, String serviceName, String usableArea, double rentalCost, int maxNumberOfPeople, String rentalType) {
+    public Services(String id, String serviceName, String usableArea, double rentalCost, String maxNumberOfPeople, String rentalType) {
         this.id = id;
         this.serviceName = serviceName;
         this.usableArea = usableArea;
@@ -55,11 +55,11 @@ public abstract class Services implements Serializable {
         this.rentalCost = rentalCost;
     }
 
-    public int getMaxNumberOfPeople() {
+    public String getMaxNumberOfPeople() {
         return maxNumberOfPeople;
     }
 
-    public void setMaxNumberOfPeople(int maxNumberOfPeople) {
+    public void setMaxNumberOfPeople(String maxNumberOfPeople) {
         this.maxNumberOfPeople = maxNumberOfPeople;
     }
 

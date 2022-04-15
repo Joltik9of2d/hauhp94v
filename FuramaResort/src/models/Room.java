@@ -11,7 +11,7 @@ public class Room extends Services{
     }
 
     public Room(String id, String serviceName, String usableArea, double rentalCost,
-                int maxNumberOfPeople, String rentalType, String freeService) {
+                String maxNumberOfPeople, String rentalType, String freeService) {
         super(id, serviceName, usableArea, rentalCost, maxNumberOfPeople, rentalType);
         this.freeService = freeService;
     }
@@ -31,7 +31,7 @@ public class Room extends Services{
                 ", freeService='" + freeService + '\'' +
                 ", serviceName='" + serviceName + '\'' +
                 ", usableArea=" + usableArea +
-                ", rentalCost=" + rentalCost +
+                ", rentalCost=" + rentalCost +" Triệu"+
                 ", maxNumberOfPeople=" + maxNumberOfPeople +
                 ", rentalType='" + rentalType + '\'' +
                 '}';
