@@ -18,7 +18,7 @@ public class ManagerCustomer {
     public static void addNewCustomer() {
         List<Customer> customerList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        String idCustomer= "";
+        String idCustomer = "";
         while (true) {
             System.out.print("Nhập idCustomer (CU-1234) : ");
             idCustomer = scanner.nextLine();
@@ -30,100 +30,100 @@ public class ManagerCustomer {
         }
         String customerName = "";
         while (true) {
-           try {
-               System.out.print("Nhập tên khách hàng (chữ đầu viết hoa):");
-               customerName = scanner.nextLine();
-               if (RegularExpression.validateNameCustomer(customerName)) {
-                   break;
-               } else throw new NameException("Tên không hợp lệ");
-           }catch (NameException e){
-               System.out.println(e.getMessage());
-           }
-           }
-        String birthday="";
+            try {
+                System.out.print("Nhập tên khách hàng (chữ đầu viết hoa):");
+                customerName = scanner.nextLine();
+                if (RegularExpression.validateNameCustomer(customerName)) {
+                    break;
+                } else throw new NameException("Tên không hợp lệ");
+            } catch (NameException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        String birthday = "";
         LocalDate birthdayLocalDate;
         while (true) {
-          try {
-              System.out.println("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
-              birthday = scanner.nextLine();
-              if (RegularExpression.validateBirthday(birthday)) {
-                  String[] arrayBirthday = birthday.split("/");
-                  int day = Integer.parseInt(arrayBirthday[0]);
-                  int month = Integer.parseInt(arrayBirthday[1]);
-                  int year = Integer.parseInt(arrayBirthday[2]);
-                  birthdayLocalDate = LocalDate.of(year, month, day);
-                  break;
-              } else {
-                  throw new BirthdayException("Ngày sinh không hợp lệ hoặc chưa đủ 18 tuổi");
-              }
-          }catch (BirthdayException e){
-              System.out.println(e.getMessage());
-          }
+            try {
+                System.out.println("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
+                birthday = scanner.nextLine();
+                if (RegularExpression.validateBirthday(birthday)) {
+                    String[] arrayBirthday = birthday.split("/");
+                    int day = Integer.parseInt(arrayBirthday[0]);
+                    int month = Integer.parseInt(arrayBirthday[1]);
+                    int year = Integer.parseInt(arrayBirthday[2]);
+                    birthdayLocalDate = LocalDate.of(year, month, day);
+                    break;
+                } else {
+                    throw new BirthdayException("Ngày sinh không hợp lệ hoặc chưa đủ 18 tuổi");
+                }
+            } catch (BirthdayException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        String gender="";
+        String gender = "";
         while (true) {
-           try {
-               System.out.print("Nhập giới tính (Male, Female, Unknow): ");
-               gender = scanner.nextLine();
-               if (RegularExpression.validateGender(gender)) {
-                   gender = gender.toLowerCase();
-                   String[] string = gender.split("");
-                   string[0] = string[0].toUpperCase();
-                   gender = Arrays.toString(string);
-                   break;
-               } else {
-                   throw new GenderException("Gender không hợp lệ, nhập lại");
-               }
-           }catch (GenderException e){
-               System.out.println(e.getMessage());
-           }
+            try {
+                System.out.print("Nhập giới tính (Male, Female, Unknow): ");
+                gender = scanner.nextLine();
+                if (RegularExpression.validateGender(gender)) {
+                    gender = gender.toLowerCase();
+                    String[] string = gender.split("");
+                    string[0] = string[0].toUpperCase();
+                    gender = Arrays.toString(string);
+                    break;
+                } else {
+                    throw new GenderException("Gender không hợp lệ, nhập lại");
+                }
+            } catch (GenderException e) {
+                System.out.println(e.getMessage());
+            }
         }
         String identityCardNumber = "";
-        while (true){
-           try {
-               System.out.print("Nhập số CMND (xxx xxx xxx): ");
-               identityCardNumber = scanner.nextLine();
-               if(RegularExpression.validateIdCard(identityCardNumber)){
-                   break;
-               }else {
-                   throw new IdCardException("Số CMND không hợp lệ, nhập lại");
-               }
-           }catch (IdCardException e){
-               System.out.println(e.getMessage());
-           }
-       }
+        while (true) {
+            try {
+                System.out.print("Nhập số CMND (xxx xxx xxx): ");
+                identityCardNumber = scanner.nextLine();
+                if (RegularExpression.validateIdCard(identityCardNumber)) {
+                    break;
+                } else {
+                    throw new IdCardException("Số CMND không hợp lệ, nhập lại");
+                }
+            } catch (IdCardException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.print("Nhập số điện thoại: ");
         String phoneNumber = scanner.nextLine();
         String email = "";
-        while (true){
-       try {
-           System.out.print("Nhập email : ");
-           email = scanner.nextLine();
-           if(RegularExpression.validateEmail(email)){
-               break;
-           }else {
-               throw new EmailException("Email không hợp lệ, nhập lại");
-           }
-       }catch (EmailException e){
-           System.out.println(e.getMessage());
-       }
-       }
+        while (true) {
+            try {
+                System.out.print("Nhập email : ");
+                email = scanner.nextLine();
+                if (RegularExpression.validateEmail(email)) {
+                    break;
+                } else {
+                    throw new EmailException("Email không hợp lệ, nhập lại");
+                }
+            } catch (EmailException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         String customerType = "";
-        while (true){
-           System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
+        while (true) {
+            System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
             customerType = scanner.nextLine();
-            if(RegularExpression.validateTypeCustomer(customerType)){
+            if (RegularExpression.validateTypeCustomer(customerType)) {
                 break;
-            }else {
+            } else {
                 System.out.println("Không hợp lệ, nhập lại");
             }
-       }
+        }
         System.out.print("Nhập địa chỉ: ");
         String address = scanner.nextLine();
-        System.out.println("Mời bạn đặt dịch vụ: ");
         Services services = null;
         Customer customer = new Customer(idCustomer, customerName, birthdayLocalDate, gender,
                 identityCardNumber, phoneNumber, email, customerType, address, services);
+        System.out.println("Thêm khách hàng mới thành công");
         customerList.add(customer);
         FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
         funcWriteAndReadCustomer.writeToFile(PATH_CUSTOMER_CSV, customerList);
@@ -137,7 +137,7 @@ public class ManagerCustomer {
             for (Customer customer : customerList) {
                 System.out.println(customer.showInfor());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -153,28 +153,36 @@ public class ManagerCustomer {
         List<Customer> customerList = funcWriteAndReadCustomer.readDataFromFile(PATH_CUSTOMER_CSV);
         String idCustomerToBooking = "";
         boolean check = true;
-        while (check){
+        while (check) {
             System.out.print("Nhập id khách hàng cần booking: ");
-             idCustomerToBooking = scanner.nextLine();
-             for(Customer customer: customerList){
-                 if(customer.getIdCustomer().equals(idCustomerToBooking)){
-                     check = false;
-                 }
-             }
-            System.out.println("Không tìm thấy id customer này, nhập lại");
+            idCustomerToBooking = scanner.nextLine();
+            for (Customer customer : customerList) {
+                if (customer.getIdCustomer().equals(idCustomerToBooking)) {
+                    check = false;
+                    break;
+                }
+            }
         }
-        for(Customer customer: customerList){
-            if(customer.getIdCustomer().equals(idCustomerToBooking)){
+        for (Customer customer : customerList) {
+            if (customer.getIdCustomer().equals(idCustomerToBooking)) {
                 customerToBooking = customer;
             }
         }
 
         while (true) {
-            System.out.println("Chọn chức năng:\n" +
-                    "1.\tBooking Villa\n" +
-                    "2.\tBooking House\n" +
-                    "3.\tBooking Room\n");
-            int choose = Integer.parseInt(scanner.nextLine());
+            int choose = 0;
+            while (true) {
+                try {
+                    System.out.println("Chọn chức năng:\n" +
+                            "1.\tBooking Villa\n" +
+                            "2.\tBooking House\n" +
+                            "3.\tBooking Room\n");
+                    choose = Integer.parseInt(scanner.nextLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
             switch (choose) {
                 case 1:
                     System.out.println("Danh sách villa: ");
@@ -182,11 +190,17 @@ public class ManagerCustomer {
                     for (Services services : servicesListVilla) {
                         System.out.println(services.showInfor());
                     }
-                    System.out.println("Nhập id villa muốn đặt: ");
-                    String idVillaBook = scanner.nextLine();
-                    for (Services services : servicesListVilla) {
-                        if (services.getId().equals(idVillaBook)) {
-                            servicesToBooking = services;
+                    String idVillaBook = "";
+                    boolean checkVilla = true;
+                    while (checkVilla) {
+                        System.out.println("Nhập id villa muốn đặt: ");
+                        idVillaBook = scanner.nextLine();
+                        for (Services services : servicesListVilla) {
+                            if (services.getId().equals(idVillaBook)) {
+                                servicesToBooking = services;
+                                checkVilla = false;
+                                break;
+                            }
                         }
                     }
                     break;
@@ -196,11 +210,17 @@ public class ManagerCustomer {
                     for (Services servicesHouse : servicesListHouse) {
                         System.out.println(servicesHouse.showInfor());
                     }
-                    System.out.println("Nhập id house muốn đặt: ");
-                    String idHouseBook = scanner.nextLine();
-                    for (Services servicesHouse : servicesListHouse) {
-                        if (servicesHouse.getId().equals(idHouseBook)) {
-                            servicesToBooking = servicesHouse;
+                    String idHouseBook = "";
+                    boolean checkHouse = true;
+                    while (checkHouse) {
+                        System.out.println("Nhập id house muốn đặt: ");
+                        idHouseBook = scanner.nextLine();
+                        for (Services servicesHouse : servicesListHouse) {
+                            if (servicesHouse.getId().equals(idHouseBook)) {
+                                servicesToBooking = servicesHouse;
+                                checkHouse = false;
+                                break;
+                            }
                         }
                     }
                     break;
@@ -210,11 +230,17 @@ public class ManagerCustomer {
                     for (Services servicesRoom : servicesListRoom) {
                         System.out.println(servicesRoom.showInfor());
                     }
-                    System.out.println("Nhập id room muốn đặt: ");
-                    String idRoomBook = scanner.nextLine();
-                    for (Services servicesRoom : servicesListRoom) {
-                        if (servicesRoom.getId().equals(idRoomBook)) {
-                            servicesToBooking = servicesRoom;
+                    String idRoomBook = "";
+                    boolean checkRoom = true;
+                    while (checkRoom) {
+                        System.out.println("Nhập id room muốn đặt: ");
+                        idRoomBook = scanner.nextLine();
+                        for (Services servicesRoom : servicesListRoom) {
+                            if (servicesRoom.getId().equals(idRoomBook)) {
+                                servicesToBooking = servicesRoom;
+                                checkRoom = false;
+                                break;
+                            }
                         }
                     }
                     break;
@@ -224,7 +250,7 @@ public class ManagerCustomer {
             customerToBooking.setServiceOfCustomer(servicesToBooking);
             List<Customer> customerListBooking = new ArrayList<>();
             customerListBooking.add(customerToBooking);
-            funcWriteAndReadCustomer.writeToFile(PATH_BOOKING_CSV,customerListBooking);
+            funcWriteAndReadCustomer.writeToFile(PATH_BOOKING_CSV, customerListBooking);
             System.out.println("Booking thành công");
             return;
         }
