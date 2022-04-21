@@ -14,9 +14,8 @@ import java.util.*;
 public class ManagerCustomer {
     public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
     public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
-
+    public static List<Customer> customerList = new ArrayList<>();
     public static void addNewCustomer() {
-        List<Customer> customerList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String idCustomer = "";
         while (true) {
@@ -69,7 +68,11 @@ public class ManagerCustomer {
                     gender = gender.toLowerCase();
                     String[] string = gender.split("");
                     string[0] = string[0].toUpperCase();
-                    gender = Arrays.toString(string);
+                    String stringResult = "";
+                    for(String s:string){
+                        stringResult+=s;
+                    }
+                    gender = stringResult;
                     break;
                 } else {
                     throw new GenderException("Gender không hợp lệ, nhập lại");

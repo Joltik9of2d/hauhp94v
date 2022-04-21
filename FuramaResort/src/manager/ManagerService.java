@@ -12,12 +12,11 @@ public class ManagerService {
     public static final String PATH_HOUSE_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\House.csv";
     public static final String PATH_ROOM_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Room.csv";
     public static final String PATH_SERVICES_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Services.csv";
-
+    public static List<Services> servicesList = new ArrayList<>();
+    public static List<Services> villaList = new ArrayList<>();
+    public static List<Services> houseList = new ArrayList<>();
+    public static List<Services> roomList = new ArrayList<>();
     public static void addNewServies() {
-        List<Services> servicesList = new ArrayList<>();
-        List<Services> villaList = new ArrayList<>();
-        List<Services> houseList = new ArrayList<>();
-        List<Services> roomList = new ArrayList<>();
         boolean check = true;
         while (check) {
             System.out.println("1.\tAdd New Villa\n" +
