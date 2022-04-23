@@ -12,10 +12,14 @@ public class ManagerService {
     public static final String PATH_HOUSE_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\House.csv";
     public static final String PATH_ROOM_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Room.csv";
     public static final String PATH_SERVICES_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Services.csv";
-    public static List<Services> servicesList = new ArrayList<>();
-    public static List<Services> villaList = new ArrayList<>();
-    public static List<Services> houseList = new ArrayList<>();
-    public static List<Services> roomList = new ArrayList<>();
+    public static FuncWriteAndRead<Services> funcWriteAndReadService = new FuncWriteAndRead<>();
+    public static FuncWriteAndRead<Services> funcWriteAndReadVilla = new FuncWriteAndRead<>();
+    public static FuncWriteAndRead<Services> funcWriteAndReadHouse = new FuncWriteAndRead<>();
+    public static FuncWriteAndRead<Services> funcWriteAndReadRoom = new FuncWriteAndRead<>();
+    public static List<Services> servicesList = funcWriteAndReadService.readDataFromFile(PATH_SERVICES_CSV);
+    public static List<Services> villaList = funcWriteAndReadVilla.readDataFromFile(PATH_VILLA_CSV);
+    public static List<Services> houseList = funcWriteAndReadHouse.readDataFromFile(PATH_HOUSE_CSV);
+    public static List<Services> roomList = funcWriteAndReadRoom.readDataFromFile(PATH_ROOM_CSV);
     public static void addNewServies() {
         boolean check = true;
         while (check) {
@@ -30,7 +34,7 @@ public class ManagerService {
                 case 1:
                     System.out.println("Add new villa");
                     String idVilla = "";
-                    while (!RegularExpression.validateIdService(idVilla) && searchServiceById(idVilla)) {
+                    while (!RegularExpression.validateIdService(idVilla) || searchServiceById(idVilla)) {
                         System.out.print("Nhập id villa (SVVL-1234) : ");
                         idVilla = scanner.nextLine();
                     }
@@ -98,7 +102,7 @@ public class ManagerService {
                 case 2:
                     System.out.println("Add new house");
                     String idHouse = "";
-                   while (!RegularExpression.validateIdService(idHouse) && searchServiceById(idHouse)){
+                   while (!RegularExpression.validateIdService(idHouse) || searchServiceById(idHouse)){
                        System.out.print("Nhập id house (SVHO-1234) : ");
                        idHouse = scanner.nextLine();
                    }
@@ -161,7 +165,7 @@ public class ManagerService {
                 case 3:
                     System.out.println("Add new room");
                     String idRoom = "";
-                    while (!RegularExpression.validateIdService(idRoom) && searchServiceById(idRoom)){
+                    while (!RegularExpression.validateIdService(idRoom) || searchServiceById(idRoom)){
                         System.out.print("Nhập id room (SVRO-1234) : ");
                         idRoom = scanner.nextLine();
                     }
@@ -347,8 +351,8 @@ public class ManagerService {
 
     }
     public static boolean searchServiceById(String id){
-        FuncWriteAndRead<Services> customerFuncWriteAndRead = new FuncWriteAndRead<>();
-        List<Services> servicesList = customerFuncWriteAndRead.readDataFromFile(PATH_SERVICES_CSV);
+//        FuncWriteAndRead<Services> customerFuncWriteAndRead = new FuncWriteAndRead<>();
+//        List<Services> servicesList = customerFuncWriteAndRead.readDataFromFile(PATH_SERVICES_CSV);
         for(Services services: servicesList){
             if(services.getId().equals(id)){
                 return true;

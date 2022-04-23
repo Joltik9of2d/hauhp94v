@@ -14,8 +14,10 @@ import java.util.*;
 public class ManagerCustomer {
     public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
     public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
-    public static List<Customer> customerList = new ArrayList<>();
-    public static List<Customer> customerListBooking = new ArrayList<>();
+    public static FuncWriteAndRead<Customer> customerFuncWriteAndRead = new FuncWriteAndRead<>();
+    public static FuncWriteAndRead<Customer> customerFuncWriteAndReadToBooking = new FuncWriteAndRead<>();
+    public static List<Customer> customerList = customerFuncWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
+    public static List<Customer> customerListBooking = customerFuncWriteAndReadToBooking.readDataFromFile(PATH_BOOKING_CSV);
 
     public static void addNewCustomer() {
         Scanner scanner = new Scanner(System.in);
