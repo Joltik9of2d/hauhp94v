@@ -15,16 +15,18 @@ public class ManagerCustomer {
     public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
     public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
     public static List<Customer> customerList = new ArrayList<>();
+    public static List<Customer> customerListBooking = new ArrayList<>();
+
     public static void addNewCustomer() {
         Scanner scanner = new Scanner(System.in);
         String idCustomer = "";
         while (true) {
             System.out.print("Nhập idCustomer (CU-1234) : ");
             idCustomer = scanner.nextLine();
-            if (RegularExpression.validateIdCustomer(idCustomer)) {
+            if (RegularExpression.validateIdCustomer(idCustomer) && !searchCustomerById(idCustomer)) {
                 break;
             } else {
-                System.out.println("idCustomer không hợp lệ, nhập lại");
+                System.out.println("idCustomer không hợp lệ hoặc đã tồn tại, nhập lại");
             }
         }
         String customerName = "";
@@ -146,24 +148,22 @@ public class ManagerCustomer {
     }
 
     public static void addNewBooking() {
+        showInformationCustomer();
         FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
         FuncWriteAndRead<Services> funcWriteAndReadService = new FuncWriteAndRead<>();
         Services servicesToBooking = null;
         Customer customerToBooking = null;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Chọn khách hàng để booking: ");
-        showInformationCustomer();
-        List<Customer> customerList = funcWriteAndReadCustomer.readDataFromFile(PATH_CUSTOMER_CSV);
         String idCustomerToBooking = "";
         boolean check = true;
         while (check) {
             System.out.print("Nhập id khách hàng cần booking: ");
             idCustomerToBooking = scanner.nextLine();
-            for (Customer customer : customerList) {
-                if (customer.getIdCustomer().equals(idCustomerToBooking)) {
-                    check = false;
-                    break;
-                }
+            if(searchCustomerById(idCustomerToBooking)){
+                check = false;
+            }else {
+                System.out.println("id không đúng");
             }
         }
         for (Customer customer : customerList) {
@@ -250,12 +250,22 @@ public class ManagerCustomer {
                 default:
                     System.out.println("Nhập lại");
             }
+            assert customerToBooking != null;
             customerToBooking.setServiceOfCustomer(servicesToBooking);
-            List<Customer> customerListBooking = new ArrayList<>();
             customerListBooking.add(customerToBooking);
             funcWriteAndReadCustomer.writeToFile(PATH_BOOKING_CSV, customerListBooking);
             System.out.println("Booking thành công");
             return;
         }
+    }
+    public static boolean searchCustomerById(String idCustomer){
+        FuncWriteAndRead<Customer> customerFuncWriteAndRead = new FuncWriteAndRead<>();
+        List<Customer> customerList = customerFuncWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
+        for(Customer customer: customerList){
+            if(customer.getIdCustomer().equals(idCustomer)){
+                return true;
+            }
+        }
+        return false;
     }
 }

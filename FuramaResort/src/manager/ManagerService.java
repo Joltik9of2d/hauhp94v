@@ -30,17 +30,17 @@ public class ManagerService {
                 case 1:
                     System.out.println("Add new villa");
                     String idVilla = "";
-                    while (!(RegularExpression.validateIdService(idVilla))) {
+                    while (!RegularExpression.validateIdService(idVilla) && searchServiceById(idVilla)) {
                         System.out.print("Nhập id villa (SVVL-1234) : ");
                         idVilla = scanner.nextLine();
                     }
                     String nameVilla = "";
-                    while (!(RegularExpression.validateNameService(nameVilla))) {
+                    while (!RegularExpression.validateNameService(nameVilla)) {
                         System.out.print("Nhập tên villa (Villa): ");
                         nameVilla = scanner.nextLine();
                     }
                     String usableArea = "";
-                    while (!(RegularExpression.validateUsablePool(usableArea))) {
+                    while (!RegularExpression.validateUsablePool(usableArea)) {
                         System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
                         usableArea = scanner.nextLine();
                     }
@@ -60,19 +60,19 @@ public class ManagerService {
                             maxNumberOfPeople = scanner.nextLine();
                     }
                     String rentalType = "";
-                    while(!(RegularExpression.validateRentalType(rentalType))) {
+                    while(!RegularExpression.validateRentalType(rentalType)) {
                         System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
                         rentalType = scanner.nextLine();
                     }
                     String roomStandard = "";
-                    while (!(RegularExpression.validateRoomStandard(roomStandard))) {
+                    while (!RegularExpression.validateRoomStandard(roomStandard)) {
                         System.out.print("Nhập tiêu chuẩn phòng (1*-5*): ");
                         roomStandard = scanner.nextLine();
                     }
                     System.out.println("Nhập tiện nghi khác: ");
                     String amenitie = scanner.nextLine();
                     String poolArea="";
-                   while (!(RegularExpression.validateUsablePool(poolArea))){
+                   while (!RegularExpression.validateUsablePool(poolArea)){
                        System.out.println("Nhập diện tích hồ bơi (>30): ");
                         poolArea = scanner.nextLine();
                    }
@@ -98,7 +98,7 @@ public class ManagerService {
                 case 2:
                     System.out.println("Add new house");
                     String idHouse = "";
-                   while (!RegularExpression.validateIdService(idHouse)){
+                   while (!RegularExpression.validateIdService(idHouse) && searchServiceById(idHouse)){
                        System.out.print("Nhập id house (SVHO-1234) : ");
                        idHouse = scanner.nextLine();
                    }
@@ -161,7 +161,7 @@ public class ManagerService {
                 case 3:
                     System.out.println("Add new room");
                     String idRoom = "";
-                    while (!RegularExpression.validateIdService(idRoom)){
+                    while (!RegularExpression.validateIdService(idRoom) && searchServiceById(idRoom)){
                         System.out.print("Nhập id room (SVRO-1234) : ");
                         idRoom = scanner.nextLine();
                     }
@@ -340,15 +340,20 @@ public class ManagerService {
     }
 
     public static void inDanhSachVeXemPhim() {
-        while (true) {
-            System.out.println("Danh sách khách hàng in theo thứ tự mua vé: ");
-            for (int i = 0; i < 5; i++) {
+        System.out.println("Danh sách khách hàng in theo thứ tự mua vé: ");
+        while (!veXemPhimQueue.isEmpty()) {
                 System.out.println(veXemPhimQueue.poll().getCustomerName());
-            }
-            if (veXemPhimQueue.isEmpty()) {
-                break;
-            }
         }
 
+    }
+    public static boolean searchServiceById(String id){
+        FuncWriteAndRead<Services> customerFuncWriteAndRead = new FuncWriteAndRead<>();
+        List<Services> servicesList = customerFuncWriteAndRead.readDataFromFile(PATH_SERVICES_CSV);
+        for(Services services: servicesList){
+            if(services.getId().equals(id)){
+                return true;
+            }
+        }
+        return false;
     }
 }
