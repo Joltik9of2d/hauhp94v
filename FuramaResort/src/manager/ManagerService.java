@@ -351,13 +351,41 @@ public class ManagerService {
 
     }
     public static boolean searchServiceById(String id){
-//        FuncWriteAndRead<Services> customerFuncWriteAndRead = new FuncWriteAndRead<>();
-//        List<Services> servicesList = customerFuncWriteAndRead.readDataFromFile(PATH_SERVICES_CSV);
         for(Services services: servicesList){
             if(services.getId().equals(id)){
                 return true;
             }
         }
         return false;
+    }
+    public static void removeServiceById(){
+        String id = "";
+        while (!searchServiceById(id)){
+            System.out.print("Nhập id service cần xóa: ");
+            Scanner scanner = new Scanner(System.in);
+            id = scanner.nextLine();
+        }
+        for(Services services: servicesList){
+            if(services.getId().equals(id)){
+                servicesList.remove(services);
+                break;
+            }
+        }
+        for(Services villa: villaList){
+            if(villa.getId().equals(id)){
+                villaList.remove(villa);
+                return;
+            }
+        } for(Services house: houseList){
+            if(house.getId().equals(id)){
+                houseList.remove(house);
+                return;
+            }
+        } for(Services room: roomList){
+            if(room.getId().equals(id)){
+                servicesList.remove(room);
+                return;
+            }
+        }
     }
 }

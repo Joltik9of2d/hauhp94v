@@ -15,7 +15,9 @@ public class MainController {
                  "4.\tShow Information of Customer\n" +
                  "5.\tAdd New Booking\n" +
                  "6.\tShow Information of Employee\n" +
-                 "7.\tExit\n");
+                 "7.\tEdit Information of Customer\n"+
+                 "8.\tRemove Customer\n"+
+                 "9.\tExit\n");
          Scanner scanner = new Scanner(System.in);
          int choose = Integer.parseInt(scanner.nextLine());
          switch (choose){
@@ -38,6 +40,12 @@ public class MainController {
                  ManagerEmployee.showEmployee();
                  break;
              case 7:
+                 ManagerCustomer.editCustomer();
+                 break;
+             case 8:
+                 ManagerCustomer.removeCustomer();
+                 break;
+             case 9:
                  System.out.println("Thoát");
                  System.exit(0);
          }
