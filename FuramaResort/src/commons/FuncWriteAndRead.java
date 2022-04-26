@@ -26,6 +26,7 @@ public class FuncWriteAndRead<T> {
             objectInputStream.close();
             fileInputStream.close();
         }catch (IOException | ClassNotFoundException e){
+            System.err.println("File đang rỗng hoặc có lỗi");
             e.printStackTrace();
         }
         return tList;
