@@ -19,6 +19,14 @@ public class ManagerBooking {
             System.out.println(customer.showInfor()+"\n Đã đặt "+customer.getServiceOfCustomer().showInfor());
         }
     }
+    public static boolean searchServiceBooking(String idService){
+        for (Customer customer: listBooking){
+            if(customer.getServiceOfCustomer().getId().equals(idService)){
+                return true;
+            }
+        }
+        return false;
+    }
     public static void addNewBooking() {
         ManagerCustomer.showInformationCustomer();
         FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
@@ -65,6 +73,14 @@ public class ManagerBooking {
                     while (checkVilla) {
                         System.out.println("Nhập id villa muốn đặt: ");
                         idVillaBook = scanner.nextLine();
+                        while (true){
+                            if(searchServiceBooking(idVillaBook)){
+                                System.out.print("Villa này đã có người đặt, vui chọn chọn villa khác: ");
+                                idVillaBook = scanner.nextLine();
+                            }else {
+                                break;
+                            }
+                        }
                         for (Services services : servicesListVilla) {
                             if (services.getId().equals(idVillaBook)) {
                                 servicesToBooking = services;
@@ -85,6 +101,14 @@ public class ManagerBooking {
                     while (checkHouse) {
                         System.out.println("Nhập id house muốn đặt: ");
                         idHouseBook = scanner.nextLine();
+                        while (true){
+                            if(searchServiceBooking(idHouseBook)){
+                                System.out.print("House này đã có người đặt, vui lòng chọn house khác: ");
+                                idHouseBook = scanner.nextLine();
+                            }else {
+                                break;
+                            }
+                        }
                         for (Services servicesHouse : servicesListHouse) {
                             if (servicesHouse.getId().equals(idHouseBook)) {
                                 servicesToBooking = servicesHouse;
@@ -105,6 +129,14 @@ public class ManagerBooking {
                     while (checkRoom) {
                         System.out.println("Nhập id room muốn đặt: ");
                         idRoomBook = scanner.nextLine();
+                        while (true){
+                            if(searchServiceBooking(idRoomBook)){
+                                System.out.print("Room này đã có người đặt, vui lòng chọn room khác: ");
+                                idRoomBook = scanner.nextLine();
+                            }else {
+                                break;
+                            }
+                        }
                         for (Services servicesRoom : servicesListRoom) {
                             if (servicesRoom.getId().equals(idRoomBook)) {
                                 servicesToBooking = servicesRoom;
