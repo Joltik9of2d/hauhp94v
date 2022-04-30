@@ -3,12 +3,12 @@ package manager;
 import models.Employee;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class TuHoSo {
     public static Stack<Employee> hoSoNhanVien = new Stack<>();
     public static void themHoSo(){
-//        Stack<Employee> hoSoNhanVien = null;
         Employee employee1 = new Employee("001","Huỳnh Văn An", LocalDate.of(1980,9,5),
                 "201691234","84905123456",
                 "anhuynh@gmail.com","Trung cấp","Lễ Tân",10000.0,"Phục vụ");
@@ -50,7 +50,11 @@ public class TuHoSo {
         hoSoNhanVien.push(employee9);
         hoSoNhanVien.push(employee10);
     }
-    public static void timKiemHoSo(String maSoNhanVien){
+    public static void timKiemHoSo(){
+        themHoSo();
+        System.out.println("Nhập mã số nhân viên cần tìm(001-010): ");
+        Scanner scanner = new Scanner(System.in);
+        String maSoNhanVien = scanner.nextLine();
         boolean check = true;
        while (check){
            if(hoSoNhanVien.peek().getIdEmployee().equals(maSoNhanVien)){

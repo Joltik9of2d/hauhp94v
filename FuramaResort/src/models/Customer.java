@@ -138,7 +138,7 @@ public class Customer  implements Serializable {
         return "Customer{" +
                 "idCustomer='" + idCustomer + '\'' +
                 ", customerName='" + customerName + '\'' +
-                ", birthday=" + birthday +
+                ", birthday=" + birthday+
                 ", gender='" + gender + '\'' +
                 ", identityCardNumber='" + identityCardNumber + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

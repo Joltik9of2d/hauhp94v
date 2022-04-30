@@ -343,7 +343,8 @@ public class ManagerService {
         }
     }
 
-    public static void inDanhSachVeXemPhim() {
+    public static void showCinema4DTicket() {
+        muaVeXemPhim();
         System.out.println("Danh sách khách hàng in theo thứ tự mua vé: ");
         while (!veXemPhimQueue.isEmpty()) {
                 System.out.println(veXemPhimQueue.poll().getCustomerName());

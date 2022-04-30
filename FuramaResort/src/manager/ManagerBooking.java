@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManagerBooking {
+    public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
     public static FuncWriteAndRead<Customer> customerFuncWriteAndReadToBooking = new FuncWriteAndRead<>();
-    public static List<Customer> listBooking = customerFuncWriteAndReadToBooking.readDataFromFile(ManagerCustomer.PATH_BOOKING_CSV);
+    public static List<Customer> listBooking = customerFuncWriteAndReadToBooking.readDataFromFile(PATH_BOOKING_CSV);
     public static FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
     public static List<Customer> customerList = funcWriteAndRead.readDataFromFile(ManagerCustomer.PATH_CUSTOMER_CSV);
 
@@ -118,7 +119,7 @@ public class ManagerBooking {
             }
             customerToBooking.setServiceOfCustomer(servicesToBooking);
             listBooking.add(customerToBooking);
-            customerFuncWriteAndReadToBooking.writeToFile(ManagerCustomer.PATH_BOOKING_CSV, listBooking);
+            customerFuncWriteAndReadToBooking.writeToFile(PATH_BOOKING_CSV, listBooking);
             System.out.println("Booking thành công");
             return;
         }

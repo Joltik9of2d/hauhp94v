@@ -1,6 +1,8 @@
 package manager;
 
 import commons.FuncWriteAndRead;
+import comparator.ComparatorByBirthdayCustomer;
+import comparator.ComparatorByNameCustomer;
 import exception.*;
 import libs.RegularExpression;
 import models.Customer;
@@ -11,7 +13,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class ManagerCustomer {
-    public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
     public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
     public static FuncWriteAndRead<Customer> customerFuncWriteAndRead = new FuncWriteAndRead<>();
     public static List<Customer> customerList = customerFuncWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
@@ -131,6 +132,7 @@ public class ManagerCustomer {
         System.out.println("Danh sách khách hàng: ");
         try {
             List<Customer> customerList = funcWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
+            Collections.sort(customerList,new ComparatorByNameCustomer());
             for (Customer customer : customerList) {
                 System.out.println(customer.showInfor());
             }
@@ -147,7 +149,6 @@ public class ManagerCustomer {
         }
         return false;
     }
-
     public static void removeCustomer() {
         System.out.print("Nhập id customer cần xóa: ");
         Scanner scanner = new Scanner(System.in);
@@ -159,9 +160,11 @@ public class ManagerCustomer {
         for (Customer customer : customerList) {
             if (customer.getIdCustomer().equals(idCustomerToRemove)) {
                 customerList.remove(customer);
+                System.out.println("Xóa thành công id "+ idCustomerToRemove);
                 break;
             }
         }
+        customerFuncWriteAndRead.writeToFile(PATH_CUSTOMER_CSV,customerList);
 
     }
 

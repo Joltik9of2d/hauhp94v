@@ -78,7 +78,4 @@ public class ManagerEmployee {
         }
 
     }
-//    public static ArrayDeque<Customer> veXemPhim(){
-//
-//    }
     }
