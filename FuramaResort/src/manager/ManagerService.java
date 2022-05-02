@@ -97,7 +97,7 @@ public class ManagerService {
                     servicesList.add(villa);
                     FuncWriteAndRead<Services> funcWriteAndReadVilla = new FuncWriteAndRead<>();
                     funcWriteAndReadVilla.writeToFile(PATH_VILLA_CSV, villaList);
-                    funcWriteAndReadVilla.writeToFile(PATH_SERVICES_CSV, villaList);
+                    funcWriteAndReadVilla.writeToFile(PATH_SERVICES_CSV, servicesList);
                     break;
                 case 2:
                     System.out.println("Add new house");
@@ -160,7 +160,7 @@ public class ManagerService {
                     servicesList.add(house);
                     FuncWriteAndRead<Services> funcWriteAndReadHouse = new FuncWriteAndRead<>();
                     funcWriteAndReadHouse.writeToFile(PATH_HOUSE_CSV, houseList);
-                    funcWriteAndReadHouse.writeToFile(PATH_SERVICES_CSV, houseList);
+                    funcWriteAndReadHouse.writeToFile(PATH_SERVICES_CSV, servicesList);
                     break;
                 case 3:
                     System.out.println("Add new room");
@@ -209,7 +209,7 @@ public class ManagerService {
                     servicesList.add(room);
                     FuncWriteAndRead<Services> funcWriteAndReadRoom = new FuncWriteAndRead<>();
                     funcWriteAndReadRoom.writeToFile(PATH_ROOM_CSV, roomList);
-                    funcWriteAndReadRoom.writeToFile(PATH_SERVICES_CSV, roomList);
+                    funcWriteAndReadRoom.writeToFile(PATH_SERVICES_CSV, servicesList);
                     break;
                 case 4:
                     check = false;
@@ -323,7 +323,7 @@ public class ManagerService {
     }
 
     public static Queue<Customer> veXemPhimQueue = new ArrayDeque<>();
-
+    
     public static void muaVeXemPhim() {
         Customer customer1 = new Customer("CU-0001", "Huỳnh văn A");
         Customer customer2 = new Customer("CU-0004", "Nguyễn An");
@@ -360,11 +360,18 @@ public class ManagerService {
         return false;
     }
     public static void removeServiceById(){
-        String id = "";
+        System.out.print("Nhập id service cần xóa: ");
+        Scanner scanner = new Scanner(System.in);
+        String id = scanner.nextLine();
         while (!searchServiceById(id)){
-            System.out.print("Nhập id service cần xóa: ");
-            Scanner scanner = new Scanner(System.in);
+            System.out.print("id không tồn tại, nhập lại: " );
             id = scanner.nextLine();
+        }
+        System.out.println("Bạn có chắc chắn muốn xóa id "+ id + " yes hoặc no: ");
+        String choose = scanner.nextLine();
+        if(choose.equals("no")){
+            System.out.println("ok, không xóa nữa");
+            return;
         }
         for(Services services: servicesList){
             if(services.getId().equals(id)){
@@ -375,18 +382,23 @@ public class ManagerService {
         for(Services villa: villaList){
             if(villa.getId().equals(id)){
                 villaList.remove(villa);
-                return;
+                break;
             }
         } for(Services house: houseList){
             if(house.getId().equals(id)){
                 houseList.remove(house);
-                return;
+                break;
             }
         } for(Services room: roomList){
             if(room.getId().equals(id)){
                 servicesList.remove(room);
-                return;
+                break;
             }
         }
+        funcWriteAndReadService.writeToFile(PATH_SERVICES_CSV, servicesList);
+        funcWriteAndReadService.writeToFile(PATH_VILLA_CSV, villaList);
+        funcWriteAndReadService.writeToFile(PATH_HOUSE_CSV, houseList);
+        funcWriteAndReadService.writeToFile(PATH_ROOM_CSV, roomList);
+        System.out.println("Đã xóa xong id "+id);
     }
 }

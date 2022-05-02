@@ -16,11 +16,12 @@ public class MainController {
                  "6.\tShow Information of Employee\n" +
                  "7.\tEdit Information of Customer\n"+
                  "8.\tRemove Customer\n"+
-                 "9.\tShow Booking\n"+
-                 "10.\tSearch employee profile\n"+
-                 "11.\tShow all employee\n"+
-                 "12.\tShow cinema ticket\n"+
-                 "13.\tExit\n");
+                 "9.\tRemove Service\n"+
+                 "10.\tShow Booking\n"+
+                 "11.\tSearch employee profile\n"+
+                 "12.\tShow all employee\n"+
+                 "13.\tShow cinema ticket\n"+
+                 "14.\tExit\n");
          try {
              Scanner scanner = new Scanner(System.in);
              choose = Integer.parseInt(scanner.nextLine());
@@ -54,18 +55,21 @@ public class MainController {
                  ManagerCustomer.removeCustomer();
                  break;
              case 9:
-                 ManagerBooking.showCustomerBooking();
+                 ManagerService.removeServiceById();
                  break;
              case 10:
-                 TuHoSo.timKiemHoSo();
+                 ManagerBooking.showCustomerBooking();
                  break;
              case 11:
-                 ManagerEmployee.showEmployee();
+                 TuHoSo.timKiemHoSo();
                  break;
              case 12:
-                 ManagerService.showCinema4DTicket();
+                 ManagerEmployee.showEmployee();
                  break;
              case 13:
+                 ManagerService.showCinema4DTicket();
+                 break;
+             case 14:
                  System.out.println("Thoát");
                  System.exit(0);
          }

@@ -15,8 +15,9 @@ public class ManagerBooking {
     public static List<Customer> customerList = funcWriteAndRead.readDataFromFile(ManagerCustomer.PATH_CUSTOMER_CSV);
 
     public static void showCustomerBooking() {
+        System.out.println("Danh sách khách hàng và dịch vụ đang sử dụng tại Furama");
         for (Customer customer : listBooking){
-            System.out.println(customer.showInfor()+"\n Đã đặt "+customer.getServiceOfCustomer().showInfor());
+            System.out.println("Khách hàng: "+ customer.getIdCustomer()+ " Tên: "+customer.getCustomerName()+" Đã đặt service "+customer.getServiceOfCustomer().getId());
         }
     }
     public static boolean searchServiceBooking(String idService){
@@ -27,6 +28,7 @@ public class ManagerBooking {
         }
         return false;
     }
+//    Mỗi dịch vụ chỉ được đặt bới 1 khách hàng, mỗi khách hàng có thể đặt nhiều dịch vụ
     public static void addNewBooking() {
         ManagerCustomer.showInformationCustomer();
         FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
