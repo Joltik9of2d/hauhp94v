@@ -5,21 +5,24 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class demo1 {
-    public static int recursion(int x, int y) {
-        if (x == 1)
-            return y;
-        else
-            return y * recursion(y, x - 1);
-    }
 
 
     public static void main(String[] args) {
 
-        Queue<Integer> queue = new LinkedList<Integer>();
-        queue.add(1);
-        queue.add(2);
-        queue.add(3);
-        System.out.println(queue.peek());
-    }
+        System.out.println("1.\tAdd New Services\n" +
+                "2.\tShow Services\n" +
+                "3.\tAdd New Customer\n" +
+                "4.\tShow Information of Customer ( sort by name) " +
+                "5.\tAdd New Booking\n" +
+                "6.\tShow Information of Employee\n" +
+                "7.\tEdit Information of Customer" +
+                "8.\tRemove Customer\n" +
+                "9.\tRemove Service\n" +
+                "10.\tShow Booking" +
+                "11.\tSearch employee profile\n" +
+                "12.\tShow all employee\n" +
+                "13.\tShow cinema ticket" +
+                "14.\tExit\n");
 
     }
+}

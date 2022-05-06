@@ -20,8 +20,9 @@ public class MainController {
                  "10.\tShow Booking\n"+
                  "11.\tSearch employee profile\n"+
                  "12.\tShow all employee\n"+
-                 "13.\tShow cinema ticket\n"+
-                 "14.\tExit\n");
+                 "13.\tBuy cinema ticket\n"+
+                 "14.\tShow cinema ticket\n"+
+                 "15.\tExit\n");
          try {
              Scanner scanner = new Scanner(System.in);
              choose = Integer.parseInt(scanner.nextLine());
@@ -67,9 +68,12 @@ public class MainController {
                  ManagerEmployee.showEmployee();
                  break;
              case 13:
-                 ManagerService.showCinema4DTicket();
+                 ManagerTicketCinema.buyTicketCinema();
                  break;
              case 14:
+                 ManagerTicketCinema.showTicketCinema();
+                 break;
+             case 15:
                  System.out.println("Thoát");
                  System.exit(0);
          }

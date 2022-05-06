@@ -49,7 +49,7 @@ public class ManagerEmployee {
                         + employee.get(0)
                         + ", name= " + employee.get(1)
                         + ", birthday =" + employee.get(2)
-                        + ", idCard=  "+ employee.get(3)
+                        + ", idCard= "+ employee.get(3)
                         + ", phoneNumber= "+ employee.get(4)
                         + ", email= "+ employee.get(5)
                         + ", qualifications= "+ employee.get(6)
