@@ -45,7 +45,7 @@ public class ManagerCustomer {
         LocalDate birthdayLocalDate;
         while (true) {
             try {
-                System.out.println("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
+                System.out.print("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
                 birthday = scanner.nextLine();
                 if (RegularExpression.validateBirthday(birthday)) {
                     String[] arrayBirthday = birthday.split("/");
@@ -113,7 +113,7 @@ public class ManagerCustomer {
             if (RegularExpression.validateTypeCustomer(customerType)) {
                 break;
             } else {
-                System.out.println("Không hợp lệ, nhập lại");
+                System.out.print("Không hợp lệ, nhập lại");
             }
         }
         System.out.print("Nhập địa chỉ: ");

@@ -9,13 +9,13 @@ import java.util.regex.Pattern;
 public class RegularExpression {
     public static final String SERVICE_ID_REGEX = "^SV(VL|RO|HO)-\\d{4}$";
     public static final String SERVICE_NAME_REGEX = "^[A-Z][a-z]*(\\s[a-z]*)*$";
-    public static final String SERVICE_USABLE_POOL_REGEX = "^([4-9][0-9]\\.?\\d*)|(3[1-9]\\.?\\d*)|(\\d{3,}\\.?\\d*)$";
+    public static final String SERVICE_USABLE_POOL_REGEX = "^([4-9][0-9]\\.?\\d*)|(3[1-9]\\.?\\d*)|(30\\.[1-9])|([1-9]\\d{2,}\\.?\\d*)$";
     public static final String SERVICE_MAX_OF_PEOPLE_REGEX = "^[1-9]|[1]\\d|[0][1-9]$";
     public static final String SERVICE_ACCOMPANIED_REGEX = "^(massage)|(karaoke)|(food)|(drink)|(car)";
     public static final String SERVICE_NUMBER_OF_FLOORS_REGEX = "^[1-9]\\d|[0][1-9]+";
     public static final String SERVICE_RENTAL_TYPE_REGEX = "^(Gio)|(Ngay)|(Thang)|(Nam)$";
     public static final String SERVICE_ROOM_STANDARD_REGEX = "^[1-5]\\*$";
-    public static final String CUSTOMER_BIRTHDAY_REGEX = "^((0[1-9]|[12][0-9]|3[01])[/]0[1-9]|1[012])[/](19|20)\\d\\d$";
+    public static final String CUSTOMER_BIRTHDAY_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d\\d$";
     public static final String CUSTOMER_GENDER_REGEX = "^([Mm][Aa][Ll][Ee])|([Ff][Ee][Mm][Aa][Ll][Ee])|([Uu][Nn][Kk][Nn][Oo][Ww])";
     public static final String CUSTOMER_EMAIL_REGEX = "^[A-Za-z0-9]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*$";
     public static final String CUSTOMER_TYPE_CUSTOMER_REGEX = "(Diamond)|(Platinium)|(Gold)|(Silver)|(Member)";
@@ -100,11 +100,6 @@ public class RegularExpression {
             return false;
         }
         LocalDate birthday = stringBirthdayToLocadateBirthday(regex);
-//        String[] arrayBirthday = regex.split("/");
-//        int day = Integer.parseInt(arrayBirthday[0]);
-//        int month = Integer.parseInt(arrayBirthday[1]);
-//        int year = Integer.parseInt(arrayBirthday[2]);
-//        LocalDate birthday = LocalDate.of(year, month, day);
         return birthday.isBefore(LocalDate.now().minusYears(18));
     }
 
