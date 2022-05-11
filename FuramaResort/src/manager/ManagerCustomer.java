@@ -19,29 +19,102 @@ public class ManagerCustomer {
 
     public static void addNewCustomer() {
         Scanner scanner = new Scanner(System.in);
-        String idCustomer = "";
+        String idCustomer = inputIdCustomer();
+        String customerName = inputCustomerName();
+        LocalDate birthdayLocalDate = inputBirthday();
+        String gender = inputGender();
+        String identityCardNumber = inputIdentityCardNumber();
+        System.out.print("Nhập số điện thoại: ");
+        String phoneNumber = scanner.nextLine();
+        String email = inputEmail();
+        String customerType = inputCustomerType();
+        System.out.print("Nhập địa chỉ: ");
+        String address = scanner.nextLine();
+        Services services = null;
+        Customer customer = new Customer(idCustomer, customerName, birthdayLocalDate, gender,
+                identityCardNumber, phoneNumber, email, customerType, address, services);
+        System.out.println("Thêm khách hàng mới thành công");
+        customerList.add(customer);
+        FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
+        funcWriteAndReadCustomer.writeToFile(PATH_CUSTOMER_CSV, customerList);
+    }
+
+    private static String inputCustomerType() {
+        String customerType = "";
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Nhập idCustomer (CU-1234) : ");
-            idCustomer = scanner.nextLine();
-            if (RegularExpression.validateIdCustomer(idCustomer) && !searchCustomerById(idCustomer)) {
+            System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
+            customerType = scanner.nextLine();
+            if (RegularExpression.validateTypeCustomer(customerType)) {
                 break;
             } else {
-                System.out.println("idCustomer không hợp lệ hoặc đã tồn tại, nhập lại");
+                System.out.print("Không hợp lệ, nhập lại");
             }
         }
-        String customerName = "";
+        return customerType;
+    }
+
+    private static String inputEmail() {
+        String email = "";
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
-                System.out.print("Nhập tên khách hàng (chữ đầu viết hoa):");
-                customerName = scanner.nextLine();
-                if (RegularExpression.validateNameCustomer(customerName)) {
+                System.out.print("Nhập email : ");
+                email = scanner.nextLine();
+                if (RegularExpression.validateEmail(email)) {
                     break;
-                } else throw new NameException("Tên không hợp lệ");
-            } catch (NameException e) {
+                } else {
+                    throw new EmailException("Email không hợp lệ, nhập lại");
+                }
+            } catch (EmailException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return email;
+    }
+
+    private static String inputIdentityCardNumber() {
+        String identityCardNumber = "";
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print("Nhập số CMND (xxx xxx xxx): ");
+                identityCardNumber = scanner.nextLine();
+                if (RegularExpression.validateIdCard(identityCardNumber)) {
+                    break;
+                } else {
+                    throw new IdCardException("Số CMND không hợp lệ, nhập lại");
+                }
+            } catch (IdCardException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return identityCardNumber;
+    }
+
+    private static String inputGender() {
+        String gender = "";
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                System.out.print("Nhập giới tính (Male, Female, Unknow): ");
+                gender = scanner.nextLine();
+                if (RegularExpression.validateGender(gender)) {
+                    gender = RegularExpression.standardizedGender(gender);
+                    break;
+                } else {
+                    throw new GenderException("Gender không hợp lệ, nhập lại");
+                }
+            } catch (GenderException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return gender;
+    }
+
+    private static LocalDate inputBirthday() {
         String birthday = "";
+        Scanner scanner = new Scanner(System.in);
         LocalDate birthdayLocalDate;
         while (true) {
             try {
@@ -61,75 +134,44 @@ public class ManagerCustomer {
                 System.out.println(e.getMessage());
             }
         }
-        String gender = "";
+        return birthdayLocalDate;
+    }
+
+    private static String inputCustomerName() {
+        String customerName = "";
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
-                System.out.print("Nhập giới tính (Male, Female, Unknow): ");
-                gender = scanner.nextLine();
-                if (RegularExpression.validateGender(gender)) {
-                    gender = RegularExpression.standardizedGender(gender);
+                System.out.print("Nhập tên khách hàng (chữ đầu viết hoa):");
+                customerName = scanner.nextLine();
+                if (RegularExpression.validateNameCustomer(customerName)) {
                     break;
-                } else {
-                    throw new GenderException("Gender không hợp lệ, nhập lại");
-                }
-            } catch (GenderException e) {
+                } else throw new NameException("Tên không hợp lệ");
+            } catch (NameException e) {
                 System.out.println(e.getMessage());
             }
         }
-        String identityCardNumber = "";
+        return customerName;
+    }
+
+    private static String inputIdCustomer() {
+        String idCustomer = "";
+        Scanner scanner = new Scanner(System.in);
         while (true) {
-            try {
-                System.out.print("Nhập số CMND (xxx xxx xxx): ");
-                identityCardNumber = scanner.nextLine();
-                if (RegularExpression.validateIdCard(identityCardNumber)) {
-                    break;
-                } else {
-                    throw new IdCardException("Số CMND không hợp lệ, nhập lại");
-                }
-            } catch (IdCardException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        System.out.print("Nhập số điện thoại: ");
-        String phoneNumber = scanner.nextLine();
-        String email = "";
-        while (true) {
-            try {
-                System.out.print("Nhập email : ");
-                email = scanner.nextLine();
-                if (RegularExpression.validateEmail(email)) {
-                    break;
-                } else {
-                    throw new EmailException("Email không hợp lệ, nhập lại");
-                }
-            } catch (EmailException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        String customerType = "";
-        while (true) {
-            System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
-            customerType = scanner.nextLine();
-            if (RegularExpression.validateTypeCustomer(customerType)) {
+            System.out.print("Nhập idCustomer (CU-1234) : ");
+            idCustomer = scanner.nextLine();
+            if (RegularExpression.validateIdCustomer(idCustomer) && !searchCustomerById(idCustomer)) {
                 break;
             } else {
-                System.out.print("Không hợp lệ, nhập lại");
+                System.out.println("idCustomer không hợp lệ hoặc đã tồn tại, nhập lại");
             }
         }
-        System.out.print("Nhập địa chỉ: ");
-        String address = scanner.nextLine();
-        Services services = null;
-        Customer customer = new Customer(idCustomer, customerName, birthdayLocalDate, gender,
-                identityCardNumber, phoneNumber, email, customerType, address, services);
-        System.out.println("Thêm khách hàng mới thành công");
-        customerList.add(customer);
-        FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
-        funcWriteAndReadCustomer.writeToFile(PATH_CUSTOMER_CSV, customerList);
+        return idCustomer;
     }
 
     public static void showInformationCustomer() {
         FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
-        System.out.println("Danh sách khách hàng: ");
+        System.out.println("Danh sách khách hàng (đã sắp xếp theo tên): ");
         try {
             List<Customer> customerList = funcWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
             Collections.sort(customerList,new ComparatorByNameCustomer());
