@@ -8,7 +8,8 @@ public class MainController {
     public static void displayMainMenu(){
         int choose = 0;
      while (true){
-         System.out.println("1.\tAdd New Services\n" +
+         System.out.println("------------FURAMA-RESORT------------\n" +
+                 "1.\tAdd New Services\n" +
                  "2.\tShow Services\n" +
                  "3.\tAdd New Customer\n" +
                  "4.\tShow Information of Customer ( sort by name) \n" +
@@ -22,7 +23,9 @@ public class MainController {
                  "12.\tShow all employee\n"+
                  "13.\tBuy cinema ticket\n"+
                  "14.\tShow cinema ticket\n"+
-                 "15.\tExit\n");
+                 "15.\tSearch customer by id\n"+
+                 "16.\tSearch customer by name\n"+
+                 "17.\tExit\n");
          try {
              Scanner scanner = new Scanner(System.in);
              choose = Integer.parseInt(scanner.nextLine());
@@ -74,6 +77,12 @@ public class MainController {
                  ManagerTicketCinema.showTicketCinema();
                  break;
              case 15:
+                 ManagerCustomer.searchCustomerByIdToShow();
+                 break;
+             case 16:
+                 ManagerCustomer.searchCustomerByNameToShow();
+                 break;
+             case 17:
                  System.out.println("Thoát");
                  System.exit(0);
              default:

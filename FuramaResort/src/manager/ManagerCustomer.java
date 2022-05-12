@@ -163,7 +163,7 @@ public class ManagerCustomer {
             if (RegularExpression.validateIdCustomer(idCustomer) && !searchCustomerById(idCustomer)) {
                 break;
             } else {
-                System.out.println("idCustomer không hợp lệ hoặc đã tồn tại, nhập lại");
+                System.out.println("idCustomer không hợp lệ , nhập lại");
             }
         }
         return idCustomer;
@@ -190,6 +190,25 @@ public class ManagerCustomer {
             }
         }
         return false;
+    }
+    public static void searchCustomerByIdToShow(){
+        String id = inputIdCustomer();
+        for (Customer customer: customerList){
+            if(customer.getIdCustomer().equals(id)){
+                System.out.println("Đã tìm thấy khách hàng "+ id);
+                System.out.println(customer.showInfor());
+                return;
+            }
+        }
+    }
+    public static void searchCustomerByNameToShow(){
+        String name = inputCustomerName();
+        for(Customer customer: customerList){
+            if(customer.getCustomerName().equals(name)){
+                System.out.println("Đã tìm thấy khách hàng "+ name);
+                System.out.println(customer.showInfor());
+            }
+        }
     }
     public static void removeCustomer() {
         System.out.print("Nhập id customer cần xóa: ");

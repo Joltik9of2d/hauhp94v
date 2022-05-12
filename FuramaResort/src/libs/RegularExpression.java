@@ -16,7 +16,7 @@ public class RegularExpression {
     public static final String SERVICE_RENTAL_TYPE_REGEX = "^(Gio)|(Ngay)|(Thang)|(Nam)$";
     public static final String SERVICE_ROOM_STANDARD_REGEX = "^[1-5]\\*$";
     public static final String CUSTOMER_BIRTHDAY_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d\\d$";
-    public static final String CUSTOMER_GENDER_REGEX = "^([Mm][Aa][Ll][Ee])|([Ff][Ee][Mm][Aa][Ll][Ee])|([Uu][Nn][Kk][Nn][Oo][Ww])";
+    public static final String CUSTOMER_GENDER_REGEX = "^(Male)|(Female)|(Unknow)$";
     public static final String CUSTOMER_EMAIL_REGEX = "^[A-Za-z0-9]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*$";
     public static final String CUSTOMER_TYPE_CUSTOMER_REGEX = "(Diamond)|(Platinium)|(Gold)|(Silver)|(Member)";
     public static final String CUSTOMER_ID_REGEX = "^CU-\\d{4}$";
@@ -65,6 +65,7 @@ public class RegularExpression {
     }
 
     public static boolean validateGender(String regex) {
+        regex = standardizedGender(regex);
         Matcher matcher = Pattern.compile(CUSTOMER_GENDER_REGEX).matcher(regex);
         return matcher.matches();
     }
