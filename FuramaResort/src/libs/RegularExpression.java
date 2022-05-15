@@ -11,17 +11,17 @@ public class RegularExpression {
     public static final String SERVICE_NAME_REGEX = "^[A-Z][a-z]*(\\s[a-z]*)*$";
     public static final String SERVICE_USABLE_POOL_REGEX = "^([4-9][0-9]\\.?\\d*)|(3[1-9]\\.?\\d*)|(30\\.[1-9])|([1-9]\\d{2,}\\.?\\d*)$";
     public static final String SERVICE_MAX_OF_PEOPLE_REGEX = "^[1-9]|[1]\\d|[0][1-9]$";
-    public static final String SERVICE_ACCOMPANIED_REGEX = "^(massage)|(karaoke)|(food)|(drink)|(car)";
-    public static final String SERVICE_NUMBER_OF_FLOORS_REGEX = "^[1-9]\\d|[0][1-9]+";
+    public static final String SERVICE_ACCOMPANIED_REGEX = "^(massage)|(karaoke)|(food)|(drink)|(car)$";
+    public static final String SERVICE_NUMBER_OF_FLOORS_REGEX = "^[1-9]\\d|[0][1-9]+$";
     public static final String SERVICE_RENTAL_TYPE_REGEX = "^(Gio)|(Ngay)|(Thang)|(Nam)$";
     public static final String SERVICE_ROOM_STANDARD_REGEX = "^[1-5]\\*$";
     public static final String CUSTOMER_BIRTHDAY_REGEX = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d\\d$";
     public static final String CUSTOMER_GENDER_REGEX = "^(Male)|(Female)|(Unknow)$";
     public static final String CUSTOMER_EMAIL_REGEX = "^[A-Za-z0-9]+@[A-Za-z0-9]+\\.[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*$";
-    public static final String CUSTOMER_TYPE_CUSTOMER_REGEX = "(Diamond)|(Platinium)|(Gold)|(Silver)|(Member)";
+    public static final String CUSTOMER_TYPE_CUSTOMER_REGEX = "^(Diamond)|(Platinium)|(Gold)|(Silver)|(Member)$";
     public static final String CUSTOMER_ID_REGEX = "^CU-\\d{4}$";
     public static final String CUSTOMER_NAME_REGEX = "^[A-Z][a-z]*(\\s[A-Z][a-z]*)*$";
-    public static final String CUSTOMER_ID_CARD_REGEX = "\\d{3}(\\s\\d{3}){2}$";
+    public static final String CUSTOMER_ID_CARD_REGEX = "^\\d{3}(\\s\\d{3}){2}$";
 
     public static boolean validateIdCard(String regex) {
         Matcher matcher = Pattern.compile(CUSTOMER_ID_CARD_REGEX).matcher(regex);
