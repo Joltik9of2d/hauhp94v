@@ -360,4 +360,27 @@ public class ManagerService {
         funcWriteAndReadService.writeToFile(PATH_ROOM_CSV, roomList);
         System.out.println("Đã xóa xong id " + id);
     }
-}
+    public static void searchServiceByIdToShow(){
+        String id = inputIdService();
+        for (Services services: servicesList){
+            if(services.getId().equals(id)){
+                System.out.println("Đã tìm thấy service "+id);
+                System.out.println(services.showInfor());
+                return;
+            }
+        }
+        System.out.println("Không tìm thấy service này");
+    }
+    public static void searchServiceByNameToShow() {
+        String name = inputNameService();
+        for (Services services: servicesList){
+            if(services.getServiceName().equals(name)){
+                System.out.println("Đã tìm thấy tên service "+name);
+                System.out.println(services.showInfor());
+                return;
+            }
+        }
+        System.out.println("Không tìm thấy service này");
+    }
+
+    }
