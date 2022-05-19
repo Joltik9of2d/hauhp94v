@@ -1,6 +1,7 @@
 package manager;
 
 import commons.FuncWriteAndRead;
+import libs.Path;
 import models.Customer;
 import models.Services;
 
@@ -8,30 +9,29 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ManagerBooking {
-    public static final String PATH_BOOKING_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Booking.csv";
-    public static FuncWriteAndRead<Customer> customerFuncWriteAndReadToBooking = new FuncWriteAndRead<>();
-    public static List<Customer> listBooking = customerFuncWriteAndReadToBooking.readDataFromFile(PATH_BOOKING_CSV);
     public static FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
-    public static List<Customer> customerList = funcWriteAndRead.readDataFromFile(ManagerCustomer.PATH_CUSTOMER_CSV);
+    public static List<Customer> listBooking = funcWriteAndRead.readDataFromFile(Path.PATH_BOOKING_CSV);
+    public static List<Customer> customerList = funcWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
 
     public static void showCustomerBooking() {
         System.out.println("Danh sách khách hàng và dịch vụ đang sử dụng tại Furama");
-        for (Customer customer : listBooking){
-            System.out.println("Khách hàng: "+ customer.getIdCustomer()+ " Tên: "+customer.getCustomerName()+" Đã đặt service "+customer.getServiceOfCustomer().getId());
+        for (Customer customer : listBooking) {
+            System.out.println("Khách hàng: " + customer.getIdCustomer() + " Tên: " + customer.getCustomerName() + " Đã đặt service " + customer.getServiceOfCustomer().getId());
         }
     }
-    public static boolean searchServiceBooking(String idService){
-        for (Customer customer: listBooking){
-            if(customer.getServiceOfCustomer().getId().equals(idService)){
+
+    public static boolean searchServiceBooking(String idService) {
+        for (Customer customer : listBooking) {
+            if (customer.getServiceOfCustomer().getId().equals(idService)) {
                 return true;
             }
         }
         return false;
     }
-//    Mỗi dịch vụ chỉ được đặt bới 1 khách hàng, mỗi khách hàng có thể đặt nhiều dịch vụ
+
+    //    Mỗi dịch vụ chỉ được đặt bới 1 khách hàng, mỗi khách hàng có thể đặt nhiều dịch vụ
     public static void addNewBooking() {
         ManagerCustomer.showInformationCustomer();
-        FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
         FuncWriteAndRead<Services> funcWriteAndReadService = new FuncWriteAndRead<>();
         Services servicesToBooking = null;
         Customer customerToBooking = null;
@@ -50,7 +50,7 @@ public class ManagerBooking {
         }
 
         while (true) {
-            int choose = 0;
+            int choose;
             while (true) {
                 try {
                     System.out.println("Chọn chức năng:\n" +
@@ -66,20 +66,20 @@ public class ManagerBooking {
             switch (choose) {
                 case 1:
                     System.out.println("Danh sách villa: ");
-                    List<Services> servicesListVilla = funcWriteAndReadService.readDataFromFile(ManagerService.PATH_VILLA_CSV);
+                    List<Services> servicesListVilla = funcWriteAndReadService.readDataFromFile(Path.PATH_VILLA_CSV);
                     for (Services services : servicesListVilla) {
                         System.out.println(services.showInfor());
                     }
-                    String idVillaBook = "";
+                    String idVillaBook;
                     boolean checkVilla = true;
                     while (checkVilla) {
                         System.out.println("Nhập id villa muốn đặt: ");
                         idVillaBook = scanner.nextLine();
-                        while (true){
-                            if(searchServiceBooking(idVillaBook)){
+                        while (true) {
+                            if (searchServiceBooking(idVillaBook)) {
                                 System.out.print("Villa này đã có người đặt, vui chọn chọn villa khác: ");
                                 idVillaBook = scanner.nextLine();
-                            }else {
+                            } else {
                                 break;
                             }
                         }
@@ -94,20 +94,20 @@ public class ManagerBooking {
                     break;
                 case 2:
                     System.out.println("Danh sách house: ");
-                    List<Services> servicesListHouse = funcWriteAndReadService.readDataFromFile(ManagerService.PATH_HOUSE_CSV);
+                    List<Services> servicesListHouse = funcWriteAndReadService.readDataFromFile(Path.PATH_HOUSE_CSV);
                     for (Services servicesHouse : servicesListHouse) {
                         System.out.println(servicesHouse.showInfor());
                     }
-                    String idHouseBook = "";
+                    String idHouseBook;
                     boolean checkHouse = true;
                     while (checkHouse) {
                         System.out.println("Nhập id house muốn đặt: ");
                         idHouseBook = scanner.nextLine();
-                        while (true){
-                            if(searchServiceBooking(idHouseBook)){
+                        while (true) {
+                            if (searchServiceBooking(idHouseBook)) {
                                 System.out.print("House này đã có người đặt, vui lòng chọn house khác: ");
                                 idHouseBook = scanner.nextLine();
-                            }else {
+                            } else {
                                 break;
                             }
                         }
@@ -122,7 +122,7 @@ public class ManagerBooking {
                     break;
                 case 3:
                     System.out.println("Danh sách room: ");
-                    List<Services> servicesListRoom = funcWriteAndReadService.readDataFromFile(ManagerService.PATH_ROOM_CSV);
+                    List<Services> servicesListRoom = funcWriteAndReadService.readDataFromFile(Path.PATH_ROOM_CSV);
                     for (Services servicesRoom : servicesListRoom) {
                         System.out.println(servicesRoom.showInfor());
                     }
@@ -131,11 +131,11 @@ public class ManagerBooking {
                     while (checkRoom) {
                         System.out.println("Nhập id room muốn đặt: ");
                         idRoomBook = scanner.nextLine();
-                        while (true){
-                            if(searchServiceBooking(idRoomBook)){
+                        while (true) {
+                            if (searchServiceBooking(idRoomBook)) {
                                 System.out.print("Room này đã có người đặt, vui lòng chọn room khác: ");
                                 idRoomBook = scanner.nextLine();
-                            }else {
+                            } else {
                                 break;
                             }
                         }
@@ -153,7 +153,7 @@ public class ManagerBooking {
             }
             customerToBooking.setServiceOfCustomer(servicesToBooking);
             listBooking.add(customerToBooking);
-            customerFuncWriteAndReadToBooking.writeToFile(PATH_BOOKING_CSV, listBooking);
+            funcWriteAndRead.writeToFile(Path.PATH_BOOKING_CSV, listBooking);
             System.out.println("Booking thành công");
             return;
         }

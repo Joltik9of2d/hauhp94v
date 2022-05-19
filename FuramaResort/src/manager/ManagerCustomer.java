@@ -1,25 +1,23 @@
 package manager;
 
 import commons.FuncWriteAndRead;
-import comparator.ComparatorByBirthdayCustomer;
 import comparator.ComparatorByNameCustomer;
 import exception.*;
+import libs.Path;
 import libs.RegularExpression;
 import models.Customer;
 import models.Services;
-import models.Villa;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class ManagerCustomer {
-    public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
     public static FuncWriteAndRead<Customer> customerFuncWriteAndRead = new FuncWriteAndRead<>();
-    public static List<Customer> customerList = customerFuncWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
+    public static List<Customer> customerList = customerFuncWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
 
     public static void addNewCustomer() {
         Scanner scanner = new Scanner(System.in);
-        String idCustomer = inputIdCustomer();
+        String idCustomer = inputIdCustomerToAddService();
         String customerName = inputCustomerName();
         LocalDate birthdayLocalDate = inputBirthday();
         String gender = inputGender();
@@ -36,7 +34,7 @@ public class ManagerCustomer {
         System.out.println("Thêm khách hàng mới thành công");
         customerList.add(customer);
         FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
-        funcWriteAndReadCustomer.writeToFile(PATH_CUSTOMER_CSV, customerList);
+        funcWriteAndReadCustomer.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
     }
 
     private static String inputCustomerType() {
@@ -154,7 +152,7 @@ public class ManagerCustomer {
         return customerName;
     }
 
-    private static String inputIdCustomer() {
+    private static String inputIdCustomerToAddService() {
         String idCustomer = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -168,12 +166,26 @@ public class ManagerCustomer {
         }
         return idCustomer;
     }
+    private static String inputIdCustomerToShow() {
+        String idCustomer = "";
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Nhập idCustomer (CU-1234) : ");
+            idCustomer = scanner.nextLine();
+            if (RegularExpression.validateIdCustomer(idCustomer)) {
+                break;
+            } else {
+                System.out.println("idCustomer không hợp lệ , nhập lại");
+            }
+        }
+        return idCustomer;
+    }
 
     public static void showInformationCustomer() {
         FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
         System.out.println("Danh sách khách hàng (đã sắp xếp theo tên): ");
         try {
-            List<Customer> customerList = funcWriteAndRead.readDataFromFile(PATH_CUSTOMER_CSV);
+            List<Customer> customerList = funcWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
             Collections.sort(customerList,new ComparatorByNameCustomer());
             for (Customer customer : customerList) {
                 System.out.println(customer.showInfor());
@@ -192,7 +204,7 @@ public class ManagerCustomer {
         return false;
     }
     public static void searchCustomerByIdToShow(){
-        String id = inputIdCustomer();
+        String id = inputIdCustomerToShow();
         for (Customer customer: customerList){
             if(customer.getIdCustomer().equals(id)){
                 System.out.println("Đã tìm thấy khách hàng "+ id);
@@ -225,7 +237,7 @@ public class ManagerCustomer {
                 break;
             }
         }
-        customerFuncWriteAndRead.writeToFile(PATH_CUSTOMER_CSV,customerList);
+        customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV,customerList);
 
     }
 
@@ -368,7 +380,7 @@ public class ManagerCustomer {
         System.out.println("Thông tin khách hàng sau khi chỉnh sửa: ");
         System.out.println(customerToEdit.showInfor());
         customerList.add(customerToEdit);
-        customerFuncWriteAndRead.writeToFile(PATH_CUSTOMER_CSV, customerList);
+        customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
 
 
 

@@ -1,21 +1,18 @@
 package manager;
 
 import commons.FuncWriteAndRead;
+import libs.Path;
 import libs.RegularExpression;
 import models.*;
 
 import java.util.*;
 
 public class ManagerService {
-    public static final String PATH_VILLA_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Villa.csv";
-    public static final String PATH_HOUSE_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\House.csv";
-    public static final String PATH_ROOM_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Room.csv";
-    public static final String PATH_SERVICES_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Services.csv";
     public static FuncWriteAndRead<Services> funcWriteAndReadService = new FuncWriteAndRead<>();
-    public static List<Services> servicesList = funcWriteAndReadService.readDataFromFile(PATH_SERVICES_CSV);
-    public static List<Services> villaList = funcWriteAndReadService.readDataFromFile(PATH_VILLA_CSV);
-    public static List<Services> houseList = funcWriteAndReadService.readDataFromFile(PATH_HOUSE_CSV);
-    public static List<Services> roomList = funcWriteAndReadService.readDataFromFile(PATH_ROOM_CSV);
+    public static List<Services> servicesList = funcWriteAndReadService.readDataFromFile(Path.PATH_SERVICES_CSV);
+    public static List<Services> villaList = funcWriteAndReadService.readDataFromFile(Path.PATH_VILLA_CSV);
+    public static List<Services> houseList = funcWriteAndReadService.readDataFromFile(Path.PATH_HOUSE_CSV);
+    public static List<Services> roomList = funcWriteAndReadService.readDataFromFile(Path.PATH_ROOM_CSV);
 
     public static void addNewServies() {
         Scanner scanner = new Scanner(System.in);
@@ -53,8 +50,8 @@ public class ManagerService {
                     villa.showInfor();
                     villaList.add(villa);
                     servicesList.add(villa);
-                    funcWriteAndReadService.writeToFile(PATH_VILLA_CSV, villaList);
-                    funcWriteAndReadService.writeToFile(PATH_SERVICES_CSV, servicesList);
+                    funcWriteAndReadService.writeToFile(Path.PATH_VILLA_CSV, villaList);
+                    funcWriteAndReadService.writeToFile(Path.PATH_SERVICES_CSV, servicesList);
                     break;
                 case 2:
                     System.out.println("Add new house");
@@ -72,8 +69,8 @@ public class ManagerService {
                     house.showInfor();
                     houseList.add(house);
                     servicesList.add(house);
-                    funcWriteAndReadService.writeToFile(PATH_HOUSE_CSV, houseList);
-                    funcWriteAndReadService.writeToFile(PATH_SERVICES_CSV, servicesList);
+                    funcWriteAndReadService.writeToFile(Path.PATH_HOUSE_CSV, houseList);
+                    funcWriteAndReadService.writeToFile(Path.PATH_SERVICES_CSV, servicesList);
                     break;
                 case 3:
                     System.out.println("Add new room");
@@ -90,8 +87,8 @@ public class ManagerService {
                     room.showInfor();
                     roomList.add(room);
                     servicesList.add(room);
-                    funcWriteAndReadService.writeToFile(PATH_ROOM_CSV, roomList);
-                    funcWriteAndReadService.writeToFile(PATH_SERVICES_CSV, servicesList);
+                    funcWriteAndReadService.writeToFile(Path.PATH_ROOM_CSV, roomList);
+                    funcWriteAndReadService.writeToFile(Path.PATH_SERVICES_CSV, servicesList);
                     break;
                 case 4:
                     check = false;
@@ -354,10 +351,10 @@ public class ManagerService {
                 break;
             }
         }
-        funcWriteAndReadService.writeToFile(PATH_SERVICES_CSV, servicesList);
-        funcWriteAndReadService.writeToFile(PATH_VILLA_CSV, villaList);
-        funcWriteAndReadService.writeToFile(PATH_HOUSE_CSV, houseList);
-        funcWriteAndReadService.writeToFile(PATH_ROOM_CSV, roomList);
+        funcWriteAndReadService.writeToFile(Path.PATH_SERVICES_CSV, servicesList);
+        funcWriteAndReadService.writeToFile(Path.PATH_VILLA_CSV, villaList);
+        funcWriteAndReadService.writeToFile(Path.PATH_HOUSE_CSV, houseList);
+        funcWriteAndReadService.writeToFile(Path.PATH_ROOM_CSV, roomList);
         System.out.println("Đã xóa xong id " + id);
     }
     public static void searchServiceByIdToShow(){

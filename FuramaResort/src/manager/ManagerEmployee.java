@@ -1,21 +1,14 @@
 package manager;
-
-import models.Customer;
-import models.Employee;
-
+import libs.Path;
 import java.io.*;
-import java.time.LocalDate;
 import java.util.*;
 
 public class ManagerEmployee {
-
-    public static String PATH_EMPLOYEE_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Employee.csv";
-
     public static void showEmployee() {
         BufferedReader br = null;
         try{
             String line ;
-            br = new BufferedReader(new FileReader(PATH_EMPLOYEE_CSV));
+            br = new BufferedReader(new FileReader(Path.PATH_EMPLOYEE_CSV));
             while ((line=br.readLine())!=null){
                 printEmployee(parseCsvLine(line));
             }

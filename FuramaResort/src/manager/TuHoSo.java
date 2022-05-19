@@ -1,5 +1,6 @@
 package manager;
 
+import libs.Path;
 import models.Employee;
 
 import java.io.BufferedReader;
@@ -17,10 +18,10 @@ public class TuHoSo {
         System.out.println("Nhập số nhân viên(001-010): ");
         Scanner scanner = new Scanner(System.in);
         String id = scanner.nextLine();
-        BufferedReader br = null;
+        BufferedReader br;
         try {
             String line;
-            br = new BufferedReader(new FileReader(ManagerEmployee.PATH_EMPLOYEE_CSV));
+            br = new BufferedReader(new FileReader(Path.PATH_EMPLOYEE_CSV));
             while ((line = br.readLine()) != null) {
                     stack.push(ManagerEmployee.parseCsvLine(line));
             }
@@ -40,24 +41,4 @@ public class TuHoSo {
             ioException.printStackTrace();
         }
     }
-
-
-//    public static void searchProfileEmployee() {
-//        System.out.println("Nhập số nhân viên: ");
-//        Scanner scanner = new Scanner(System.in);
-//        String id = scanner.nextLine();
-//        BufferedReader br = null;
-//        try {
-//            String line;
-//            br = new BufferedReader(new FileReader(ManagerEmployee.PATH_EMPLOYEE_CSV));
-//            while ((line = br.readLine()) != null) {
-//                if (ManagerEmployee.parseCsvLine(line).get(0).equals(id)) {
-//                    ManagerEmployee.printEmployee(ManagerEmployee.parseCsvLine(line));
-//                    break;
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
