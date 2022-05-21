@@ -1,7 +1,7 @@
 package libs;
 
 public class Path {
-//    Chứa đường dẫn các file csv
+    //    Chứa đường dẫn các file csv
     public static final String PATH_CUSTOMER_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Customer.csv";
     public static final String PATH_VILLA_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\Villa.csv";
     public static final String PATH_HOUSE_CSV = "D:\\C0321G1_HuynhPhuocHau_Module2\\FuramaResort\\src\\data\\House.csv";

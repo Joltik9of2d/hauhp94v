@@ -19,7 +19,7 @@ public class ManagerService {
         boolean check = true;
         while (check) {
             int choose = 0;
-            while (true){
+            while (true) {
                 try {
                     System.out.println("1.\tAdd New Villa\n" +
                             "2.\tAdd New House\n" +
@@ -28,7 +28,7 @@ public class ManagerService {
                             "5.\tExit\n");
                     choose = Integer.parseInt(scanner.nextLine());
                     break;
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     System.err.println("Chỉ được chọn 1-5");
                 }
             }
@@ -63,7 +63,7 @@ public class ManagerService {
                     String rentalTypeHouse = inputRentalType();
                     String roomStandardHouse = inputRoomStandard();
                     String amenitieHouse = inputAmenitie();
-                    int numberOfFloorsHouse=inputNumberOfFloors();
+                    int numberOfFloorsHouse = inputNumberOfFloors();
                     House house = new House(idHouse, nameHouse, usableAreaHouse, rentalCostHouse, maxNumberOfPeopleHouse,
                             rentalTypeHouse, roomStandardHouse, amenitieHouse, numberOfFloorsHouse);
                     house.showInfor();
@@ -357,22 +357,12 @@ public class ManagerService {
         funcWriteAndReadService.writeToFile(Path.PATH_ROOM_CSV, roomList);
         System.out.println("Đã xóa xong id " + id);
     }
-    public static void searchServiceByIdToShow(){
+
+    public static void searchServiceByIdToShow() {
         String id = inputIdService();
-        for (Services services: servicesList){
-            if(services.getId().equals(id)){
-                System.out.println("Đã tìm thấy service "+id);
-                System.out.println(services.showInfor());
-                return;
-            }
-        }
-        System.out.println("Không tìm thấy service này");
-    }
-    public static void searchServiceByNameToShow() {
-        String name = inputNameService();
-        for (Services services: servicesList){
-            if(services.getServiceName().equals(name)){
-                System.out.println("Đã tìm thấy tên service "+name);
+        for (Services services : servicesList) {
+            if (services.getId().equals(id)) {
+                System.out.println("Đã tìm thấy service " + id);
                 System.out.println(services.showInfor());
                 return;
             }
@@ -380,4 +370,15 @@ public class ManagerService {
         System.out.println("Không tìm thấy service này");
     }
 
+    public static void searchServiceByNameToShow() {
+        String name = inputNameService();
+        for (Services services : servicesList) {
+            if (services.getServiceName().equals(name)) {
+                System.out.println("Đã tìm thấy tên service " + name);
+                System.out.println(services.showInfor());
+                return;
+            }
+        }
+        System.out.println("Không tìm thấy service này");
     }
+}

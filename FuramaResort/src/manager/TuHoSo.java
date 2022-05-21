@@ -23,17 +23,17 @@ public class TuHoSo {
             String line;
             br = new BufferedReader(new FileReader(Path.PATH_EMPLOYEE_CSV));
             while ((line = br.readLine()) != null) {
-                    stack.push(ManagerEmployee.parseCsvLine(line));
+                stack.push(ManagerEmployee.parseCsvLine(line));
             }
-            while (!stack.isEmpty()){
-                if(stack.peek().get(0).equals(id)){
+            while (!stack.isEmpty()) {
+                if (stack.peek().get(0).equals(id)) {
                     System.out.println("đã tìm thấy: ");
                     ManagerEmployee.printEmployee(stack.pop());
                     break;
-                }else {
+                } else {
                     stack.pop();
                 }
-                if(stack.isEmpty()){
+                if (stack.isEmpty()) {
                     System.out.println("Không tìm thấy id này");
                 }
             }

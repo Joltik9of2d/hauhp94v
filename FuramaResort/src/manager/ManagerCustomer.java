@@ -166,6 +166,7 @@ public class ManagerCustomer {
         }
         return idCustomer;
     }
+
     private static String inputIdCustomerToShow() {
         String idCustomer = "";
         Scanner scanner = new Scanner(System.in);
@@ -186,7 +187,7 @@ public class ManagerCustomer {
         System.out.println("Danh sách khách hàng (đã sắp xếp theo tên): ");
         try {
             List<Customer> customerList = funcWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
-            Collections.sort(customerList,new ComparatorByNameCustomer());
+            Collections.sort(customerList, new ComparatorByNameCustomer());
             for (Customer customer : customerList) {
                 System.out.println(customer.showInfor());
             }
@@ -203,25 +204,28 @@ public class ManagerCustomer {
         }
         return false;
     }
-    public static void searchCustomerByIdToShow(){
+
+    public static void searchCustomerByIdToShow() {
         String id = inputIdCustomerToShow();
-        for (Customer customer: customerList){
-            if(customer.getIdCustomer().equals(id)){
-                System.out.println("Đã tìm thấy khách hàng "+ id);
+        for (Customer customer : customerList) {
+            if (customer.getIdCustomer().equals(id)) {
+                System.out.println("Đã tìm thấy khách hàng " + id);
                 System.out.println(customer.showInfor());
                 return;
             }
         }
     }
-    public static void searchCustomerByNameToShow(){
+
+    public static void searchCustomerByNameToShow() {
         String name = inputCustomerName();
-        for(Customer customer: customerList){
-            if(customer.getCustomerName().equals(name)){
-                System.out.println("Đã tìm thấy khách hàng "+ name);
+        for (Customer customer : customerList) {
+            if (customer.getCustomerName().equals(name)) {
+                System.out.println("Đã tìm thấy khách hàng " + name);
                 System.out.println(customer.showInfor());
             }
         }
     }
+
     public static void removeCustomer() {
         System.out.print("Nhập id customer cần xóa: ");
         Scanner scanner = new Scanner(System.in);
@@ -233,11 +237,11 @@ public class ManagerCustomer {
         for (Customer customer : customerList) {
             if (customer.getIdCustomer().equals(idCustomerToRemove)) {
                 customerList.remove(customer);
-                System.out.println("Xóa thành công id "+ idCustomerToRemove);
+                System.out.println("Xóa thành công id " + idCustomerToRemove);
                 break;
             }
         }
-        customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV,customerList);
+        customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
 
     }
 
@@ -260,24 +264,24 @@ public class ManagerCustomer {
         boolean check = true;
         int choose = 0;
         while (check) {
-        System.out.println("Bạn muốn sửa thông tin : 1.\tSửa tên\n" +
-                "2.\tSửa ngày sinh\n" +
-                "3.\tSửa giới tính\n" +
-                "4.\tSửa số CMND\n" +
-                "5.\tSửa số điện thoại\n" +
-                "6.\tSửa email\n" +
-                "7.\tSửa kiểu khách hàng\n" +
-                "8.\tSửa địa chỉ\n" +
-                "9.\tSửa dịch vụ\n" +
-                "10.\tThoát\n");
-        while (true) {
-            try {
-                choose = Integer.parseInt(scanner.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
+            System.out.println("Bạn muốn sửa thông tin : 1.\tSửa tên\n" +
+                    "2.\tSửa ngày sinh\n" +
+                    "3.\tSửa giới tính\n" +
+                    "4.\tSửa số CMND\n" +
+                    "5.\tSửa số điện thoại\n" +
+                    "6.\tSửa email\n" +
+                    "7.\tSửa kiểu khách hàng\n" +
+                    "8.\tSửa địa chỉ\n" +
+                    "9.\tSửa dịch vụ\n" +
+                    "10.\tThoát\n");
+            while (true) {
+                try {
+                    choose = Integer.parseInt(scanner.nextLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
             switch (choose) {
                 case 1:
@@ -381,7 +385,6 @@ public class ManagerCustomer {
         System.out.println(customerToEdit.showInfor());
         customerList.add(customerToEdit);
         customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
-
 
 
     }
