@@ -264,7 +264,8 @@ public class ManagerCustomer {
         boolean check = true;
         int choose = 0;
         while (check) {
-            System.out.println("Bạn muốn sửa thông tin : 1.\tSửa tên\n" +
+            System.out.println("Bạn muốn sửa thông tin :\n" +
+                    "1.\tSửa tên\n" +
                     "2.\tSửa ngày sinh\n" +
                     "3.\tSửa giới tính\n" +
                     "4.\tSửa số CMND\n" +
@@ -285,43 +286,23 @@ public class ManagerCustomer {
 
             switch (choose) {
                 case 1:
-                    System.out.println("Sửa tên khách hàng");
-                    System.out.println("Nhập tên mới");
-                    String newName = scanner.nextLine();
-                    while (!RegularExpression.validateNameService(newName)) {
-                        System.out.println("Tên không đúng định dạng, nhập lại");
-                        newName = scanner.nextLine();
-                    }
+                    System.out.println("Sửa tên khách hàng, nhập tên mới");
+                    String newName = inputCustomerName();
                     customerToEdit.setCustomerName(newName);
                     break;
                 case 2:
-                    System.out.println("Sửa ngày sinh:");
-                    System.out.print("Nhập ngày sinh mới (dd/mm/yyyy): ");
-                    String newBirthday = scanner.nextLine();
-                    while (!RegularExpression.validateBirthday(newBirthday)) {
-                        System.out.println("Ngày sinh không hợp lệ, nhập lại");
-                        newBirthday = scanner.nextLine();
-                    }
-                    customerToEdit.setBirthday(RegularExpression.stringBirthdayToLocadateBirthday(newBirthday));
+                    System.out.println("Sửa ngày sinh, nhập ngày sinh mới");
+                    LocalDate newBirthday = inputBirthday();
+                    customerToEdit.setBirthday(newBirthday);
                     break;
                 case 3:
-                    System.out.println("Sửa giới tính ");
-                    System.out.print("Nhập giới tính mới: ");
-                    String newGender = scanner.nextLine();
-                    while (!RegularExpression.validateGender(newGender)) {
-                        System.out.print("Không đúng định dạng, nhập lại");
-                        newGender = scanner.nextLine();
-                    }
-                    customerToEdit.setGender(RegularExpression.standardizedGender(newGender));
+                    System.out.println("Sửa giới tính, nhập giới tính mới ");
+                    String newGender = inputGender();
+                    customerToEdit.setGender(newGender);
                     break;
                 case 4:
-                    System.out.println("Sửa số CMND ");
-                    System.out.print("Nhập số CMND mới(xxx xxx xxx): ");
-                    String newCMND = scanner.nextLine();
-                    while (!RegularExpression.validateIdCard(newCMND)) {
-                        System.out.print("CMND sai định dạng, nhập lại: ");
-                        newCMND = scanner.nextLine();
-                    }
+                    System.out.println("Sửa số CMND, nhập số CMND mới ");
+                    String newCMND = inputIdentityCardNumber();
                     customerToEdit.setIdentityCardNumber(newCMND);
                     break;
                 case 5:
@@ -331,28 +312,17 @@ public class ManagerCustomer {
                     customerToEdit.setPhoneNumber(newPhoneNumber);
                     break;
                 case 6:
-                    System.out.println("Sửa email khách hàng: ");
-                    System.out.print("Nhập email mới: ");
-                    String newEmail = scanner.nextLine();
-                    while (!RegularExpression.validateEmail(newEmail)) {
-                        System.out.print("Email không đúng định dạng nhập lại: ");
-                        newEmail = scanner.nextLine();
-                    }
+                    System.out.println("Sửa email khách hàng, nhập email mới ");
+                    String newEmail = inputEmail();
                     customerToEdit.setEmail(newEmail);
                     break;
                 case 7:
                     System.out.println("Sửa kiểu khách hàng: ");
-                    System.out.print("Nhập kiểu khách hàng mới(Diamond, Platinium, Gold, Silver, Member): ");
-                    String newTypeCustomer = scanner.nextLine();
-                    while (!RegularExpression.validateTypeCustomer(newTypeCustomer)) {
-                        System.out.print("Không đúng định dạng, nhập lại: ");
-                        newTypeCustomer = scanner.nextLine();
-                    }
+                    String newTypeCustomer = inputCustomerType();
                     customerToEdit.setCustomerType(newTypeCustomer);
                     break;
                 case 8:
                     System.out.println("Sửa địa chỉ khách hàng");
-                    System.out.print("Nhập địa chỉ mới: ");
                     String newAddress = scanner.nextLine();
                     customerToEdit.setAddress(newAddress);
                     break;
@@ -385,7 +355,5 @@ public class ManagerCustomer {
         System.out.println(customerToEdit.showInfor());
         customerList.add(customerToEdit);
         customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
-
-
     }
 }
