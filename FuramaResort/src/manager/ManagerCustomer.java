@@ -12,8 +12,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class ManagerCustomer {
-    public static FuncWriteAndRead<Customer> customerFuncWriteAndRead = new FuncWriteAndRead<>();
-    public static List<Customer> customerList = customerFuncWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
+    public static FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
+    public static List<Customer> customerList = funcWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
 
     public static void addNewCustomer() {
         Scanner scanner = new Scanner(System.in);
@@ -33,8 +33,7 @@ public class ManagerCustomer {
                 identityCardNumber, phoneNumber, email, customerType, address, services);
         System.out.println("Thêm khách hàng mới thành công");
         customerList.add(customer);
-        FuncWriteAndRead<Customer> funcWriteAndReadCustomer = new FuncWriteAndRead<>();
-        funcWriteAndReadCustomer.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
+        funcWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
     }
 
     private static String inputCustomerType() {
@@ -111,19 +110,15 @@ public class ManagerCustomer {
     }
 
     private static LocalDate inputBirthday() {
-        String birthday = "";
         Scanner scanner = new Scanner(System.in);
+        String birthdayString = "";
         LocalDate birthdayLocalDate;
         while (true) {
             try {
                 System.out.print("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
-                birthday = scanner.nextLine();
-                if (RegularExpression.validateBirthday(birthday)) {
-                    String[] arrayBirthday = birthday.split("/");
-                    int day = Integer.parseInt(arrayBirthday[0]);
-                    int month = Integer.parseInt(arrayBirthday[1]);
-                    int year = Integer.parseInt(arrayBirthday[2]);
-                    birthdayLocalDate = LocalDate.of(year, month, day);
+                birthdayString = scanner.nextLine();
+                if (RegularExpression.validateBirthday(birthdayString)) {
+                    birthdayLocalDate = RegularExpression.stringBirthdayToLocadateBirthday(birthdayString);
                     break;
                 } else {
                     throw new BirthdayException("Ngày sinh không hợp lệ hoặc chưa đủ 18 tuổi");
@@ -158,7 +153,7 @@ public class ManagerCustomer {
         while (true) {
             System.out.print("Nhập idCustomer (CU-1234) : ");
             idCustomer = scanner.nextLine();
-            if (RegularExpression.validateIdCustomer(idCustomer) && !searchCustomerById(idCustomer)) {
+            if (RegularExpression.validateIdCustomer(idCustomer) && !isIdCustomerExists(idCustomer)) {
                 break;
             } else {
                 System.out.println("idCustomer không hợp lệ , nhập lại");
@@ -167,7 +162,7 @@ public class ManagerCustomer {
         return idCustomer;
     }
 
-    private static String inputIdCustomerToShow() {
+    private static String inputIdCustomer() {
         String idCustomer = "";
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -183,10 +178,8 @@ public class ManagerCustomer {
     }
 
     public static void showInformationCustomer() {
-        FuncWriteAndRead<Customer> funcWriteAndRead = new FuncWriteAndRead<>();
         System.out.println("Danh sách khách hàng (đã sắp xếp theo tên): ");
         try {
-            List<Customer> customerList = funcWriteAndRead.readDataFromFile(Path.PATH_CUSTOMER_CSV);
             Collections.sort(customerList, new ComparatorByNameCustomer());
             for (Customer customer : customerList) {
                 System.out.println(customer.showInfor());
@@ -196,7 +189,7 @@ public class ManagerCustomer {
         }
     }
 
-    public static boolean searchCustomerById(String idCustomer) {
+    public static boolean isIdCustomerExists(String idCustomer) {
         for (Customer customer : customerList) {
             if (customer.getIdCustomer().equals(idCustomer)) {
                 return true;
@@ -206,7 +199,7 @@ public class ManagerCustomer {
     }
 
     public static void searchCustomerByIdToShow() {
-        String id = inputIdCustomerToShow();
+        String id = inputIdCustomer();
         for (Customer customer : customerList) {
             if (customer.getIdCustomer().equals(id)) {
                 System.out.println("Đã tìm thấy khách hàng " + id);
@@ -214,9 +207,10 @@ public class ManagerCustomer {
                 return;
             }
         }
+        System.out.println("Không tìm thấy khách hàng "+ id);
     }
 
-    public static void searchCustomerByNameToShow() {
+    public static void searchCustomerByName() {
         String name = inputCustomerName();
         for (Customer customer : customerList) {
             if (customer.getCustomerName().equals(name)) {
@@ -230,9 +224,15 @@ public class ManagerCustomer {
         System.out.print("Nhập id customer cần xóa: ");
         Scanner scanner = new Scanner(System.in);
         String idCustomerToRemove = scanner.nextLine();
-        while (!searchCustomerById(idCustomerToRemove)) {
+        while (!isIdCustomerExists(idCustomerToRemove)) {
             System.out.print("id không tồn tại, nhập lại: ");
             idCustomerToRemove = scanner.nextLine();
+        }
+        System.out.print("Bạn có chắc muốn xóa? bấm yes hoặc no: ");
+        String isSure = scanner.nextLine();
+        if(isSure.equals("no")){
+            System.out.println("Không xóa nữa");
+            return;
         }
         for (Customer customer : customerList) {
             if (customer.getIdCustomer().equals(idCustomerToRemove)) {
@@ -241,7 +241,7 @@ public class ManagerCustomer {
                 break;
             }
         }
-        customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
+        funcWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
 
     }
 
@@ -249,7 +249,7 @@ public class ManagerCustomer {
         System.out.print("Nhập id customer cần sửa: ");
         Scanner scanner = new Scanner(System.in);
         String idCustomerToEdit = scanner.nextLine();
-        while (!searchCustomerById(idCustomerToEdit)) {
+        while (!isIdCustomerExists(idCustomerToEdit)) {
             System.out.print("id không tồn tại, nhập lại: ");
             idCustomerToEdit = scanner.nextLine();
         }
@@ -354,6 +354,6 @@ public class ManagerCustomer {
         System.out.println("Thông tin khách hàng sau khi chỉnh sửa: ");
         System.out.println(customerToEdit.showInfor());
         customerList.add(customerToEdit);
-        customerFuncWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
+        funcWriteAndRead.writeToFile(Path.PATH_CUSTOMER_CSV, customerList);
     }
 }

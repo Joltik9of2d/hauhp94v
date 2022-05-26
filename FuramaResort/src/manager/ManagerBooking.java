@@ -39,7 +39,7 @@ public class ManagerBooking {
         System.out.println("Chọn khách hàng để booking: ");
         System.out.print("Nhập id khách hàng cần booking: ");
         String idCustomerToBooking = scanner.nextLine();
-        while (!ManagerCustomer.searchCustomerById(idCustomerToBooking)) {
+        while (!ManagerCustomer.isIdCustomerExists(idCustomerToBooking)) {
             System.out.print("id không hợp lệ, nhập lại: ");
             idCustomerToBooking = scanner.nextLine();
         }

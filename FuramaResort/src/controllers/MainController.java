@@ -82,7 +82,7 @@ public class MainController {
                  ManagerCustomer.searchCustomerByIdToShow();
                  break;
              case 16:
-                 ManagerCustomer.searchCustomerByNameToShow();
+                 ManagerCustomer.searchCustomerByName();
                  break;
              case 17:
                  ManagerService.searchServiceByIdToShow();
