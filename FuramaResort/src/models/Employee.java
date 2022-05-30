@@ -18,9 +18,9 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(String idEmployee,String nameEmployee, LocalDate birthday, String identityCardNumber, String phoneNumber, 
+    public Employee(String idEmployee, String nameEmployee, LocalDate birthday, String identityCardNumber, String phoneNumber,
                     String email, String qualifications, String position, Double salary, String workingDepartment) {
-        this.idEmployee=idEmployee;
+        this.idEmployee = idEmployee;
         this.nameEmployee = nameEmployee;
         this.birthday = birthday;
         this.identityCardNumber = identityCardNumber;
@@ -34,18 +34,17 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "idEmployee=" + idEmployee +
-                ", nameEmployee='" + nameEmployee + '\'' +
-                ", birthday=" + birthday +
-                ", identityCardNumber='" + identityCardNumber + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", qualifications='" + qualifications + '\'' +
-                ", position='" + position + '\'' +
-                ", salary=" + salary +
-                ", workingDepartment='" + workingDepartment + '\'' +
-                '}';
+        return
+                idEmployee +","
+                        + nameEmployee+","
+                        + birthday+","
+                        + identityCardNumber+","
+                        + phoneNumber+","
+                        + email+","
+                        + qualifications+","
+                        + position+","
+                        + salary+","
+                        + workingDepartment+",";
     }
 
     public String getIdEmployee() {

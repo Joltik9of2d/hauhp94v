@@ -14,6 +14,7 @@ public class ManagerService {
     public static List<Services> houseList = funcWriteAndReadService.readDataFromFile(Path.PATH_HOUSE_CSV);
     public static List<Services> roomList = funcWriteAndReadService.readDataFromFile(Path.PATH_ROOM_CSV);
 
+
     public static void addNewServies() {
         Scanner scanner = new Scanner(System.in);
         boolean check = true;

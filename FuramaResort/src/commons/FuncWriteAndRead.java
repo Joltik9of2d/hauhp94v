@@ -10,7 +10,6 @@ public class FuncWriteAndRead<T> {
             FileOutputStream fos = new FileOutputStream(path);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(t);
-//            oos.writeBytes("\n");
             oos.close();
             fos.close();
         } catch (IOException ex) {
