@@ -94,7 +94,7 @@ public class MainController {
                  System.out.println("Thoát");
                  System.exit(0);
              default:
-                 System.out.println("Chỉ được chọn 1-15");
+                 System.out.println("Chỉ được chọn 1-19");
          }
      }
     }

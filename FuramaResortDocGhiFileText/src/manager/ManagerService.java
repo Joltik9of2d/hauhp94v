@@ -2,7 +2,7 @@ package manager;
 
 import commons.FuncWriteAndRead;
 import libs.Path;
-import libs.RegularExpression;
+import libs.ValidateData;
 import models.*;
 
 import java.util.*;
@@ -114,7 +114,7 @@ public class ManagerService {
     private static String inputPoolArea() {
         String poolArea = "";
         Scanner scanner = new Scanner(System.in);
-        while (!RegularExpression.validateUsablePool(poolArea)) {
+        while (!ValidateData.validateUsablePool(poolArea)) {
             System.out.println("Nhập diện tích hồ bơi (>30): ");
             poolArea = scanner.nextLine();
         }
@@ -130,7 +130,7 @@ public class ManagerService {
     private static String inputRoomStandard() {
         String roomStandard = "";
         Scanner scanner1 = new Scanner(System.in);
-        while (!RegularExpression.validateRoomStandard(roomStandard)) {
+        while (!ValidateData.validateRoomStandard(roomStandard)) {
             System.out.print("Nhập tiêu chuẩn phòng (1*-5*): ");
             roomStandard = scanner1.nextLine();
         }
@@ -140,7 +140,7 @@ public class ManagerService {
     private static String inputRentalType() {
         String rentalType = "";
         Scanner scanner = new Scanner(System.in);
-        while (!RegularExpression.validateRentalType(rentalType)) {
+        while (!ValidateData.validateRentalType(rentalType)) {
             System.out.print("Nhập kiểu thuê (Gio, Ngay, Thang, Nam): ");
             rentalType = scanner.nextLine();
         }
@@ -150,7 +150,7 @@ public class ManagerService {
     private static String inputMaxNumberOfPeople() {
         String maxNumberOfPeople = "";
         Scanner scanner = new Scanner(System.in);
-        while (!RegularExpression.validateMaxOfPeople(maxNumberOfPeople)) {
+        while (!ValidateData.validateMaxOfPeople(maxNumberOfPeople)) {
             System.out.print("Nhập số người tối đa: ");
             maxNumberOfPeople = scanner.nextLine();
         }
@@ -175,7 +175,7 @@ public class ManagerService {
     private static String inputUsableArea() {
         String usableArea = "";
         Scanner scanner = new Scanner(System.in);
-        while (!RegularExpression.validateUsablePool(usableArea)) {
+        while (!ValidateData.validateUsablePool(usableArea)) {
             System.out.print("Nhập diện tích sử dụng (>30) mét vuông: ");
             usableArea = scanner.nextLine();
         }
@@ -185,7 +185,7 @@ public class ManagerService {
     private static String inputNameService() {
         String nameService = "";
         Scanner scanner = new Scanner(System.in);
-        while (!RegularExpression.validateNameService(nameService)) {
+        while (!ValidateData.validateNameService(nameService)) {
             System.out.print("Nhập tên service (Villa/House/Room...): ");
             nameService = scanner.nextLine();
         }
@@ -195,7 +195,16 @@ public class ManagerService {
     private static String inputIdService() {
         String idService = "";
         Scanner scanner = new Scanner(System.in);
-        while (!RegularExpression.validateIdService(idService) || isIdServiceExist(idService)) {
+        while (!ValidateData.validateIdService(idService) || isIdServiceExist(idService)) {
+            System.out.print("Nhập id service (SVVL-1234) : ");
+            idService = scanner.nextLine();
+        }
+        return idService;
+    }
+    private static String inputIdServiceToSearch() {
+        String idService = "";
+        Scanner scanner = new Scanner(System.in);
+        while (!ValidateData.validateIdService(idService) ) {
             System.out.print("Nhập id service (SVVL-1234) : ");
             idService = scanner.nextLine();
         }
@@ -337,7 +346,7 @@ public class ManagerService {
 
     public static void searchServiceByIdToShow() {
         ArrayList<Services> servicesArrayList = FuncWriteAndRead.readServiceList();
-        String id = inputIdService();
+        String id = inputIdServiceToSearch();
         for (Services services : servicesArrayList) {
             if (services.getId().equals(id)) {
                 System.out.println("Đã tìm thấy service " + id);

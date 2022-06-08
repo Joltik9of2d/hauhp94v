@@ -4,7 +4,7 @@ import commons.FuncWriteAndRead;
 import comparator.ComparatorByNameCustomer;
 import exception.*;
 import libs.Path;
-import libs.RegularExpression;
+import libs.ValidateData;
 import models.Customer;
 import models.Services;
 
@@ -41,7 +41,7 @@ public class ManagerCustomer {
         while (true) {
             System.out.print("Nhập kiểu khách hàng (Diamond, Platinium, Gold, Silver, Member) : ");
             customerType = scanner.nextLine();
-            if (RegularExpression.validateTypeCustomer(customerType)) {
+            if (ValidateData.validateTypeCustomer(customerType)) {
                 break;
             } else {
                 System.out.print("Không hợp lệ, nhập lại");
@@ -57,10 +57,8 @@ public class ManagerCustomer {
             try {
                 System.out.print("Nhập email : ");
                 email = scanner.nextLine();
-                if (RegularExpression.validateEmail(email)) {
+                if (ValidateData.validateEmail(email)) {
                     break;
-                } else {
-                    throw new EmailException("Email không hợp lệ, nhập lại");
                 }
             } catch (EmailException e) {
                 System.out.println(e.getMessage());
@@ -76,10 +74,8 @@ public class ManagerCustomer {
             try {
                 System.out.print("Nhập số CMND (xxx xxx xxx): ");
                 identityCardNumber = scanner.nextLine();
-                if (RegularExpression.validateIdCard(identityCardNumber)) {
+                if (ValidateData.validateIdCard(identityCardNumber)) {
                     break;
-                } else {
-                    throw new IdCardException("Số CMND không hợp lệ, nhập lại");
                 }
             } catch (IdCardException e) {
                 System.out.println(e.getMessage());
@@ -95,11 +91,9 @@ public class ManagerCustomer {
             try {
                 System.out.print("Nhập giới tính (Male, Female, Unknow): ");
                 gender = scanner.nextLine();
-                if (RegularExpression.validateGender(gender)) {
-                    gender = RegularExpression.standardizedGender(gender);
+                if (ValidateData.validateGender(gender)) {
+                    gender = ValidateData.standardizedGender(gender);
                     break;
-                } else {
-                    throw new GenderException("Gender không hợp lệ, nhập lại");
                 }
             } catch (GenderException e) {
                 System.out.println(e.getMessage());
@@ -116,8 +110,8 @@ public class ManagerCustomer {
             try {
                 System.out.print("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
                 birthdayString = scanner.nextLine();
-                if (RegularExpression.validateBirthday(birthdayString)) {
-                    birthdayLocalDate = RegularExpression.stringBirthdayToLocadateBirthday(birthdayString);
+                if (ValidateData.validateBirthday(birthdayString)) {
+                    birthdayLocalDate = ValidateData.stringBirthdayToLocadateBirthday(birthdayString);
                     break;
                 } else {
                     throw new BirthdayException("Ngày sinh không hợp lệ hoặc chưa đủ 18 tuổi");
@@ -136,9 +130,9 @@ public class ManagerCustomer {
             try {
                 System.out.print("Nhập tên khách hàng (chữ đầu viết hoa):");
                 customerName = scanner.nextLine();
-                if (RegularExpression.validateNameCustomer(customerName)) {
+                if (ValidateData.validateNameCustomer(customerName)) {
                     break;
-                } else throw new NameException("Tên không hợp lệ");
+                }
             } catch (NameException e) {
                 System.out.println(e.getMessage());
             }
@@ -152,7 +146,7 @@ public class ManagerCustomer {
         while (true) {
             System.out.print("Nhập idCustomer (CU-1234) : ");
             idCustomer = scanner.nextLine();
-            if (RegularExpression.validateIdCustomer(idCustomer) && !isIdCustomerExists(idCustomer)) {
+            if (ValidateData.validateIdCustomer(idCustomer) && !isIdCustomerExists(idCustomer)) {
                 break;
             } else {
                 System.out.println("idCustomer không hợp lệ , nhập lại");
@@ -167,7 +161,7 @@ public class ManagerCustomer {
         while (true) {
             System.out.print("Nhập idCustomer (CU-1234) : ");
             idCustomer = scanner.nextLine();
-            if (RegularExpression.validateIdCustomer(idCustomer)) {
+            if (ValidateData.validateIdCustomer(idCustomer)) {
                 break;
             } else {
                 System.out.println("idCustomer không hợp lệ , nhập lại");
@@ -181,7 +175,11 @@ public class ManagerCustomer {
         try {
             Collections.sort(customerArrayList, new ComparatorByNameCustomer());
             for (Customer customer : customerArrayList) {
-                System.out.println(customer.showInfor());
+                if(customer.getServiceOfCustomer()==null){
+                    System.out.println(customer.showInforServiceNull());
+                }else {
+                    System.out.println(customer.showInfor());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -217,6 +215,7 @@ public class ManagerCustomer {
                 System.out.println(customer.showInfor());
             }
         }
+        System.out.println("Không tìm thấy tên này");
     }
 
     public static void removeCustomer() {

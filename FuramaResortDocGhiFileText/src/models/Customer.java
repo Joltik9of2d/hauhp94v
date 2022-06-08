@@ -132,6 +132,20 @@ public class Customer implements Serializable {
                 ", serviceOfCustomer=" + serviceOfCustomer +
                 '}';
     }
+    public String showInforServiceNull() {
+        return "Customer{" +
+                "idCustomer=" + idCustomer +
+                ", customerName='" + customerName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", identityCardNumber=" + identityCardNumber +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", CustomerType='" + CustomerType + '\'' +
+                ", address='" + address + '\'' +
+                ", serviceOfCustomer=" + "Chưa đặt dịch vụ" +
+                '}';
+    }
 
     @Override
     public String toString() {

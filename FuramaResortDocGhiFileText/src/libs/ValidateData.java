@@ -1,12 +1,14 @@
 package libs;
 
+import exception.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegularExpression {
+public class ValidateData {
     public static final String SERVICE_ID_REGEX = "^SV(VL|RO|HO)-\\d{4}$";
     public static final String SERVICE_NAME_REGEX = "^[A-Z][a-z]*(\\s[a-z]*)*$";
     public static final String SERVICE_USABLE_POOL_REGEX = "^([4-9][0-9]\\.?\\d*)|(3[1-9]\\.?\\d*)|(30\\.[1-9])|([1-9]\\d{2,}\\.?\\d*)$";
@@ -23,14 +25,16 @@ public class RegularExpression {
     public static final String CUSTOMER_NAME_REGEX = "^[A-Z][a-z]*(\\s[A-Z][a-z]*)*$";
     public static final String CUSTOMER_ID_CARD_REGEX = "^\\d{3}(\\s\\d{3}){2}$";
 
-    public static boolean validateIdCard(String regex) {
+    public static boolean validateIdCard(String regex) throws IdCardException {
         Matcher matcher = Pattern.compile(CUSTOMER_ID_CARD_REGEX).matcher(regex);
+        if(!matcher.matches()) throw new IdCardException("Id card không hợp lệ, nhập lại");
         return matcher.matches();
     }
 
 
-    public static boolean validateNameCustomer(String regex) {
+    public static boolean validateNameCustomer(String regex) throws NameException {
         Matcher matcher = Pattern.compile(CUSTOMER_NAME_REGEX).matcher(regex);
+        if(!matcher.matches()) throw new NameException("Tên không hợp lệ, nhập lại");
         return matcher.matches();
     }
 
@@ -64,9 +68,10 @@ public class RegularExpression {
         return matcher.matches();
     }
 
-    public static boolean validateGender(String regex) {
+    public static boolean validateGender(String regex) throws GenderException {
         regex = standardizedGender(regex);
         Matcher matcher = Pattern.compile(CUSTOMER_GENDER_REGEX).matcher(regex);
+        if(!matcher.matches()) throw new GenderException("Gender không hợp lệ, nhập lại.");
         return matcher.matches();
     }
 
@@ -80,8 +85,9 @@ public class RegularExpression {
         return matcher.matches();
     }
 
-    public static boolean validateEmail(String regex) {
+    public static boolean validateEmail(String regex) throws EmailException {
         Matcher matcher = Pattern.compile(CUSTOMER_EMAIL_REGEX).matcher(regex);
+        if(!matcher.matches()) throw new EmailException("Email này không hợp lệ, nhập lại: ");
         return matcher.matches();
     }
 
@@ -95,12 +101,13 @@ public class RegularExpression {
         return matcher.matches();
     }
 
-    public static boolean validateBirthday(String regex) {
+    public static boolean validateBirthday(String regex) throws BirthdayException {
         Matcher matcher = Pattern.compile(CUSTOMER_BIRTHDAY_REGEX).matcher(regex);
         if (!matcher.matches()) {
-            return false;
+            throw new BirthdayException("Ngày sinh không hợp lệ.");
         }
         LocalDate birthday = stringBirthdayToLocadateBirthday(regex);
+        if(!birthday.isBefore(LocalDate.now().minusYears(18))) throw new BirthdayException("Chưa đủ 18 tuổi");
         return birthday.isBefore(LocalDate.now().minusYears(18));
     }
 
