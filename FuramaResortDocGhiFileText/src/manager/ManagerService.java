@@ -210,7 +210,51 @@ public class ManagerService {
         }
         return idService;
     }
-
+    public static boolean isServiceBooked(String iDService){
+        ArrayList<Customer> customerArrayListBooking = FuncWriteAndRead.readCustomerListBooking(Path.PATH_BOOKING_CSV);
+            for (Customer customer: customerArrayListBooking){
+                if(customer.getServiceOfCustomer().getId().equals(iDService)){
+                    return true;
+                }
+            }
+            return false;
+    }
+public static void showVillaAvilable(){
+    ArrayList<Villa> villaArrayList = FuncWriteAndRead.readVillaList();
+    try {
+        for (Services services : villaArrayList) {
+            if(!isServiceBooked(services.getId())){
+                System.out.println(services.showInfor());
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+    public static void showHouseAvilable(){
+        ArrayList<House> houseArrayList = FuncWriteAndRead.readHouseList();
+        try {
+            for (Services services : houseArrayList) {
+                if(!isServiceBooked(services.getId())){
+                    System.out.println(services.showInfor());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void showRoomAvilable(){
+        ArrayList<Room> roomArrayList = FuncWriteAndRead.readRoomList();
+        try {
+            for (Services services : roomArrayList) {
+                if(!isServiceBooked(services.getId())){
+                    System.out.println(services.showInfor());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void showServices() {
         ArrayList<Villa> villaArrayList = FuncWriteAndRead.readVillaList();
         ArrayList<House> houseArrayList = FuncWriteAndRead.readHouseList();

@@ -45,24 +45,15 @@ public class FuncWriteAndRead {
             while((line = bufferedReader.readLine())!=null){
                 String[] temp = line.split(",");
                 if(temp.length==19) {
-                    String[] birthdayArray = temp[2].split("-");
-                    LocalDate birthday = LocalDate.of(Integer.parseInt(birthdayArray[0]),
-                            Integer.parseInt(birthdayArray[1]), Integer.parseInt(birthdayArray[2]));
-                    customerArrayListBooking.add(new Customer(temp[0], temp[1], birthday, temp[3], temp[4],
+                    customerArrayListBooking.add(new Customer(temp[0], temp[1], temp[2], temp[3], temp[4],
                             temp[5], temp[6], temp[7], temp[8], new Villa(temp[9],temp[10],temp[11],Double.parseDouble(temp[12]),temp[13],temp[14],
                             temp[15],temp[16],temp[17],Integer.parseInt(temp[18]))));
                 }else if(temp.length==18){
-                    String[] birthdayArray = temp[2].split("-");
-                    LocalDate birthday = LocalDate.of(Integer.parseInt(birthdayArray[0]),
-                            Integer.parseInt(birthdayArray[1]), Integer.parseInt(birthdayArray[2]));
-                    customerArrayListBooking.add(new Customer(temp[0], temp[1], birthday, temp[3], temp[4],
+                    customerArrayListBooking.add(new Customer(temp[0], temp[1], temp[2], temp[3], temp[4],
                             temp[5], temp[6], temp[7], temp[8], new House(temp[9],temp[10],temp[11],Double.parseDouble(temp[12]),temp[13],temp[14],
                             temp[15],temp[16],Integer.parseInt(temp[17]))));
                 }else if(temp.length==16){
-                    String[] birthdayArray = temp[2].split("-");
-                    LocalDate birthday = LocalDate.of(Integer.parseInt(birthdayArray[0]),
-                            Integer.parseInt(birthdayArray[1]), Integer.parseInt(birthdayArray[2]));
-                    customerArrayListBooking.add(new Customer(temp[0], temp[1], birthday, temp[3], temp[4],
+                    customerArrayListBooking.add(new Customer(temp[0], temp[1], temp[2], temp[3], temp[4],
                             temp[5], temp[6], temp[7], temp[8], new Room(temp[9],temp[10],temp[11],Double.parseDouble(temp[12]),temp[13],temp[14],
                             temp[15])));
                 }else {
@@ -84,10 +75,7 @@ public class FuncWriteAndRead {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] temp = line.split(",");
-                String[] birthdayArray = temp[2].split("-");
-                LocalDate birthday = LocalDate.of(Integer.parseInt(birthdayArray[0]),
-                        Integer.parseInt(birthdayArray[1]), Integer.parseInt(birthdayArray[2]));
-                customerArrayList.add(new Customer(temp[0], temp[1], birthday, temp[3], temp[4],
+                customerArrayList.add(new Customer(temp[0], temp[1], temp[2], temp[3], temp[4],
                         temp[5], temp[6], temp[7], temp[8], null));
 
             }

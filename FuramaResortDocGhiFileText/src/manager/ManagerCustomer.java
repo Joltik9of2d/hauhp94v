@@ -8,6 +8,7 @@ import libs.ValidateData;
 import models.Customer;
 import models.Services;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class ManagerCustomer {
         Scanner scanner = new Scanner(System.in);
         String idCustomer = inputIdCustomerToAddService();
         String customerName = inputCustomerName();
-        LocalDate birthdayLocalDate = inputBirthday();
+        String birthdayLocalDate = inputBirthday();
         String gender = inputGender();
         String identityCardNumber = inputIdentityCardNumber();
         System.out.print("Nhập số điện thoại: ");
@@ -102,25 +103,22 @@ public class ManagerCustomer {
         return gender;
     }
 
-    private static LocalDate inputBirthday() {
+    private static String inputBirthday() {
         Scanner scanner = new Scanner(System.in);
         String birthdayString = "";
-        LocalDate birthdayLocalDate;
+//        String birthdayLocalDate;
         while (true) {
             try {
                 System.out.print("Nhập ngày sinh khách hàng (dd/mm/yyy) : ");
                 birthdayString = scanner.nextLine();
                 if (ValidateData.validateBirthday(birthdayString)) {
-                    birthdayLocalDate = ValidateData.stringBirthdayToLocadateBirthday(birthdayString);
                     break;
-                } else {
-                    throw new BirthdayException("Ngày sinh không hợp lệ hoặc chưa đủ 18 tuổi");
                 }
-            } catch (BirthdayException e) {
+            } catch (BirthdayException | DateTimeException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return birthdayLocalDate;
+        return birthdayString;
     }
 
     private static String inputCustomerName() {
@@ -290,7 +288,7 @@ public class ManagerCustomer {
                     break;
                 case 2:
                     System.out.println("Sửa ngày sinh, nhập ngày sinh mới");
-                    LocalDate newBirthday = inputBirthday();
+                    String newBirthday = inputBirthday();
                     customerToEdit.setBirthday(newBirthday);
                     break;
                 case 3:

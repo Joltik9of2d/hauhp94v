@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Customer implements Serializable {
     private String idCustomer;
     private String customerName;
-    private LocalDate birthday;
+    private String birthday;
     private String gender;
     private String identityCardNumber;
     private String phoneNumber;
@@ -23,7 +23,7 @@ public class Customer implements Serializable {
         this.customerName = customerName;
     }
 
-    public Customer(String idCustomer, String customerName, LocalDate birthday, String gender,
+    public Customer(String idCustomer, String customerName, String birthday, String gender,
                     String identityCardNumber, String phoneNumber,
                     String email, String customerType, String address, Services serviceOfCustomer) {
         this.idCustomer = idCustomer;
@@ -54,11 +54,11 @@ public class Customer implements Serializable {
         this.customerName = customerName;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

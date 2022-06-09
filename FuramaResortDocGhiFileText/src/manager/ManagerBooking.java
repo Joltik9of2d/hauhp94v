@@ -64,11 +64,12 @@ public class ManagerBooking {
             }
             switch (choose) {
                 case 1:
-                    System.out.println("Danh sách villa: ");
+                    System.out.println("Danh sách villa còn trống: ");
+                    ManagerService.showVillaAvilable();
                     ArrayList<Villa> villaArrayList = FuncWriteAndRead.readVillaList();
-                    for (Villa villa : villaArrayList) {
-                        System.out.println(villa.showInfor());
-                    }
+//                    for (Villa villa : villaArrayList) {
+//                        System.out.println(villa.showInfor());
+//                    }
                     String idVillaBook;
                     boolean checkVilla = true;
                     while (checkVilla) {
@@ -92,11 +93,13 @@ public class ManagerBooking {
                     }
                     break;
                 case 2:
-                    System.out.println("Danh sách house: ");
+                    System.out.println("Danh sách house còn trống: ");
                     ArrayList<House> houseArrayList = FuncWriteAndRead.readHouseList();
-                    for (House house : houseArrayList) {
-                        System.out.println(house.showInfor());
-                    }
+//                    for (House house : houseArrayList) {
+//                        System.out.println(house.showInfor());
+//                    }
+                    ManagerService.showHouseAvilable();
+
                     String idHouseBook;
                     boolean checkHouse = true;
                     while (checkHouse) {
@@ -120,11 +123,13 @@ public class ManagerBooking {
                     }
                     break;
                 case 3:
-                    System.out.println("Danh sách room: ");
+                    System.out.println("Danh sách room còn trống: ");
                     ArrayList<Room> roomArrayList = FuncWriteAndRead.readRoomList();
-                    for (Room room : roomArrayList) {
-                        System.out.println(room.showInfor());
-                    }
+//                    for (Room room : roomArrayList) {
+//                        System.out.println(room.showInfor());
+//                    }
+                    ManagerService.showRoomAvilable();
+
                     String idRoomBook = "";
                     boolean checkRoom = true;
                     while (checkRoom) {
